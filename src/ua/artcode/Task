@@ -1,0 +1,84 @@
+    IWorker
+        //TODO Lada
+        //регистрация123777
+        Worker register(String nameWorker, Company company, String descriptionWorker, Status status, String email, String pass);
+        //посмотреть все закрепленные сервисы
+        Service[] myServices(Worker worker);
+        //статус сотрудника
+        Status statusWorker(int statusIndex);
+        //заказы сотрудника
+        Order[] ordersWorker(Worker worker);
+        // закрыть заказ
+        Order[] closeOrder(Order order);
+    IUser
+        //TODO Vova
+        //регистрирация
+        User register(String email, String fullname, String phone, String pass, String role);
+        //поиск сервиса
+        Service[] searchService();
+        //создать заказ
+        Order addOrder(Company company, Service service);
+        //посмотреть свои заказы
+        Order[] listOrders(User user);
+        //оставить комментарий сервису
+        Comment addCommentService (Service service);
+        //оставить комментарий компании
+        Comment addCommentCompany (Company company);
+        //оставить комментарий сотруднику
+        Comment addCommentWorker (Worker worker);
+        //оставить комментарий про систему
+        Comment addCommentPSA();
+    IModerator PSA
+        //TODO Andrey
+        //регистрация
+        ModeratorPSA register(String nameModerator, String email, String pass);
+        //добавить сервис
+        Service createService(String nameService, String descriptionService);
+        //удалить сервис
+        Service removeService(long serviceId);
+        //добавить компанию
+        Company addCompany(Company company);
+        //удалить компанию
+        Company removeCompany(long companyId);
+        //ответить на коментарий
+        Comment replyToComment(long commentID, Comment comment);
+        //удалить комментарий
+        Comment removeComment(long commentID);
+        //добавить пользователя
+        User addUser(User user);
+        //изменить пользователя
+        User editUser(long userId, User user);
+        //удалить пользователя
+        User removeUser(long userId);
+        //посмотреть все компании
+        Company[] listAllCompany();
+        //редактировать сервис
+        Service editService(long id);
+        //посмотреть все сервисы
+        Service[] listAllService();
+     IModerator
+          //TODO Sasha
+          //регистрация
+          Moderator register(String fullname, String email, String pass, String role, Company company);
+          // создаем компанию
+          Company addCompany(Company company);
+          // изменяем данные про компанию
+          Company editCompany(Company company);
+          // ищем компанию
+          Company findCompany(long companyId);
+          // удаляем компанию
+          Company removeCompany(long companyId);
+          // добавить сервис компании
+          Company addService(long companyId, Service service);
+          // добавить сотрудника в компанию
+          Company addWorkerToCompany(long companyId, long workerId);
+          //передаем заказ в работу сотруднику
+          Worker asignOrderWorker(Order order, long workerId);
+          //выбрать сервис
+          Service[] chooseService();
+          // посмотреть всех сотрудников
+          Worker[] getOwnWorkers(long managerId);
+          //посмотреть всех свободных сотрудников
+          Worker[] showAllFreeWorker(Status status);
+          //назначить сервису работника
+          Service asignServiceWorker(Worker worker);

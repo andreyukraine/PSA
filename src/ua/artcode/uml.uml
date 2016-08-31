@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-33.0" y="106.0">ua.artcode.model.Location</node>
+    <node x="2011.5" y="1386.0">ua.artcode.model.Rate</node>
+    <node x="1917.0" y="86.0">ua.artcode.model.Worker</node>
+    <node x="1569.5" y="466.0">ua.artcode.model.Client</node>
+    <node x="1557.0" y="816.0">ua.artcode.model.Order</node>
+    <node x="637.0" y="376.0">ua.artcode.model.Comment</node>
+    <node x="1267.0" y="606.0">ua.artcode.model.User</node>
+    <node x="187.0" y="46.0">ua.artcode.model.Company</node>
+    <node x="1647.5" y="586.0">ua.artcode.model.Status</node>
+    <node x="607.0" y="856.0">ua.artcode.model.Moderator</node>
+    <node x="227.0" y="1206.0">ua.artcode.model.Service</node>
+    <node x="919.5" y="616.0">ua.artcode.model.ModeratorPSA</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ua.artcode.model.Service" target="ua.artcode.model.Rate">
+      <point x="40.0" y="74.0" />
+      <point x="360.0" y="1400.0" />
+      <point x="-28.5" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Service" target="ua.artcode.model.Comment">
+      <point x="20.0" y="-74.0" />
+      <point x="340.0" y="440.0" />
+      <point x="-83.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Company" target="ua.artcode.model.Location">
+      <point x="-133.0" y="-0.0" />
+      <point x="73.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.Rate">
+      <point x="0.0" y="74.0" />
+      <point x="0.0" y="-14.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.Comment">
+      <point x="0.0" y="-64.0" />
+      <point x="0.0" y="64.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.Service">
+      <point x="-113.0" y="40.0" />
+      <point x="380.0" y="960.0" />
+      <point x="60.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.Service">
+      <point x="-10.0" y="74.0" />
+      <point x="2030.0" y="1280.0" />
+      <point x="93.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.Moderator">
+      <point x="0.0" y="64.0" />
+      <point x="1040.0" y="880.0" />
+      <point x="113.0" y="-40.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.Company">
+      <point x="0.0" y="-64.0" />
+      <point x="1040.0" y="180.0" />
+      <point x="133.0" y="20.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.Company">
+      <point x="-123.0" y="-0.0" />
+      <point x="133.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Order" target="ua.artcode.model.Worker">
+      <point x="123.0" y="-0.0" />
+      <point x="2000.0" y="920.0" />
+      <point x="-40.0" y="74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Company" target="ua.artcode.model.Comment">
+      <point x="133.0" y="40.0" />
+      <point x="680.0" y="200.0" />
+      <point x="-40.0" y="-64.0" />
+    </edge>
+    <edge source="ua.artcode.model.Order" target="ua.artcode.model.Service">
+      <point x="0.0" y="104.0" />
+      <point x="1680.0" y="1240.0" />
+      <point x="93.0" y="-40.0" />
+    </edge>
+    <edge source="ua.artcode.model.Service" target="ua.artcode.model.Worker">
+      <point x="0.0" y="74.0" />
+      <point x="320.0" y="1480.0" />
+      <point x="2240.0" y="1480.0" />
+      <point x="2240.0" y="160.0" />
+      <point x="123.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Order" target="ua.artcode.model.Status">
+      <point x="0.0" y="-104.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="ua.artcode.model.Order" target="ua.artcode.model.User">
+      <point x="-40.0" y="-104.0" />
+      <point x="1640.0" y="680.0" />
+      <point x="93.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.Worker">
+      <point x="0.0" y="64.0" />
+      <point x="720.0" y="1120.0" />
+      <point x="2020.0" y="1120.0" />
+      <point x="-20.0" y="74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.Company">
+      <point x="-113.0" y="-40.0" />
+      <point x="560.0" y="880.0" />
+      <point x="560.0" y="220.0" />
+      <point x="133.0" y="60.0" />
+    </edge>
+    <edge source="ua.artcode.model.Client" target="ua.artcode.model.User">
+      <point x="-30.5" y="-0.0" />
+      <point x="1440.0" y="480.0" />
+      <point x="80.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.User">
+      <point x="-60.0" y="74.0" />
+      <point x="1980.0" y="400.0" />
+      <point x="1400.0" y="400.0" />
+      <point x="40.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Company" target="ua.artcode.model.Moderator">
+      <point x="133.0" y="80.0" />
+      <point x="520.0" y="240.0" />
+      <point x="520.0" y="920.0" />
+      <point x="-113.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Comment" target="ua.artcode.model.User">
+      <point x="0.0" y="-64.0" />
+      <point x="720.0" y="320.0" />
+      <point x="1360.0" y="320.0" />
+      <point x="0.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.Worker">
+      <point x="40.0" y="-64.0" />
+      <point x="1080.0" y="360.0" />
+      <point x="1960.0" y="360.0" />
+      <point x="-80.0" y="74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Company" target="ua.artcode.model.Service">
+      <point x="0.0" y="114.0" />
+      <point x="0.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.Order">
+      <point x="113.0" y="-0.0" />
+      <point x="-123.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Moderator" target="ua.artcode.model.User">
+      <point x="113.0" y="-20.0" />
+      <point x="1360.0" y="900.0" />
+      <point x="0.0" y="74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Company" target="ua.artcode.model.Worker">
+      <point x="0.0" y="-114.0" />
+      <point x="320.0" y="0.0" />
+      <point x="2040.0" y="0.0" />
+      <point x="0.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.Service">
+      <point x="-120.5" y="-0.0" />
+      <point x="360.0" y="680.0" />
+      <point x="40.0" y="-74.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.Status">
+      <point x="-50.0" y="74.0" />
+      <point x="1990.0" y="600.0" />
+      <point x="32.5" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.Comment">
+      <point x="-40.0" y="-64.0" />
+      <point x="1000.0" y="440.0" />
+      <point x="83.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.ModeratorPSA" target="ua.artcode.model.User">
+      <point x="120.5" y="-0.0" />
+      <point x="-93.0" y="-0.0" />
+    </edge>
+    <edge source="ua.artcode.model.Worker" target="ua.artcode.model.Order">
+      <point x="-30.0" y="74.0" />
+      <point x="2010.0" y="1080.0" />
+      <point x="1720.0" y="1080.0" />
+      <point x="40.0" y="104.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="272.5" y="638.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
