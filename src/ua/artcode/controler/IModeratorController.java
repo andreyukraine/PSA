@@ -2,66 +2,61 @@ package ua.artcode.controler;
 
 import ua.artcode.model.*;
 
+import java.util.List;
+
 /**
  * Created by serhii on 21.08.16.
  */
 public interface IModeratorController {
 
-    // @param company without id
-    // @return company with id
-
-    // зарегистрация
-    //TODO  reducted удалено компанию от модератора
-    Moderator register(String fullname, String email, String phone, String pass, String role);
+    // создаем модератора
+    Moderator addModerator(String fullname, String email, String phone, String pass, String role);
 
     // создаем компанию
-    Company addCompany(String nameCompany, Location location, String descriptionCompany, Moderator moderator);
+    Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location);
 
     // изменяем данные про компанию
-    Company editCompany(String nameCompany, String newNameCompany);
+    Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Client moderator, Location location);
+
+    // удаляем компанию
+    Company removeCompany(long companyId);
 
     // ищем компанию
     Company findCompany(long companyId);
 
-    // удаляем компанию
-    boolean removeCompany(long companyId);
-
     // добавить сервис компании
-    boolean addService(long companyId, Service service);
+    Service addServiceToCompany(long companyId, long serviceId);
 
     //удалить сервис
-    boolean removeService(long serviceId);
+    Service removeService(long serviceId);
 
-    //выбрать сервис
-    Service[] chooseService(Service ... args);
-
+    //создать работника
     Worker createWorker(String fullName, String email, String phone, String pass);
 
     // добавить сотрудника в компанию
-    boolean addWorkerToCompany(long companyId, long workerId);
-
+    Worker asignWorkerToCompany(long companyId, long workerId);
 
     //передаем заказ в работу сотруднику
-    Worker asignOrderWorker(Order order, long workerId);
+    Worker asignOrderWorker(long workerId, Order order);
 
     // посмотреть всех сотрудников
-    // TODO reduct добавлен параметр компания (посмотреть всех сотрудников в компании)
-    Worker[] getOwnWorkersInCompany(long companyId);
+    List<Worker> getOwnWorkersInCompany(long companyId);
 
     //назначить сервису работника
-    //TODO reducted добавлин параметр service и вывод boolean
-    boolean asignServiceWorker(Service service, Worker worker);
+    Service asignServiceWorker(long serviceId, Worker worker);
 
     //удалить сотрудника с компании
-    Worker[] removeWorker(long workerId);
+    Worker removeWorker(long workerId);
 
     // редактировать сотрудника
-    Worker editWorker(long workerId);
+    Worker editWorker(long workerId, String newFullname, String newEmail, String newPhone, String newPass, String newDescriptionWorker);
 
     // изменить статус заказа
-    Order assignStatusOrder(Order order, Status status);
+    Order assignStatusOrder(long orderId, int statusIndex);
 
     //посмотреть всех свободных сотрудников
-    Worker[] showAllFreeWorker(Status status);
+    List<Worker> showAllFreeWorker(int statusIndex);
+
+    //добавить комментрии
 
 }

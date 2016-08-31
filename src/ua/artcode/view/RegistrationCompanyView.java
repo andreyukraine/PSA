@@ -4,8 +4,8 @@ import ua.artcode.controler.IClientController;
 import ua.artcode.controler.IModeratorController;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
-import ua.artcode.model.Client;
-import ua.artcode.model.Status;
+import ua.artcode.db.IAppDB;
+import ua.artcode.model.*;
 
 import java.util.Scanner;
 
@@ -24,15 +24,17 @@ public class RegistrationCompanyView {
     IModeratorPSAController iModeratorPSAController;
     IWorkerController iWorkerController;
     IClientController iClientController;
+    IAppDB iAppDB;
+    Client clientTemp = null;
 
-
-    public RegistrationCompanyView(Scanner scanner, IModeratorController iModeratorController,IModeratorPSAController iModeratorPSAController,
-                                   IWorkerController iWorkerController, IClientController iClientController) {
+    public RegistrationCompanyView(Scanner scanner, IModeratorController iModeratorController, IModeratorPSAController iModeratorPSAController,
+                                   IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB) {
         this.scanner = scanner;
         this.iModeratorController = iModeratorController;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iWorkerController = iWorkerController;
         this.iClientController = iClientController;
+        this.iAppDB = iAppDB;
     }
 
     public void start(){
@@ -47,13 +49,15 @@ public class RegistrationCompanyView {
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0) {
             if (choice == 1) {
                 addClient();
-                //addCompany
+                addCompany();
             }
             if (choice == 2) {
 
 
                 if (loginView.showLoginMenu() == true){
-                    //addCompany
+                    addCompany();
+
+                }else{
                     loginView.showLoginMenu();
                 };
             }
@@ -76,7 +80,23 @@ public class RegistrationCompanyView {
         String passClient = scanner.nextLine();
 
         Status status = new Status();
-        String roleUser = status.statusUserRole(2);
-        Client client = iModeratorPSAController.addClient(fullnameClient,emailClient,phoneClient,passClient,roleUser);
+        String roleUser = status.statusClientRole(2);
+        clientTemp = iModeratorPSAController.addClient(fullnameClient,emailClient,phoneClient,passClient,roleUser);
     }
+
+    public void addCompany(){
+        System.out.println("Input nameCompany");
+        String nameCompany = scanner.nextLine();
+        System.out.println("Input descriptionCompany");
+        String descriptionCompany = scanner.nextLine();
+        Location location = new Location().setLocationMenu(scanner);
+
+        Status status = new Status();
+        String changeStatusCompany = status.statusCompany(1);
+        Company company = iClientController.addCompany(nameCompany,descriptionCompany,null,location);
+    }
+
+
+
+
 }

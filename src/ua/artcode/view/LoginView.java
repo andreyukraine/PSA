@@ -6,8 +6,6 @@ import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.Status;
-import ua.artcode.run.RunProgramms;
-import ua.artcode.utils.Utils;
 
 import java.util.Scanner;
 
@@ -30,6 +28,7 @@ public class LoginView {
                      IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
+        this.iClientController = iClientController;
         this.iAppDB = appDB;
     }
 
@@ -47,7 +46,7 @@ public class LoginView {
 
         for (int i = 0; i < iAppDB.getListModeratorPSA().size() ; i++) {
             if (iAppDB.getListModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getListModeratorPSA().get(i).getPass().equals(pass)
-                    && iAppDB.getListModeratorPSA().get(i).getRole().equals(new Status().statusUserRole(1))){
+                    && iAppDB.getListModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
                 ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController,iAppDB);
                 moderatorPSAView.start();
                 return true;
@@ -55,22 +54,22 @@ public class LoginView {
         }
         for (int i = 0; i < iAppDB.getListModerator().size(); i++) {
             if (iAppDB.getListModerator().get(i).getEmail().equals(login) && iAppDB.getListModerator().get(i).getPass().equals(pass) &&
-                    iAppDB.getListModerator().get(i).getRole().equals(new Status().statusUserRole(2))){
-                ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController);
+                    iAppDB.getListModerator().get(i).getRole().equals(new Status().statusClientRole(2))){
+                ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
                 return true;
             }
         }
         for (int i = 0; i < iAppDB.getListClients().size(); i++) {
             if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusUserRole(3))){
-                WorkerView workerView = new WorkerView(scanner, iWorkerController);
+                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusClientRole(3))){
+                WorkerView workerView = new WorkerView(scanner, iWorkerController, iAppDB);
                 return true;
             }
         }
         for (int i = 0; i < iAppDB.getListClients().size(); i++) {
             if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusUserRole(4))){
-                ClientView clientView = new ClientView(scanner, iClientController);
+                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusClientRole(4))){
+                ClientView clientView = new ClientView(scanner, iClientController, iAppDB, iAppDB.getListClients().get(i));
                 clientView.start();
                 return true;
             }

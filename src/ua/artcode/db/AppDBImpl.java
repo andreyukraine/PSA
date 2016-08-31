@@ -12,7 +12,8 @@ public class AppDBImpl implements IAppDB {
 
     private List<Company> companies = new ArrayList<>();
     private List<Client> clients = new ArrayList<>();
-    private List<Moderator> moderator = new ArrayList<>();
+    private List<Client> moderator = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
     private List<Service> services = new ArrayList<>();
     private List<ModeratorPSA> listModeratorPSA = new ArrayList<>();
 
@@ -24,6 +25,13 @@ public class AppDBImpl implements IAppDB {
                 services.add(service);
                 service.setId(services.indexOf(service));
                 return service;
+    }
+
+    @Override
+    public Company addCompany(Company company) {
+        companies.add(company);
+        company.setId(companies.indexOf(company));
+        return company;
     }
 
     @Override
@@ -63,17 +71,34 @@ public class AppDBImpl implements IAppDB {
     @Override
     public Client addClient(Client client) {
         clients.add(client);
+        client.setId(clients.indexOf(client));
         return client;
     }
 
+    @Override
+    public Location addLocation(Location location) {
+        locations.add(location);
+        location.setId(locations.indexOf(location));
+        return location;
+    }
+
+    public Client addModeratorCompany(Client client){
+        for (int i = 0; i < clients.size() ; i++) {
+            if (clients.get(i).getId() == client.getId()){
+                moderator.add(client);
+                moderator.get(i).setRole(new Status().statusClientRole(2));
+                clients.remove(i);
+                return client;
+
+            }
+        }
+        return null;
+    }
     @Override
     public List<ModeratorPSA> getListModeratorPSA() {
         return listModeratorPSA;
     }
 
-    public List<Moderator> getListModerator(){
-        return moderator;
-    }
 
     public List<Client> getListClients(){
         return clients;
@@ -82,15 +107,16 @@ public class AppDBImpl implements IAppDB {
     public List<Service> getListService(){
         return services;
     }
+
+    @Override
+    public List<Client> getListModerator() {
+        return moderator;
+    }
+
     public List<Company> getListCompanies() {
         return companies;
     }
 
-
-    public Company addCompany(Company company){
-        companies.add(company);
-        return company;
-    }
 
 
 
@@ -122,7 +148,7 @@ public class AppDBImpl implements IAppDB {
     public AppDBImpl() {
     }
 
-    public AppDBImpl(ArrayList<Company> companies, ArrayList<Client> clients, ArrayList<Moderator> moderator,
+    public AppDBImpl(ArrayList<Company> companies, ArrayList<Client> clients, ArrayList<Client> moderator,
                      ArrayList<Service> services, ArrayList<ModeratorPSA> listModeratorPSA) {
         this.companies = companies;
         this.clients = clients;
@@ -150,11 +176,11 @@ public class AppDBImpl implements IAppDB {
         this.clients = clients;
     }
 
-    public List<Moderator> getModerator() {
+    public List<Client> getModerator() {
         return moderator;
     }
 
-    public void setModerator(List<Moderator> moderator) {
+    public void setModerator(List<Client> moderator) {
         this.moderator = moderator;
     }
 

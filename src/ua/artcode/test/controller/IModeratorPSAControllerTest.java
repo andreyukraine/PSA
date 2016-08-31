@@ -25,7 +25,7 @@ public class IModeratorPSAControllerTest {
         //createServiceTest("Интернет","Подключение интернета",serviceTest);
         //editServiceTest(0,serviceTest1);
 
-        Company company = new Company("Maximum-Net", new Location("Ukraine","Kiev","Address"), "descriptionCompany", null);
+        //Company company = new Company("Maximum-Net", new Location("Ukraine","Kiev","Address"), "descriptionCompany", null);
         //addCompanyTest(company);
 
         User user = new User("user@gmail.com", "Andrey","+380","123456","user");
@@ -37,17 +37,17 @@ public class IModeratorPSAControllerTest {
 //        addUserTest(user1);
 //        addUserTest(user2);
 
-        editUserTest(0, user1);
-        removeUserTest(0, user.getFullname());
+        //editUserTest(0, user1);
+        //removeUserTest(0, user.getFullname());
 
-        removeCompanyTest(0, company.getNameCompany());
+        //removeCompanyTest(0, company.getNameCompany());
         //removeServiceTest(0, serviceTest.getNameService());
 
     }
 
     //регистрация
     static boolean registerTest(String fullname, String email, String phone, String pass, String role, ModeratorPSA moderatorPSATest){
-        ModeratorPSA moderatorPSA = iModeratorPSAController.register(fullname,email,phone,pass,role);
+        ModeratorPSA moderatorPSA = iModeratorPSAController.addModeratorPSA(fullname,email,phone,pass,role);
         boolean booleanrez = moderatorPSA.getFullname().equals(moderatorPSATest.getFullname());
         System.out.printf("res %s, method %s, ex %s = practical %s\n",
                 booleanrez , "registerTest", moderatorPSATest.getFullname(), moderatorPSA.getFullname());
@@ -130,30 +130,30 @@ public class IModeratorPSAControllerTest {
 //    }
 
     //изменить пользователя
-    static boolean editUserTest(long userId, User user){
-        User[] usersTest = iModeratorPSAController.editUser(userId,user);
-        for (int i = 0; i < users.length ; i++) {
-            if (users[i].getId() == userId){
-                boolean booleanrez = users[i].getId() == user.getId();
-                System.out.printf("res %s, method %s, ex %s = practical %s\n",
-                        booleanrez, "editUserTest", users[i].getFullname(), usersTest[i].getFullname());
-                return booleanrez;
-            }
-        }
-        return false;
-    }
+//    static boolean editUserTest(long userId, User user){
+//        User[] usersTest = iModeratorPSAController.editUser(userId,user);
+//        for (int i = 0; i < users.length ; i++) {
+//            if (users[i].getId() == userId){
+//                boolean booleanrez = users[i].getId() == user.getId();
+//                System.out.printf("res %s, method %s, ex %s = practical %s\n",
+//                        booleanrez, "editUserTest", users[i].getFullname(), usersTest[i].getFullname());
+//                return booleanrez;
+//            }
+//        }
+//        return false;
+//    }
 
     //удалить пользователя
-    static boolean removeUserTest(long userId, String userTest){
-        User[] usersTest = iModeratorPSAController.removeUser(userId);
-        for (int i = 0; (i < users.length) & (users[i] != null); i++) {
-                boolean booleanrez = users[i].getId() == userId;
-                System.out.printf("res %s, method %s, ex %s = practical %s\n",
-                        booleanrez, "removeUserTest", users[i].getFullname(), usersTest);
-                return booleanrez;
-        }
-        return false;
-    }
+//    static boolean removeUserTest(long userId, String userTest){
+//        User[] usersTest = iModeratorPSAController.removeUser(userId);
+//        for (int i = 0; (i < users.length) & (users[i] != null); i++) {
+//                boolean booleanrez = users[i].getId() == userId;
+//                System.out.printf("res %s, method %s, ex %s = practical %s\n",
+//                        booleanrez, "removeUserTest", users[i].getFullname(), usersTest);
+//                return booleanrez;
+//        }
+//        return false;
+//    }
     //ответить на коментарий
     //    Comment replyToComment(long commentID, Comment comment);
     //удалить комментарий

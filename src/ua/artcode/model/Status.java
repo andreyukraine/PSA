@@ -31,8 +31,9 @@ public class Status {
                 return "UknownNow";
         }
     }
+
     //роли сервиса PSA
-public String statusUserRole(int statusIndex){
+public String statusClientRole(int statusIndex){
     switch (statusIndex){
         case 1:
             return "moderatorPSA";

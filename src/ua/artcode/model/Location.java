@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import java.util.Scanner;
+
 /**
  * Created by IT on 21.08.2016.
  */
@@ -24,7 +26,16 @@ public class Location {
     //metods----------------------------------------------------------------------------------------
 
     // создание локаций (городов)
+    public Location setLocationMenu(Scanner scanner) {
 
+        System.out.println("Input country");
+        String country = scanner.nextLine();
+        System.out.println("Input city");
+        String city = scanner.nextLine();
+
+        Location location = new Location(country,city);
+        return location;
+    }
     // geters & seters -----------------------------------------------------------------------------
     public long getId() {
         return id;

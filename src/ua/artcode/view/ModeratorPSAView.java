@@ -1,11 +1,8 @@
 package ua.artcode.view;
 
-import com.sun.deploy.util.SessionState;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.db.IAppDB;
-import ua.artcode.model.Client;
-import ua.artcode.model.Service;
-import ua.artcode.model.Status;
+import ua.artcode.model.*;
 
 import java.util.Scanner;
 
@@ -17,7 +14,6 @@ public class ModeratorPSAView {
     private Scanner scanner;
     private IModeratorPSAController iModeratorPSAController;
     private IAppDB iAppDB;
-
 
     // constructors --------------------------------------------------------------------------------
 
@@ -34,24 +30,30 @@ public class ModeratorPSAView {
         int choice = -1;
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0){
             if(choice == 1){
-                addServiceMenu();
+                addModeratorPSA();
             }
             if(choice == 2){
-                addServiceMenu();
+
             }
             if(choice == 3){
-                addServiceMenu();
+
             }
             if(choice == 4){
+
+            }
+            if(choice == 5){
+
+            }
+            if(choice == 6){
                 addServiceMenu();
             }
-            if (choice == 5){
+            if (choice == 7){
                 editServiceMenu();
             }
-            if (choice == 6){
+            if (choice == 8){
                 removeService();
             }
-            if (choice == 8){
+            if (choice == 10){
                 addClient();
             }
             showMainMenu();
@@ -60,16 +62,12 @@ public class ModeratorPSAView {
 
 
     public void showMainMenu(){
-        System.out.println("1.Register");
-        System.out.println("2.editCompany");
-        System.out.println("3.removeCompany");
-        System.out.println("4.addService");
-        System.out.println("5.editService");
-        System.out.println("6.removeService");
-        System.out.println("7.chooseService");
-        System.out.println("8.addClient");
-        System.out.println("9.addCompany");
-
+        System.out.println("1.addModeratorPSA");
+        System.out.println("6.addService");
+        System.out.println("7.editService");
+        System.out.println("8.removeService");
+        System.out.println("9.chooseService");
+        System.out.println("10.addClient");
     }
 
     public void addServiceMenu(){
@@ -115,7 +113,7 @@ public class ModeratorPSAView {
         String passClient = scanner.nextLine();
 
         Status status = new Status();
-        String roleUser = status.statusUserRole(4);
+        String roleUser = status.statusClientRole(4);
         Client client = iModeratorPSAController.addClient(fullnameClient,emailClient,phoneClient,passClient,roleUser);
     }
 
@@ -130,10 +128,11 @@ public class ModeratorPSAView {
         String passModeratorPSA = scanner.nextLine();
 
         Status status = new Status();
-        String roleUser = status.statusUserRole(1);
+        String roleUser = status.statusClientRole(1);
         Client client = iModeratorPSAController.addClient(fullnameModeratorPSA,emailModeratorPSA,phoneModeratorPSA,passModeratorPSA,roleUser);
 
     }
+
 
 
     //get set-------------------------

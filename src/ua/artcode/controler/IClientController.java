@@ -2,16 +2,18 @@ package ua.artcode.controler;
 
 import ua.artcode.model.*;
 
+import java.util.List;
+
 /**
  * Created by IT on 21.08.2016.
  */
 public interface IClientController {
 
-    // зарегистрирация
-    User register(String email, String fullname, String phone, String pass, String role);
+    // создаем клиента
+    Client addClient(String email, String fullname, String phone, String pass, String role);
 
-    //поиск сервиса
-    Service[] searchService();
+    // создаем компанию
+    Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location);
 
     //создать заказ
     Order createOrder(Company company, Service service);
@@ -20,12 +22,11 @@ public interface IClientController {
     Order editOrder();
 
     //закрыть заказ
-    Order closeOrder();
+    //отказаться от заказа
+    Order statusOrder();
 
     //посмотреть свои заказы
-    Order[] listOrders(User user, Status status);
-
-
+    List<Order> listOrders(Client client);
 
     //оставить комментарий сервису
     Comment addCommentService (Service service);
@@ -38,5 +39,20 @@ public interface IClientController {
 
     //оставить комментарий про систему
     Comment addCommentPSA();
+
+    //поиск сервиса
+    Service searchService(String serviceName);
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

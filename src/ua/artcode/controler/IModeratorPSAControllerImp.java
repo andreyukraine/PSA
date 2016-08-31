@@ -3,6 +3,8 @@ package ua.artcode.controler;
 import ua.artcode.model.*;
 import ua.artcode.run.RunProgramms;
 
+import java.util.List;
+
 import static ua.artcode.test.controller.IModeratorPSAControllerTest.companies;
 import static ua.artcode.test.controller.IModeratorPSAControllerTest.services;
 import static ua.artcode.test.controller.IModeratorPSAControllerTest.users;
@@ -13,7 +15,7 @@ import static ua.artcode.test.controller.IModeratorPSAControllerTest.users;
 public class IModeratorPSAControllerImp implements IModeratorPSAController {
 
 
-    public ModeratorPSA register(String fullname, String email, String phone, String pass, String role){
+    public ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, String role){
         ModeratorPSA moderatorPSA = new ModeratorPSA(fullname,email,phone,pass,role);
         return RunProgramms.appDB.addModeratorPSA(moderatorPSA);
     }
@@ -37,31 +39,52 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
         return  null;
     }
 
+    @Override
+    public Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location) {
+        Company company = new Company(nameCompany,descriptionCompany,moderator,location);
+        return RunProgramms.appDB.addCompany(company);
+    }
+
+    @Override
+    public Company removeCompany(long companyId) {
+        return null;
+    }
+
+    @Override
+    public Client removeClient(long clientId) {
+        return null;
+    }
+
+    @Override
+    public List<Company> listAllCompany() {
+        return null;
+    }
+
+    @Override
+    public List<Client> listAllClient() {
+        return null;
+    }
+
+    @Override
+    public List<Service> listAllService() {
+        return null;
+    }
+
+    @Override
+    public List<Client> listAllModerator() {
+        return null;
+    }
+
     public Client addClient(String fullname, String email, String phone, String pass, String role) {
         Client client = new Client(fullname,email,phone,pass,role);
         return RunProgramms.appDB.addClient(client);
     }
 
 
-//    public Company[] addCompany(Company company) {
-//        for (int i = 0; i < companies.length ; i++) {
-//            if (companies[i] == null) {
-//                companies[i] = company;
-//                return companies;
-//            }
-//        }
-//        return companies;
-//    }
-
-
-    public Company[] removeCompany(long companyId) {
-        for (int i = 0; (i < companies.length) & (companies[i] != null);  i++) {
-            if (companies[i].getId() == companyId){
-                companies[i] = null;
-                return companies;
-            }
-        }
-        return companies;
+    @Override
+    public Location addLocation(String country, String city) {
+        Location location = new Location(country,city);
+        return RunProgramms.appDB.addLocation(location);
     }
 
     @Override
@@ -74,36 +97,8 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
         return null;
     }
 
-
     @Override
-    public User[] editUser(long userId, User user) {
-        for (int i = 0; i < users.length; i++) {
-            if (users[i].getId() == userId){
-                users[i] = user;
-                return users;
-            }
-        }
-        return users;
-    }
-
-    @Override
-    public User[] removeUser(long userId) {
-        for (int i = 0; i < users.length ; i++) {
-            if (users[i].getId() == userId){
-                users[i] = null;
-                return users;
-            }
-        }
-        return users;
-    }
-
-    @Override
-    public Company[] listAllCompany() {
-        return companies;
-    }
-
-    @Override
-    public Service[] listAllService() {
-        return services;
+    public List<Comment> listAllComment() {
+        return null;
     }
 }

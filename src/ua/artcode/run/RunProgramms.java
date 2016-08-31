@@ -17,20 +17,34 @@ public class RunProgramms {
     public static final IAppDB appDB = new AppDBImpl();
 
     public static void main(String[] args) {
-
         IModeratorPSAController iModeratorPSAController = new IModeratorPSAControllerImp();
         IModeratorController iModeratorController = new IModeratorControllerImp();
         IWorkerController iWorkerController = new IWorkerControllerImp();
         IClientController iClientController = new IClientCotrollerImp();
-        iModeratorPSAController.register("Andrey","z","+380","z",new Status().statusUserRole(1));
+        iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", new Status().statusClientRole(1));
+        iModeratorPSAController.addClient("Client","c","+380","c",new Status().statusClientRole(4));
 
-        RegistrationCompanyView registrationCompanyView = new RegistrationCompanyView(new Scanner(System.in), iModeratorController,iModeratorPSAController,
-                iWorkerController, iClientController);
-        registrationCompanyView.start();
+        showStartMenu();
+        int choice = -1;
+        while ((choice = Integer.parseInt(new Scanner(System.in).nextLine())) != 0) {
+            if (choice == 1) {
+                LoginView loginView =
+                        new LoginView(new Scanner(System.in), iModeratorPSAController, iModeratorController, iWorkerController, iClientController, appDB);
+                loginView.showLoginMenu();
+            }
+            if (choice == 2) {
+                RegistrationCompanyView registrationCompanyView = new RegistrationCompanyView(new Scanner(System.in), iModeratorController, iModeratorPSAController,
+                    iWorkerController, iClientController, appDB);
+                registrationCompanyView.start();
+            }
+        }
+    }
 
-        LoginView loginView =
-                new LoginView(new Scanner(System.in),iModeratorPSAController, iModeratorController,iWorkerController, iClientController, appDB);
-        loginView.showLoginMenu();
+
+    private static void showStartMenu() {
+        System.out.println("1.Registration");
+        System.out.println("2.Add company");
     }
 
 }
+

@@ -1,6 +1,9 @@
 package ua.artcode.controler;
 
 import ua.artcode.model.*;
+import ua.artcode.run.RunProgramms;
+
+import java.util.List;
 
 /**
  * Created by IT on 22.08.2016.
@@ -8,17 +11,33 @@ import ua.artcode.model.*;
 public class IClientCotrollerImp implements IClientController {
 
     @Override
-    public User register(String email, String fullname, String phone, String pass, String role) {
+    public Client addClient(String email, String fullname, String phone, String pass, String role) {
         return null;
     }
 
     @Override
-    public Service[] searchService() {
-        return new Service[0];
+    public Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location ) {
+        Company company = new Company(nameCompany,descriptionCompany,moderator,location);
+        return RunProgramms.appDB.addCompany(company);
     }
 
     @Override
     public Order createOrder(Company company, Service service) {
+        return null;
+    }
+
+    @Override
+    public Order editOrder() {
+        return null;
+    }
+
+    @Override
+    public Order statusOrder() {
+        return null;
+    }
+
+    @Override
+    public List<Order> listOrders(Client client) {
         return null;
     }
 
@@ -43,17 +62,9 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
-    public Order editOrder() {
+    public Service searchService(String serviceName) {
         return null;
     }
 
-    @Override
-    public Order closeOrder() {
-        return null;
-    }
 
-    @Override
-    public Order[] listOrders(User user, Status status) {
-        return new Order[0];
-    }
 }
