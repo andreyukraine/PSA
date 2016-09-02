@@ -105,4 +105,19 @@ public class Company {
     public void setServices(List<Service> services) {
         this.services = services;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", nameCompany='" + nameCompany + '\'' +
+                ", descriptionCompany='" + descriptionCompany + '\'' +
+                ", changeStatusCompany='" + changeStatusCompany + '\'' +
+                ", location=" + location +
+                ", moderator=" + moderator +
+                ", workers=" + workers +
+                ", comments=" + comments +
+                ", services=" + services +
+                '}';
+    }
 }

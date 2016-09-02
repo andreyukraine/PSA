@@ -1,6 +1,9 @@
 package ua.artcode.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IT on 21.08.2016.
  */
@@ -8,10 +11,10 @@ public class ModeratorPSA extends User{
 
 
 
-    private Company[] companies;
-    private Worker[] workers;
-    private Service[] services;
-    private Comment[] comments;
+    private List<Company> companies;
+    private List<Worker> workers;
+    private List<Service> services;
+    private List<Comment> commentsPSA;
 
     // constructors --------------------------------------------------------------------------------
 
@@ -25,35 +28,35 @@ public class ModeratorPSA extends User{
     // geters & seters -----------------------------------------------------------------------------
 
 
-    public Company[] getCompanies() {
+    public List<Company> getCompanies() {
         return companies;
     }
 
-    public void setCompanies(Company[] companies) {
+    public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
 
-    public Worker[] getWorkers() {
+    public List<Worker> getWorkers() {
         return workers;
     }
 
-    public void setWorkers(Worker[] workers) {
+    public void setWorkers(List<Worker> workers) {
         this.workers = workers;
     }
 
-    public Service[] getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(Service[] services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
-    public Comment[] getComments() {
-        return comments;
+    public List<Comment> getCommentsPSA() {
+        return commentsPSA;
     }
 
-    public void setComments(Comment[] comments) {
-        this.comments = comments;
+    public void setCommentsPSA(List<Comment> commentsPSA) {
+        this.commentsPSA = commentsPSA;
     }
 }

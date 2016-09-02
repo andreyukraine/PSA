@@ -47,8 +47,6 @@ public String statusClientRole(int statusIndex){
             return "UknownNow";
     }
 }
-        //-moderatorPSA
-        //-moderatorCompany
-        //-user
-        //-worker
+
+
 }

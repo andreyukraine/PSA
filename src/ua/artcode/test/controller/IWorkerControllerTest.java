@@ -45,24 +45,24 @@ public class IWorkerControllerTest {
         worker.setOrders(orders);
 
 
-        registerTest(worker.getFullname(), worker.getEmail(), worker.getPhone(),
-                worker.getPass(), worker.getDescriptionWorker(), worker);
+//        registerTest(worker.getFullname(), worker.getEmail(), worker.getPhone(),
+//                worker.getPass(), worker.getDescriptionWorker(), worker);
 
 
     }
 
-    static boolean registerTest(String fullname, String email, String phone, String pass,
-                                String descriptionWorker, Worker worker1) {
-
-        Worker worker = iWorkerController.register(fullname, email, phone, pass, descriptionWorker);
-
-        boolean booleanCheck = worker.getFullname().equals(worker1.getFullname());
-
-        System.out.printf("res %s, method %s, ex %s = practical %s\n",
-                booleanCheck, "registerTest", worker1.getFullname(), worker.getFullname());
-
-        return booleanCheck;
-    }
+//    static boolean registerTest(String fullname, String email, String phone, String pass,
+//                                String descriptionWorker, Worker worker1) {
+//
+//        Worker worker = iWorkerController.register(fullname, email, phone, pass, descriptionWorker);
+//
+//        boolean booleanCheck = worker.getFullname().equals(worker1.getFullname());
+//
+//        System.out.printf("res %s, method %s, ex %s = practical %s\n",
+//                booleanCheck, "registerTest", worker1.getFullname(), worker.getFullname());
+//
+//        return booleanCheck;
+//    }
 
 
 }

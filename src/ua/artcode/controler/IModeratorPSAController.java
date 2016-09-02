@@ -15,7 +15,7 @@ public interface IModeratorPSAController {
     Service addService(String nameService, String descriptionService);
 
     //удалить сервис
-    String removeService(long serviceId);
+    Service removeService(long serviceId);
 
     //редактировать сервис
     String editService(long serviceId, String newNameService, String newDescriptionService);
@@ -23,6 +23,7 @@ public interface IModeratorPSAController {
     //подтвердить/отказать добавление компании
     Company changeStatusCompany(long companyId, int statusIndex);
 
+    Client addClient(String fullname, String email, String phone, String pass, String role);
 
     //убрать добавление компании
     //добавить компанию

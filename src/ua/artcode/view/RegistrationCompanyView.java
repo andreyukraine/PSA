@@ -91,8 +91,6 @@ public class RegistrationCompanyView {
         String descriptionCompany = scanner.nextLine();
         Location location = new Location().setLocationMenu(scanner);
 
-        Status status = new Status();
-        String changeStatusCompany = status.statusCompany(1);
         Company company = iClientController.addCompany(nameCompany,descriptionCompany,null,location);
     }
 

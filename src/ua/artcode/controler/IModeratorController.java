@@ -34,7 +34,7 @@ public interface IModeratorController {
     Worker createWorker(String fullName, String email, String phone, String pass);
 
     // добавить сотрудника в компанию
-    Worker asignWorkerToCompany(long companyId, long workerId);
+    Worker asignWorkerToModerator(Moderator moderator, Worker worker);
 
     //передаем заказ в работу сотруднику
     Worker asignOrderWorker(long workerId, Order order);

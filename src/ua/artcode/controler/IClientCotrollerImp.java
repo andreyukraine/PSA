@@ -22,6 +22,11 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
+    public Service searchService(String serviceName) {
+        return RunProgramms.appDB.searchService(serviceName);
+    }
+
+    @Override
     public Order createOrder(Company company, Service service) {
         return null;
     }
@@ -61,10 +66,7 @@ public class IClientCotrollerImp implements IClientController {
         return null;
     }
 
-    @Override
-    public Service searchService(String serviceName) {
-        return null;
-    }
+
 
 
 }

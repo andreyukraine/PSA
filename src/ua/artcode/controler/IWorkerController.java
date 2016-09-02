@@ -2,21 +2,23 @@ package ua.artcode.controler;
 
 import ua.artcode.model.*;
 
+import java.util.List;
+
 /**
  * Created by IT on 21.08.2016.
  */
 public interface IWorkerController {
 
     //регистрация
-    Worker register(String fullname, String email, String phone, String pass, String descriptionWorker);
+    Worker addWorker(String fullname, String email, String phone, String pass, String descriptionWorker);
 
     //посмотреть все закрепленные сервисы
-    Service[] myServices(Worker worker);
+    List<Worker> myServices(Worker worker);
 
     //заказы сотрудника
-    Order[] ordersWorker(Worker worker);
+    List<Order> ordersWorker(Worker worker);
 
-    // закрыть заказ
-    Order[] closeOrder(Order order);
+    //закрыть заказ
+    Order closeOrder(Order order);
 
 }

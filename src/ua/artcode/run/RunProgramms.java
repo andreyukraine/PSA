@@ -22,7 +22,9 @@ public class RunProgramms {
         IWorkerController iWorkerController = new IWorkerControllerImp();
         IClientController iClientController = new IClientCotrollerImp();
         iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", new Status().statusClientRole(1));
+        iModeratorController.addModerator("Moderatro","mc","+380","mc", new Status().statusClientRole(2));
         iModeratorPSAController.addClient("Client","c","+380","c",new Status().statusClientRole(4));
+        iModeratorPSAController.addService("Service1","Description");
 
         showStartMenu();
         int choice = -1;

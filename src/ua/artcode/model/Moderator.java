@@ -1,24 +1,23 @@
 package ua.artcode.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by IT on 21.08.2016.
  */
 public class Moderator extends User{
 
-    Company company;
-
-    Worker[] workers;
-    Service[] services;
-    Order[] orders;
-    Comment[] comments;
+    private Company company;
+    private List<Worker> workers = new ArrayList<>();
+    private List<Service> services;
+    private List<Order> orders;
+    private List<Comment> commentsCompany;
+    private List<Comment> commentsService;
+    private List<Comment> commentsWorker;
 
 
     // constructors --------------------------------------------------------------------------------
-
-   /* public Moderator(String fullname, String email, String phone, String pass, String role, Company company) {
-        super(fullname, email, phone, pass, role);
-        this.company = company;
-    }*/
 
     public Moderator(String fullname ,String email, String phone, String pass, String role) {
         super(fullname, email, phone, pass, role);
@@ -35,35 +34,51 @@ public class Moderator extends User{
         this.company = company;
     }
 
-    public Worker[] getWorkers() {
+    public List<Worker> getWorkers() {
         return workers;
     }
 
-    public void setWorkers(Worker[] workers) {
+    public void setWorkers(List<Worker> workers) {
         this.workers = workers;
     }
 
-    public Service[] getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(Service[] services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
-    public Order[] getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Order[] orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
-    public Comment[] getComments() {
-        return comments;
+    public List<Comment> getCommentsCompany() {
+        return commentsCompany;
     }
 
-    public void setComments(Comment[] comments) {
-        this.comments = comments;
+    public void setCommentsCompany(List<Comment> commentsCompany) {
+        this.commentsCompany = commentsCompany;
+    }
+
+    public List<Comment> getCommentsService() {
+        return commentsService;
+    }
+
+    public void setCommentsService(List<Comment> commentsService) {
+        this.commentsService = commentsService;
+    }
+
+    public List<Comment> getCommentsWorker() {
+        return commentsWorker;
+    }
+
+    public void setCommentsWorker(List<Comment> commentsWorker) {
+        this.commentsWorker = commentsWorker;
     }
 }

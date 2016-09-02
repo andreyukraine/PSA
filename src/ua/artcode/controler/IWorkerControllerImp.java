@@ -2,6 +2,8 @@ package ua.artcode.controler;
 
 import ua.artcode.model.*;
 
+import java.util.List;
+
 import static ua.artcode.test.controller.IWorkerControllerTest.orders;
 
 
@@ -10,25 +12,24 @@ import static ua.artcode.test.controller.IWorkerControllerTest.orders;
  */
 public class IWorkerControllerImp implements IWorkerController {
     @Override
-    public Worker register(String fullname, String email, String phone, String pass, String descriptionWorker) {
-
+    public Worker addWorker(String fullname, String email, String phone, String pass, String descriptionWorker) {
         Worker worker = new Worker(fullname, email, phone, pass, descriptionWorker);
         return worker;
     }
-//Service --> Service[];
-    @Override
-    public Service[] myServices(Worker worker) {
-       return worker.getServices();
-
-    }
 
     @Override
-    public Order[] ordersWorker(Worker worker) {
+    public List<Worker> myServices(Worker worker) {
         return null;
     }
 
     @Override
-    public Order[] closeOrder(Order order) {
-        return new Order[0];
+    public List<Order> ordersWorker(Worker worker) {
+        return null;
     }
+
+    @Override
+    public Order closeOrder(Order order) {
+        return null;
+    }
+
 }

@@ -28,6 +28,7 @@ public class LoginView {
                      IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
+        this.iModeratorController = iModeratorController;
         this.iClientController = iClientController;
         this.iAppDB = appDB;
     }
@@ -44,9 +45,9 @@ public class LoginView {
 
         // check if user is in the system
 
-        for (int i = 0; i < iAppDB.getListModeratorPSA().size() ; i++) {
-            if (iAppDB.getListModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getListModeratorPSA().get(i).getPass().equals(pass)
-                    && iAppDB.getListModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
+        for (int i = 0; i < iAppDB.getModeratorPSA().size() ; i++) {
+            if (iAppDB.getModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getModeratorPSA().get(i).getPass().equals(pass)
+                    && iAppDB.getModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
                 ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController,iAppDB);
                 moderatorPSAView.start();
                 return true;
@@ -56,6 +57,7 @@ public class LoginView {
             if (iAppDB.getListModerator().get(i).getEmail().equals(login) && iAppDB.getListModerator().get(i).getPass().equals(pass) &&
                     iAppDB.getListModerator().get(i).getRole().equals(new Status().statusClientRole(2))){
                 ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
+                moderatorView.start();
                 return true;
             }
         }

@@ -34,7 +34,10 @@ public class ClientView {
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0){
 
             if(choice == 1){
-                addCompany();
+                addCompanyMenu();
+            }
+            if (choice == 2){
+                searchServiceMenu();
             }
 
             showMainMenu();
@@ -42,18 +45,26 @@ public class ClientView {
     }
 
     public void showMainMenu(){
-        System.out.println("1.addCompany");
+        System.out.println("1. addCompany");
+        System.out.println("2. searchServiceMenu()");
     }
 
-    public void addCompany(){
+    public void addCompanyMenu(){
         System.out.println("Input nameCompany");
-        String nameCompany = scanner.nextLine();
+        String name = scanner.nextLine();
         System.out.println("Input descriptionCompany");
-        String descriptionCompany = scanner.nextLine();
+        String description = scanner.nextLine();
         Location location = new Location().setLocationMenu(scanner);
 
-        iClientController.addCompany(nameCompany,descriptionCompany,client,location);
+        iClientController.addCompany(name,description,client,location);
         iAppDB.addModeratorCompany(client);
+    }
+
+    public void searchServiceMenu() {
+        System.out.println("Input nameService");
+        String name = scanner.nextLine();
+
+        System.out.println(iClientController.searchService(name));
     }
 
 }

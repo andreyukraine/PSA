@@ -11,14 +11,10 @@ import java.util.List;
  */
 public class IModeratorControllerImp implements IModeratorController {
 
-    List<Service> services;
-    List<Company> companies;
-    List<Client> clients;
-
     @Override
     public Moderator addModerator(String fullname, String email, String phone, String pass, String role) {
         Moderator moderator= new Moderator(fullname, email, phone, pass, role);
-        return moderator;
+        return RunProgramms.appDB.addModerator(moderator);
     }
 
     @Override
@@ -54,11 +50,12 @@ public class IModeratorControllerImp implements IModeratorController {
 
     @Override
     public Worker createWorker(String fullName, String email, String phone, String pass) {
-        return null;
+        Worker worker = new Worker(fullName,email,phone,pass,new Status().statusClientRole(3));
+        return RunProgramms.appDB.createWorker(worker);
     }
 
     @Override
-    public Worker asignWorkerToCompany(long companyId, long workerId) {
+    public Worker asignWorkerToModerator(Moderator moderator, Worker worker) {
         return null;
     }
 

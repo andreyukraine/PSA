@@ -106,16 +106,16 @@ public class IModeratorPSAControllerTest {
     //    }
 
     //удалить компанию
-    static boolean removeCompanyTest(long companyId, String companyName){
-        Company[] companyTest = iModeratorPSAController.removeCompany(0);
-        for (int i = 0; (i < companies.length) & (companies[i] != null) ; i++) {
-            boolean booleanrez = companies[i].getId() == companyId;
-            System.out.printf("res %s, method %s, ex %s = practical %s\n",
-                    booleanrez, "removeCompanyTest", companyName, companyTest[i].getNameCompany());
-            return booleanrez;
-        }
-        return false;
-    }
+//    static boolean removeCompanyTest(long companyId, String companyName){
+//        Company[] companyTest = iModeratorPSAController.removeCompany(0);
+//        for (int i = 0; (i < companies.length) & (companies[i] != null) ; i++) {
+//            boolean booleanrez = companies[i].getId() == companyId;
+//            System.out.printf("res %s, method %s, ex %s = practical %s\n",
+//                    booleanrez, "removeCompanyTest", companyName, companyTest[i].getNameCompany());
+//            return booleanrez;
+//        }
+//        return false;
+//    }
 
     //добавить пользователя
 //    static boolean addUserTest(User user){
