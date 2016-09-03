@@ -2,12 +2,11 @@ package ua.artcode.view;
 
 import ua.artcode.controler.IClientController;
 import ua.artcode.db.IAppDB;
-import ua.artcode.model.Client;
-import ua.artcode.model.Company;
-import ua.artcode.model.Location;
-import ua.artcode.model.Status;
+import ua.artcode.model.*;
 
 import java.util.Scanner;
+
+import static ua.artcode.run.RunProgramms.showStartMenu;
 
 /**
  * Created by IT on 25.08.2016.
@@ -18,6 +17,7 @@ public class ClientView {
     private IClientController iClientController;
     private IAppDB iAppDB;
     private Client client;
+    private Service serviceTemp = null;
     // constructors --------------------------------------------------------------------------------
 
 
@@ -39,14 +39,18 @@ public class ClientView {
             if (choice == 2){
                 searchServiceMenu();
             }
+            if (choice == 3){
+                showStartMenu();
+            }
 
-            showMainMenu();
         }
     }
 
     public void showMainMenu(){
         System.out.println("1. addCompany");
         System.out.println("2. searchServiceMenu()");
+        System.out.println("-------------------------------------------");
+        System.out.println("3. Exit");
     }
 
     public void addCompanyMenu(){
@@ -54,10 +58,10 @@ public class ClientView {
         String name = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String description = scanner.nextLine();
-        Location location = new Location().setLocationMenu(scanner);
+        Location location = new Location().setLocationMenu();
 
-        iClientController.addCompany(name,description,client,location);
-        iAppDB.addModeratorCompany(client);
+        Company company = iClientController.addCompany(name,description,client,location, null);
+        iAppDB.addModeratorCompany(client, company);
     }
 
     public void searchServiceMenu() {

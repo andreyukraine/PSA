@@ -24,11 +24,12 @@ public class Company {
     public Company() {
     }
 
-    public Company(String nameCompany, String descriptionCompany, Client moderator, Location location) {
+    public Company(String nameCompany, String descriptionCompany, Client moderator, Location location, List<Service> services) {
         this.nameCompany = nameCompany;
         this.descriptionCompany = descriptionCompany;
         this.moderator = moderator;
         this.location = location;
+        this.services = services;
         changeStatusCompany = new Status().statusCompany(1);
     }
 

@@ -42,7 +42,7 @@ public class IWorkerControllerTest {
         Client client = new Client("Gena", "krokodil@mail.ru", "245", "cheburashka", "client");
         Order order = new Order(10, service, client, "cut surrouded trees");
         orders[0] = order;
-        worker.setOrders(orders);
+        //worker.setOrders(orders);
 
 
 //        registerTest(worker.getFullname(), worker.getEmail(), worker.getPhone(),

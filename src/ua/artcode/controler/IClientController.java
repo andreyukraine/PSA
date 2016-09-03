@@ -13,7 +13,7 @@ public interface IClientController {
     Client addClient(String email, String fullname, String phone, String pass, String role);
 
     // создаем компанию
-    Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location);
+    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
 
     //создать заказ
     Order createOrder(Company company, Service service);
@@ -41,10 +41,10 @@ public interface IClientController {
     Comment addCommentPSA();
 
     //поиск сервиса
-    Service searchService(String serviceName);
+    String searchService(String serviceName);
 
-
-
+    //выбор сервиса
+    Service inputService(int serviceId);
 
 
 

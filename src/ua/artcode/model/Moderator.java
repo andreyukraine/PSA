@@ -19,8 +19,9 @@ public class Moderator extends User{
 
     // constructors --------------------------------------------------------------------------------
 
-    public Moderator(String fullname ,String email, String phone, String pass, String role) {
+    public Moderator(String fullname ,String email, String phone, String pass, String role, List<Worker> worker) {
         super(fullname, email, phone, pass, role);
+        this.workers = worker;
     }
 
     // geters & seters -----------------------------------------------------------------------------
@@ -36,10 +37,6 @@ public class Moderator extends User{
 
     public List<Worker> getWorkers() {
         return workers;
-    }
-
-    public void setWorkers(List<Worker> workers) {
-        this.workers = workers;
     }
 
     public List<Service> getServices() {
@@ -80,5 +77,9 @@ public class Moderator extends User{
 
     public void setCommentsWorker(List<Comment> commentsWorker) {
         this.commentsWorker = commentsWorker;
+    }
+
+    public void setWorkers(List<Worker> workers) {
+        this.workers = workers;
     }
 }

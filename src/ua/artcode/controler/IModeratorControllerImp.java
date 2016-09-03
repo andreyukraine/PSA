@@ -13,18 +13,18 @@ public class IModeratorControllerImp implements IModeratorController {
 
     @Override
     public Moderator addModerator(String fullname, String email, String phone, String pass, String role) {
-        Moderator moderator= new Moderator(fullname, email, phone, pass, role);
+        Moderator moderator= new Moderator(fullname, email, phone, pass, role, null);
         return RunProgramms.appDB.addModerator(moderator);
     }
 
     @Override
-    public Company addCompany(String nameCompany, String descriptionCompany, Client moderator,Location location ) {
-        Company company = new Company(nameCompany,descriptionCompany,moderator,location);
+    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service ) {
+        Company company = new Company(nameCompany,descriptionCompany,client,location, service);
         return RunProgramms.appDB.addCompany(company);
     }
 
     @Override
-    public Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Client moderator, Location location) {
+    public Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Moderator moderator, Location location) {
         return null;
     }
 
@@ -51,12 +51,7 @@ public class IModeratorControllerImp implements IModeratorController {
     @Override
     public Worker createWorker(String fullName, String email, String phone, String pass) {
         Worker worker = new Worker(fullName,email,phone,pass,new Status().statusClientRole(3));
-        return RunProgramms.appDB.createWorker(worker);
-    }
-
-    @Override
-    public Worker asignWorkerToModerator(Moderator moderator, Worker worker) {
-        return null;
+        return RunProgramms.appDB.createWorker(RunProgramms.MODERATOR_LOGIN, worker);
     }
 
     @Override

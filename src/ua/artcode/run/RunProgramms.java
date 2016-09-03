@@ -3,7 +3,10 @@ package ua.artcode.run;
 import ua.artcode.controler.*;
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.db.IAppDB;
+import ua.artcode.model.Client;
+import ua.artcode.model.Moderator;
 import ua.artcode.model.Status;
+import ua.artcode.model.Worker;
 import ua.artcode.view.LoginView;
 import ua.artcode.view.RegistrationCompanyView;
 
@@ -15,6 +18,9 @@ import java.util.Scanner;
 public class RunProgramms {
 
     public static final IAppDB appDB = new AppDBImpl();
+    public static Client CLIENT_LOGIN = null;
+    public static Moderator MODERATOR_LOGIN = null;
+    public static Worker WORKER_LOGIN = null;
 
     public static void main(String[] args) {
         IModeratorPSAController iModeratorPSAController = new IModeratorPSAControllerImp();
@@ -23,6 +29,7 @@ public class RunProgramms {
         IClientController iClientController = new IClientCotrollerImp();
         iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", new Status().statusClientRole(1));
         iModeratorController.addModerator("Moderatro","mc","+380","mc", new Status().statusClientRole(2));
+        iModeratorController.addModerator("Moderatroq","zaq","+380","zaq", new Status().statusClientRole(2));
         iModeratorPSAController.addClient("Client","c","+380","c",new Status().statusClientRole(4));
         iModeratorPSAController.addService("Service1","Description");
 
@@ -43,7 +50,7 @@ public class RunProgramms {
     }
 
 
-    private static void showStartMenu() {
+    public static void showStartMenu() {
         System.out.println("1.Registration");
         System.out.println("2.Add company");
     }

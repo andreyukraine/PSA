@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 public class Location {
 
+    Scanner scanner = new Scanner(System.in);
     private long id;
     private String country;
     private String city;
@@ -26,7 +27,7 @@ public class Location {
     //metods----------------------------------------------------------------------------------------
 
     // создание локаций (городов)
-    public Location setLocationMenu(Scanner scanner) {
+    public Location setLocationMenu() {
 
         System.out.println("Input country");
         String country = scanner.nextLine();

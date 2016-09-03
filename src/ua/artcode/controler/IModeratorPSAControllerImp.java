@@ -48,8 +48,8 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location) {
-        Company company = new Company(nameCompany, descriptionCompany, moderator, location);
+    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service) {
+        Company company = new Company(nameCompany, descriptionCompany, client, location, service);
         return RunProgramms.appDB.addCompany(company);
     }
 

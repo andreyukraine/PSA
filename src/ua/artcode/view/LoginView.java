@@ -6,8 +6,11 @@ import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.Status;
+import ua.artcode.run.RunProgramms;
 
 import java.util.Scanner;
+
+import static ua.artcode.run.RunProgramms.showStartMenu;
 
 /**
  * Created by IT on 21.08.2016.
@@ -57,6 +60,7 @@ public class LoginView {
             if (iAppDB.getListModerator().get(i).getEmail().equals(login) && iAppDB.getListModerator().get(i).getPass().equals(pass) &&
                     iAppDB.getListModerator().get(i).getRole().equals(new Status().statusClientRole(2))){
                 ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
+                RunProgramms.MODERATOR_LOGIN = iAppDB.getListModerator().get(i);
                 moderatorView.start();
                 return true;
             }
@@ -76,7 +80,7 @@ public class LoginView {
                 return true;
             }
         }
-
+        RunProgramms.showStartMenu();
         return false;
     }
 

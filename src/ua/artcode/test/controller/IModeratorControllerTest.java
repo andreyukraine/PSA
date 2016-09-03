@@ -291,9 +291,9 @@ public class IModeratorControllerTest {
 //
 //        // проверка, назначе ли сервису работник
 //      /* boolean res2 = false;
-//       Service [] testService = worker.getServices();
+//       Service [] testService = worker.getServiceList();
 //        for (int i = 0; i < testService.length; i++) {
-//            if (testService.equals(worker.getServices())) {
+//            if (testService.equals(worker.getServiceList())) {
 //                res2 = true;
 //                break;
 //            }

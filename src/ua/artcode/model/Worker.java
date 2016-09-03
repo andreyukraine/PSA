@@ -2,6 +2,7 @@ package ua.artcode.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IT on 21.08.2016.
@@ -15,11 +16,15 @@ public class Worker extends User {
     private Status status;
     private Rate rateWorker;
 
-    private Service[] service;
-    private Order[] orders;
+    private List<Service> service;
+    private List<Order> orders;
 
 
     // constructors --------------------------------------------------------------------------------
+
+
+    public Worker() {
+    }
 
     public Worker(String fullname, String email, String phone, String pass, String descriptionWorker) {
 
@@ -62,19 +67,19 @@ public class Worker extends User {
         this.rateWorker = rateWorker;
     }
 
-    public Service[] getServices() {
+    public List<Service> getService() {
         return service;
     }
 
-    public void setService(Service[] service) {
+    public void setService(List<Service> service) {
         this.service = service;
     }
 
-    public Order[] getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Order[] orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 }

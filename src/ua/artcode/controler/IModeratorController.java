@@ -13,10 +13,10 @@ public interface IModeratorController {
     Moderator addModerator(String fullname, String email, String phone, String pass, String role);
 
     // создаем компанию
-    Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location);
+    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
 
     // изменяем данные про компанию
-    Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Client moderator, Location location);
+    Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Moderator moderator, Location location);
 
     // удаляем компанию
     Company removeCompany(long companyId);
@@ -32,9 +32,6 @@ public interface IModeratorController {
 
     //создать работника
     Worker createWorker(String fullName, String email, String phone, String pass);
-
-    // добавить сотрудника в компанию
-    Worker asignWorkerToModerator(Moderator moderator, Worker worker);
 
     //передаем заказ в работу сотруднику
     Worker asignOrderWorker(long workerId, Order order);

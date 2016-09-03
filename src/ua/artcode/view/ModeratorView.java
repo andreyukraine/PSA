@@ -8,6 +8,8 @@ import ua.artcode.model.Worker;
 
 import java.util.Scanner;
 
+import static ua.artcode.run.RunProgramms.showStartMenu;
+
 /**
  * Created by IT on 25.08.2016.
  */
@@ -34,15 +36,16 @@ public class ModeratorView {
                 createWorkerMenu();
             }
             if (choice == 2){
-
+                showStartMenu();
             }
 
-            showMainMenu();
+
         }
     }
 
     public void showMainMenu(){
         System.out.println("1. createWorker");
+        System.out.println("2. Exit");
     }
 
     public void createWorkerMenu(){

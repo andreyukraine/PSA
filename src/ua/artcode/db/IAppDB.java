@@ -18,7 +18,7 @@ public interface IAppDB {
     List<Moderator> getListModerator();
     List<Client> getListClients();
     List<Worker> getListWorkers();
-    Client addModeratorCompany(Client client);
+    Client addModeratorCompany(Client client, Company company);
     Service addService(Service service);
     String editService(long serviceId, String newNameService, String newDescriptionService);
     Service removeService(long serviceId);
@@ -27,10 +27,10 @@ public interface IAppDB {
     Client addClient(Client client);
     Location addLocation(Location location);
     Company addCompany(Company company);
-    Service searchService(String serviceName);
-    Worker createWorker(Worker worker);
+    String searchService(String serviceName);
+    Worker createWorker(Moderator moderator, Worker worker);
     Worker addWorker(Worker worker);
     Moderator addModerator(Moderator moderator);
-    Worker asignWorkerToModerator(Moderator moderator, Worker worker);
+    Service inputService(int serviceId);
 
 }

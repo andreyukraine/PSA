@@ -6,6 +6,8 @@ import ua.artcode.model.*;
 
 import java.util.Scanner;
 
+import static ua.artcode.run.RunProgramms.showStartMenu;
+
 /**
  * Created by IT on 25.08.2016.
  */
@@ -65,7 +67,9 @@ public class ModeratorPSAView {
             if (choice == 12){
                 getListServise();
             }
-            showMainMenu();
+            if (choice == 13){
+                showStartMenu();
+            }
         }
     }
 
@@ -83,6 +87,8 @@ public class ModeratorPSAView {
         System.out.println("10. getListCompany");
         System.out.println("11. getListClient");
         System.out.println("12. getListServise");
+        System.out.println("---------------------------------------------");
+        System.out.println("13. Exit");
     }
 
 
@@ -192,9 +198,9 @@ public class ModeratorPSAView {
         String name = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String description = scanner.nextLine();
-        Location location = new Location().setLocationMenu(scanner);
+        Location location = new Location().setLocationMenu();
 
-        iModeratorPSAController.addCompany(name,description,null,location);
+        iModeratorPSAController.addCompany(name,description,null,location, null);
     }
 
     public void statusCompanyMenu(){

@@ -16,7 +16,6 @@ import static ua.artcode.run.RunProgramms.appDB;
  */
 
 
-
 public class RegistrationCompanyView {
 
     Scanner scanner;
@@ -26,6 +25,7 @@ public class RegistrationCompanyView {
     IClientController iClientController;
     IAppDB iAppDB;
     Client clientTemp = null;
+    Service serviceTemp = null;
 
     public RegistrationCompanyView(Scanner scanner, IModeratorController iModeratorController, IModeratorPSAController iModeratorPSAController,
                                    IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB) {
@@ -37,29 +37,28 @@ public class RegistrationCompanyView {
         this.iAppDB = iAppDB;
     }
 
-    public void start(){
-
-        LoginView loginView = new LoginView(new Scanner(System.in),iModeratorPSAController,
-                iModeratorController,iWorkerController, iClientController, appDB);
+    LoginView loginView = new LoginView(new Scanner(System.in), iModeratorPSAController,
+            iModeratorController, iWorkerController, iClientController, appDB);
 
 
+    public void start() {
         showLoginOrNewClient();
-
         int choice = -1;
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0) {
             if (choice == 1) {
                 addClient();
+                System.out.println("-------------------------------");
+                searchServiceMenu();
+                System.out.println("--------------------------------");
                 addCompany();
+
+
+
             }
             if (choice == 2) {
-
-
-                if (loginView.showLoginMenu() == true){
+                if (loginView.showLoginMenu() == true) {
                     addCompany();
-
-                }else{
-                    loginView.showLoginMenu();
-                };
+                }
             }
         }
     }
@@ -69,7 +68,7 @@ public class RegistrationCompanyView {
         System.out.println("2. Вы уже зарегестрированый как клиент сервиса?");
     }
 
-    public void addClient(){
+    public void addClient() {
         System.out.println("Input client fullname");
         String fullnameClient = scanner.nextLine();
         System.out.println("Input client email");
@@ -81,20 +80,28 @@ public class RegistrationCompanyView {
 
         Status status = new Status();
         String roleUser = status.statusClientRole(2);
-        clientTemp = iModeratorPSAController.addClient(fullnameClient,emailClient,phoneClient,passClient,roleUser);
+        clientTemp = iModeratorPSAController.addClient(fullnameClient, emailClient, phoneClient, passClient, roleUser);
     }
 
-    public void addCompany(){
+    public void searchServiceMenu() {
+        System.out.println("Input nameService");
+        String name = scanner.nextLine();
+        System.out.println(iClientController.searchService(name));
+        System.out.println("Input service ID");
+        int serviceId = scanner.nextInt();
+        serviceTemp = iClientController.inputService(serviceId);
+
+    }
+
+    public void addCompany() {
         System.out.println("Input nameCompany");
         String nameCompany = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String descriptionCompany = scanner.nextLine();
-        Location location = new Location().setLocationMenu(scanner);
+        Location location = new Location().setLocationMenu();
 
-        Company company = iClientController.addCompany(nameCompany,descriptionCompany,null,location);
+        Company company = iClientController.addCompany(nameCompany, descriptionCompany, null, location, null);
+        iAppDB.addModeratorCompany(clientTemp, company);
     }
-
-
-
 
 }

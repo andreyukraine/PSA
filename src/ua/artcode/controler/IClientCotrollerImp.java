@@ -16,14 +16,19 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
-    public Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location ) {
-        Company company = new Company(nameCompany,descriptionCompany,moderator,location);
+    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service) {
+        Company company = new Company(nameCompany,descriptionCompany,client,location, service);
         return RunProgramms.appDB.addCompany(company);
     }
 
     @Override
-    public Service searchService(String serviceName) {
+    public String searchService(String serviceName) {
         return RunProgramms.appDB.searchService(serviceName);
+    }
+
+    @Override
+    public Service inputService(int serviceId) {
+       return RunProgramms.appDB.inputService(serviceId);
     }
 
     @Override

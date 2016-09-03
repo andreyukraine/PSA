@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class AppDBImpl implements IAppDB {
 
-    private List<Company> companies = new ArrayList<>();
-    private List<Client> clients = new ArrayList<>();
-    private List<Moderator> moderators = new ArrayList<>();
-    private List<Worker> workers = new ArrayList<>();
+    private List<Company> companyList = new ArrayList<>();
+    private List<Client> clientList = new ArrayList<>();
+    private List<Moderator> moderatorList = new ArrayList<>();
+    private List<Worker> workerList = new ArrayList<>();
     private List<Location> locations = new ArrayList<>();
-    private List<Service> services = new ArrayList<>();
+    private List<Service> serviceList = new ArrayList<>();
     private List<ModeratorPSA> moderatorPSA = new ArrayList<>();
     private List<Comment> commentsPSA = new ArrayList<>();
     private List<Comment> commentsCompany = new ArrayList<>();
@@ -25,46 +25,57 @@ public class AppDBImpl implements IAppDB {
 
     @Override
     public Service addService(Service service) {
-        services.add(service);
-        service.setId(services.indexOf(service));
+        serviceList.add(service);
+        service.setId(serviceList.indexOf(service));
         return service;
     }
 
     @Override
     public Company addCompany(Company company) {
-        companies.add(company);
-        company.setId(companies.indexOf(company));
+        companyList.add(company);
+        company.setId(companyList.indexOf(company));
         return company;
     }
 
     @Override
-    public Service searchService(String serviceName) {
-        for (int i = 0; i < services.size() ; i++) {
-            if (services.get(i).getNameService().equals(serviceName)){
-                return services.get(i);
+    public String searchService(String serviceName) {
+        for (int i = 0; i < serviceList.size() ; i++) {
+            if (serviceList.get(i).getNameService().equals(serviceName)){
+                return String.format(" %d, name %s, desc %s", i ,serviceList.get(i).getNameService(),serviceList.get(i).getDescriptionService());
             }
 
         }
         return null;
     }
 
+
+
     @Override
-    public Worker createWorker(Worker worker) {
+    public Worker createWorker(Moderator moderator, Worker worker) {
+        workerList.add(worker);
+        List<Worker> workers = new ArrayList<>();
         workers.add(worker);
-        worker.setId(workers.indexOf(worker));
+        moderator.setWorkers(workers);
+        worker.setCompany(moderator.getCompany());
+        worker.setService(moderator.getServices());
         return worker;
     }
 
     @Override
     public Moderator addModerator(Moderator moderator) {
-        moderators.add(moderator);
-        moderator.setId(moderators.indexOf(moderator));
+        moderatorList.add(moderator);
+        moderator.setId(moderatorList.indexOf(moderator));
         return moderator;
     }
 
     @Override
-    public Worker asignWorkerToModerator(Moderator moderator, Worker worker) {
-       return  null;
+    public Service inputService(int serviceId) {
+        for (int i = 0; i < serviceList.size() ; i++) {
+            if (serviceList.get(i).getId() == serviceId){
+                return serviceList.get(i);
+            }
+        }
+        return null;
     }
 
     @Override
@@ -77,12 +88,12 @@ public class AppDBImpl implements IAppDB {
     public String editService(long serviceId, String newNameService, String newDescriptionService) {
         String oldService = "";
         String newService = "";
-        for (int i = 0; i < services.size(); i++) {
-            if (services.get(i).getId() == serviceId) {
-                oldService = services.get(i).toString();
-                services.get(i).setNameService(newNameService);
-                services.get(i).setDescriptionService(newDescriptionService);
-                newService = services.get(i).toString();
+        for (int i = 0; i < serviceList.size(); i++) {
+            if (serviceList.get(i).getId() == serviceId) {
+                oldService = serviceList.get(i).toString();
+                serviceList.get(i).setNameService(newNameService);
+                serviceList.get(i).setDescriptionService(newDescriptionService);
+                newService = serviceList.get(i).toString();
                 return String.format("Old service %s, New service %s", oldService, newService);
             }
         }
@@ -91,10 +102,10 @@ public class AppDBImpl implements IAppDB {
 
     @Override
     public Service removeService(long serviceId) {
-        for (int i = 0; i < services.size(); i++) {
-            if (services.get(i).getId() == serviceId) {
-                Service service = services.get(i);
-                services.remove(i);
+        for (int i = 0; i < serviceList.size(); i++) {
+            if (serviceList.get(i).getId() == serviceId) {
+                Service service = serviceList.get(i);
+                serviceList.remove(i);
                 return service;
             }
         }
@@ -102,10 +113,10 @@ public class AppDBImpl implements IAppDB {
     }
 
     public Client removeClient(long clientId){
-        for (int i = 0; i < clients.size() ; i++) {
-            if (clients.get(i).getId() == clientId){
-                Client client = clients.get(i);
-                clients.remove(i);
+        for (int i = 0; i < clientList.size() ; i++) {
+            if (clientList.get(i).getId() == clientId){
+                Client client = clientList.get(i);
+                clientList.remove(i);
                 return client;
             }
         }
@@ -113,10 +124,10 @@ public class AppDBImpl implements IAppDB {
     }
     @Override
     public Company removeCompany(long companyId) {
-        for (int i = 0; i < companies.size() ; i++) {
-            if (companies.get(i).getId() == companyId){
-                Company company = companies.get((int) companyId);
-                companies.remove(i);
+        for (int i = 0; i < companyList.size() ; i++) {
+            if (companyList.get(i).getId() == companyId){
+                Company company = companyList.get((int) companyId);
+                companyList.remove(i);
                 return company;
             }
         }
@@ -125,15 +136,15 @@ public class AppDBImpl implements IAppDB {
 
     @Override
     public Client addClient(Client client) {
-        clients.add(client);
-        client.setId(clients.indexOf(client));
+        clientList.add(client);
+        client.setId(clientList.indexOf(client));
         return client;
     }
 
     @Override
     public Worker addWorker(Worker worker) {
-        workers.add(worker);
-        worker.setId(workers.indexOf(worker));
+        workerList.add(worker);
+        worker.setId(workerList.indexOf(worker));
         return worker;
     }
 
@@ -144,13 +155,17 @@ public class AppDBImpl implements IAppDB {
         return location;
     }
 
-    public Client addModeratorCompany(Client client) {
-        for (int i = 0; i < clients.size(); i++) {
-            if (clients.get(i).getId() == client.getId()) {
-                Moderator moderator = new Moderator(clients.get(i).getFullname(),clients.get(i).getEmail(),
-                        clients.get(i).getPhone(),clients.get(i).getPass(),new Status().statusClientRole(2));
-                moderators.add(moderator);
-                clients.remove(i);
+    public Client addModeratorCompany(Client client, Company company) {
+        for (int i = 0; i < clientList.size(); i++) {
+            if (clientList.get(i).getId() == client.getId()) {
+                Moderator moderator = new Moderator(clientList.get(i).getFullname(), clientList.get(i).getEmail(),
+                        clientList.get(i).getPhone(), clientList.get(i).getPass(),new Status().statusClientRole(2),null);
+                moderator.setCompany(company);
+                moderator.setServices(company.getServices());
+                company.setModerator(client);
+                moderatorList.add(moderator);
+                company.setServices(moderator.getServices());
+                clientList.remove(i);
                 return client;
 
             }
@@ -164,26 +179,26 @@ public class AppDBImpl implements IAppDB {
 
 
     public List<Client> getListClients() {
-        return clients;
+        return clientList;
     }
 
     @Override
     public List<Worker> getListWorkers() {
-        return workers;
+        return workerList;
     }
 
     @Override
     public List<Service> getListService() {
-        return services;
+        return serviceList;
     }
 
     @Override
     public List<Moderator> getListModerator() {
-        return moderators;
+        return moderatorList;
     }
 
     public List<Company> getListCompanies() {
-        return companies;
+        return companyList;
     }
 
 
@@ -191,9 +206,9 @@ public class AppDBImpl implements IAppDB {
 
 //    public Service updateService(long serviceId, Service service){
 //
-//            for (int i = 0; i < services.size(); i++) {
-//                if (services.get(i).getId() == serviceId){
-//                    services.set(i, service);
+//            for (int i = 0; i < serviceList.size(); i++) {
+//                if (serviceList.get(i).getId() == serviceId){
+//                    serviceList.set(i, service);
 //                    return service;
 //                }
 //            }
@@ -213,46 +228,46 @@ public class AppDBImpl implements IAppDB {
 
     public AppDBImpl(ArrayList<Company> companies, ArrayList<Client> clients, ArrayList<Moderator> moderator,
                      ArrayList<Service> services, ArrayList<ModeratorPSA> listModeratorPSA) {
-        this.companies = companies;
-        this.clients = clients;
-        this.moderators = moderator;
-        this.services = services;
+        this.companyList = companies;
+        this.clientList = clients;
+        this.moderatorList = moderator;
+        this.serviceList = services;
         this.moderatorPSA = listModeratorPSA;
     }
 
     // geters & seters -----------------------------------------------------------------------------
 
 
-    public List<Company> getCompanies() {
-        return companies;
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
     }
 
-    public List<Client> getClients() {
-        return clients;
+    public List<Client> getClientList() {
+        return clientList;
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
-    public List<Moderator> getModerators() {
-        return moderators;
+    public List<Moderator> getModeratorList() {
+        return moderatorList;
     }
 
-    public void setModerators(List<Moderator> moderators) {
-        this.moderators = moderators;
+    public void setModeratorList(List<Moderator> moderatorList) {
+        this.moderatorList = moderatorList;
     }
 
-    public List<Worker> getWorkers() {
-        return workers;
+    public List<Worker> getWorkerList() {
+        return workerList;
     }
 
-    public void setWorkers(List<Worker> workers) {
-        this.workers = workers;
+    public void setWorkerList(List<Worker> workerList) {
+        this.workerList = workerList;
     }
 
     public List<Location> getLocations() {
@@ -263,12 +278,12 @@ public class AppDBImpl implements IAppDB {
         this.locations = locations;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public List<Service> getServiceList() {
+        return serviceList;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setServiceList(List<Service> serviceList) {
+        this.serviceList = serviceList;
     }
 
     public void setModeratorPSA(List<ModeratorPSA> moderatorPSA) {

@@ -27,7 +27,7 @@ public interface IModeratorPSAController {
 
     //убрать добавление компании
     //добавить компанию
-    Company addCompany(String nameCompany, String descriptionCompany, Client moderator, Location location);
+    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
 
     //удалить компанию
     Company removeCompany(long companyId);
