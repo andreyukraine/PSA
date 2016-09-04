@@ -9,18 +9,18 @@ import ua.artcode.model.*;
  */
 public class IModeratorPSAControllerTest {
 
-    static IModeratorPSAController iModeratorPSAController = new IModeratorPSAControllerImp();
-    public static Service[] services = new Service[10];
-    public static Company[] companies = new Company[10];
-    public static User[] users = new User[10];
+//    static IModeratorPSAController iModeratorPSAController = new IModeratorPSAControllerImp();
+//    public static Service[] services = new Service[10];
+//    public static Company[] companies = new Company[10];
+//    public static User[] users = new User[10];
 
     public static void main(String[] args) {
 
-        ModeratorPSA moderatorPSATest = new ModeratorPSA("SergeyPSA","artcode@gmail.com","+380","123456","moderator");
-        registerTest(moderatorPSATest.getFullname(),"artcode@gmail.com","+380","123456","moderator",moderatorPSATest);
-
-        Service serviceTest = new Service("Интернет","Подключение интернета");
-        Service serviceTest1 = new Service("TV","Подключение каналов");
+//        ModeratorPSA moderatorPSATest = new ModeratorPSA("SergeyPSA","artcode@gmail.com","+380","123456","moderator");
+//        registerTest(moderatorPSATest.getFullname(),"artcode@gmail.com","+380","123456","moderator",moderatorPSATest);
+//
+//        Service serviceTest = new Service("Интернет","Подключение интернета");
+//        Service serviceTest1 = new Service("TV","Подключение каналов");
 
         //createServiceTest("Интернет","Подключение интернета",serviceTest);
         //editServiceTest(0,serviceTest1);
@@ -28,9 +28,9 @@ public class IModeratorPSAControllerTest {
         //Company company = new Company("Maximum-Net", new Location("Ukraine","Kiev","Address"), "descriptionCompany", null);
         //addCompanyTest(company);
 
-        User user = new User("user@gmail.com", "Andrey","+380","123456","user");
-        User user1 = new User("user1@gmail.com", "Grisha","+380","123456","user");
-        User user2 = new User("user2@gmail.com", "Kolia","+380","123456","user");
+//        User user = new User("user@gmail.com", "Andrey","+380","123456","user");
+//        User user1 = new User("user1@gmail.com", "Grisha","+380","123456","user");
+//        User user2 = new User("user2@gmail.com", "Kolia","+380","123456","user");
 
 
 //        addUserTest(user);
@@ -46,13 +46,13 @@ public class IModeratorPSAControllerTest {
     }
 
     //регистрация
-    static boolean registerTest(String fullname, String email, String phone, String pass, String role, ModeratorPSA moderatorPSATest){
-        ModeratorPSA moderatorPSA = iModeratorPSAController.addModeratorPSA(fullname,email,phone,pass,role);
-        boolean booleanrez = moderatorPSA.getFullname().equals(moderatorPSATest.getFullname());
-        System.out.printf("res %s, method %s, ex %s = practical %s\n",
-                booleanrez , "registerTest", moderatorPSATest.getFullname(), moderatorPSA.getFullname());
-        return booleanrez;
-    }
+//    static boolean registerTest(String fullname, String email, String phone, String pass, String role, ModeratorPSA moderatorPSATest){
+//        ModeratorPSA moderatorPSA = iModeratorPSAController.addModeratorPSA(fullname,email,phone,pass,role);
+//        boolean booleanrez = moderatorPSA.getFullname().equals(moderatorPSATest.getFullname());
+//        System.out.printf("res %s, method %s, ex %s = practical %s\n",
+//                booleanrez , "registerTest", moderatorPSATest.getFullname(), moderatorPSA.getFullname());
+//        return booleanrez;
+//    }
 
     //добавить сервис
 //    static boolean createServiceTest(String nameService, String descriptionService, Service serviceInput){
@@ -160,13 +160,13 @@ public class IModeratorPSAControllerTest {
     //    Comment removeComment(long commentID);
 
     //посмотреть все компании
-    static  boolean listAllCompany(){
-        return false;
-    }
-
-    //посмотреть все сервисы
-    static Service[] listAllService(){
-        return null;
-    }
+//    static  boolean listAllCompany(){
+//        return false;
+//    }
+//
+//    //посмотреть все сервисы
+//    static Service[] listAllService(){
+//        return null;
+//    }
 
 }

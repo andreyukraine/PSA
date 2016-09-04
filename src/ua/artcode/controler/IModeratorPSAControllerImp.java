@@ -1,13 +1,11 @@
 package ua.artcode.controler;
 
+import ua.artcode.db.Ijson;
 import ua.artcode.model.*;
 import ua.artcode.run.RunProgramms;
 
 import java.util.List;
 
-import static ua.artcode.test.controller.IModeratorPSAControllerTest.companies;
-import static ua.artcode.test.controller.IModeratorPSAControllerTest.services;
-import static ua.artcode.test.controller.IModeratorPSAControllerTest.users;
 
 /**
  * Created by IT on 22.08.2016.

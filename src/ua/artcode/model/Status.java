@@ -19,7 +19,7 @@ public class Status {
         //-refused
 
     //статус компании
-    public String statusCompany(int statusIndex){
+    public static String statusCompany(int statusIndex){
         switch (statusIndex){
             case 1:
                 return "NEW";
@@ -33,7 +33,7 @@ public class Status {
     }
 
     //роли сервиса PSA
-public String statusClientRole(int statusIndex){
+public static String statusClientRole(int statusIndex){
     switch (statusIndex){
         case 1:
             return "moderatorPSA";

@@ -3,6 +3,8 @@ package ua.artcode.run;
 import ua.artcode.controler.*;
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.db.IAppDB;
+import ua.artcode.db.Ijson;
+import ua.artcode.db.JsonAppDB;
 import ua.artcode.model.Client;
 import ua.artcode.model.Moderator;
 import ua.artcode.model.Status;
@@ -18,6 +20,7 @@ import java.util.Scanner;
 public class RunProgramms {
 
     public static final IAppDB appDB = new AppDBImpl();
+    public static final Ijson appJSON = new JsonAppDB();
     public static Client CLIENT_LOGIN = null;
     public static Moderator MODERATOR_LOGIN = null;
     public static Worker WORKER_LOGIN = null;
@@ -31,6 +34,7 @@ public class RunProgramms {
         iModeratorController.addModerator("Moderatro","mc","+380","mc", new Status().statusClientRole(2));
         iModeratorController.addModerator("Moderatroq","zaq","+380","zaq", new Status().statusClientRole(2));
         iModeratorPSAController.addClient("Client","c","+380","c",new Status().statusClientRole(4));
+        iModeratorController.addCompany("Company","DescComp", null,null,null);
         iModeratorPSAController.addService("Service1","Description");
 
         showStartMenu();
@@ -38,7 +42,7 @@ public class RunProgramms {
         while ((choice = Integer.parseInt(new Scanner(System.in).nextLine())) != 0) {
             if (choice == 1) {
                 LoginView loginView =
-                        new LoginView(new Scanner(System.in), iModeratorPSAController, iModeratorController, iWorkerController, iClientController, appDB);
+                        new LoginView(new Scanner(System.in), iModeratorPSAController, iModeratorController, iWorkerController, iClientController, appDB, appJSON);
                 loginView.showLoginMenu();
             }
             if (choice == 2) {
@@ -51,8 +55,8 @@ public class RunProgramms {
 
 
     public static void showStartMenu() {
-        System.out.println("1.Registration");
-        System.out.println("2.Add company");
+        System.out.println("1. Authorization");
+        System.out.println("2. Add company");
     }
 
 }

@@ -32,5 +32,6 @@ public interface IAppDB {
     Worker addWorker(Worker worker);
     Moderator addModerator(Moderator moderator);
     Service inputService(int serviceId);
+    List<Service> addServiceCompany(Service service, String nameCompany);
 
 }

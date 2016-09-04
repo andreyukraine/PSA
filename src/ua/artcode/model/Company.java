@@ -1,5 +1,6 @@
 package ua.artcode.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,9 +15,9 @@ public class Company {
     private Location location;
 
     private Client moderator;
-    private List<Worker> workers;
-    private List<Comment> comments;
-    private List<Service> services;
+    private List<Worker> workers = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
+    private List<Service> services = new ArrayList<>();
 
 
     // constructors --------------------------------------------------------------------------------

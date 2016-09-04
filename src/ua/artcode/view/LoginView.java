@@ -5,11 +5,14 @@ import ua.artcode.controler.IModeratorController;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
+import ua.artcode.db.Ijson;
+import ua.artcode.db.JsonAppDB;
 import ua.artcode.model.Status;
 import ua.artcode.run.RunProgramms;
 
 import java.util.Scanner;
 
+import static ua.artcode.run.RunProgramms.appJSON;
 import static ua.artcode.run.RunProgramms.showStartMenu;
 
 /**
@@ -23,17 +26,19 @@ public class LoginView {
     private IWorkerController iWorkerController;
     private IClientController iClientController;
     private IAppDB iAppDB;
+    private Ijson ijson;
 
 
     // constructors --------------------------------------------------------------------------------
 
     public LoginView(Scanner scanner, IModeratorPSAController iModeratorPSAController,
-                     IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB) {
+                     IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB, Ijson ijson) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iModeratorController = iModeratorController;
         this.iClientController = iClientController;
         this.iAppDB = appDB;
+        this.ijson = ijson;
     }
 
     // methods --------------------------------------------------------------------------------------
@@ -51,7 +56,7 @@ public class LoginView {
         for (int i = 0; i < iAppDB.getModeratorPSA().size() ; i++) {
             if (iAppDB.getModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getModeratorPSA().get(i).getPass().equals(pass)
                     && iAppDB.getModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
-                ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController,iAppDB);
+                ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController,iAppDB, appJSON);
                 moderatorPSAView.start();
                 return true;
             }

@@ -1,4 +1,5 @@
 package ua.artcode.controler;
+import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
 
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
  * Created by IT on 21.08.2016.
  */
 public interface IModeratorPSAController {
+
 
     //создать модератора пса
     ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, String role);
