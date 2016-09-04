@@ -6,14 +6,11 @@ import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
 import ua.artcode.db.Ijson;
-import ua.artcode.db.JsonAppDB;
 import ua.artcode.model.Status;
-import ua.artcode.run.RunProgramms;
+import ua.artcode.run.RunProgram;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgramms.appJSON;
-import static ua.artcode.run.RunProgramms.showStartMenu;
 
 /**
  * Created by IT on 21.08.2016.
@@ -56,7 +53,7 @@ public class LoginView {
         for (int i = 0; i < iAppDB.getModeratorPSA().size() ; i++) {
             if (iAppDB.getModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getModeratorPSA().get(i).getPass().equals(pass)
                     && iAppDB.getModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
-                ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController,iAppDB, appJSON);
+                ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController);
                 moderatorPSAView.start();
                 return true;
             }
@@ -65,7 +62,7 @@ public class LoginView {
             if (iAppDB.getListModerator().get(i).getEmail().equals(login) && iAppDB.getListModerator().get(i).getPass().equals(pass) &&
                     iAppDB.getListModerator().get(i).getRole().equals(new Status().statusClientRole(2))){
                 ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
-                RunProgramms.MODERATOR_LOGIN = iAppDB.getListModerator().get(i);
+                RunProgram.MODERATOR_LOGIN = iAppDB.getListModerator().get(i);
                 moderatorView.start();
                 return true;
             }
@@ -85,7 +82,7 @@ public class LoginView {
                 return true;
             }
         }
-        RunProgramms.showStartMenu();
+        RunProgram.showStartMenu();
         return false;
     }
 

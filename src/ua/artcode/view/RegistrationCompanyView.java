@@ -9,8 +9,7 @@ import ua.artcode.model.*;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgramms.appDB;
-import static ua.artcode.run.RunProgramms.appJSON;
+
 
 /**
  * Created by IT on 25.08.2016.
@@ -28,8 +27,13 @@ public class RegistrationCompanyView {
     Client clientTemp = null;
     Service serviceTemp = null;
 
+    LoginView loginView;
+
+
+
     public RegistrationCompanyView(Scanner scanner, IModeratorController iModeratorController, IModeratorPSAController iModeratorPSAController,
-                                   IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB) {
+                                   IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB,LoginView loginView) {
+        this.loginView = loginView;
         this.scanner = scanner;
         this.iModeratorController = iModeratorController;
         this.iModeratorPSAController = iModeratorPSAController;
@@ -37,9 +41,6 @@ public class RegistrationCompanyView {
         this.iClientController = iClientController;
         this.iAppDB = iAppDB;
     }
-
-    LoginView loginView = new LoginView(new Scanner(System.in), iModeratorPSAController,
-            iModeratorController, iWorkerController, iClientController, appDB, appJSON);
 
 // тут добавить возврат менюшки как модератора
     public void start() {

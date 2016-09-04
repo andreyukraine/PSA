@@ -1,6 +1,9 @@
 package ua.artcode.utils;
 
 
+import ua.artcode.db.AppDBImpl;
+import ua.artcode.exceptions.AppDbException;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -269,7 +272,7 @@ public class IBashImpl implements IBash {
     }
 
     @Override
-    public Object loadObjFromFile(String filePath) {
+    public Object loadObjFromFile(String filePath) throws AppDbException {
 
         try (FileInputStream fis = new FileInputStream(filePath);
              ObjectInputStream input =
@@ -277,15 +280,11 @@ public class IBashImpl implements IBash {
                              new BufferedInputStream(fis))) {
 
             return input.readObject();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new AppDbException(e.getMessage());
         }
 
-        return null;
     }
 
     @Override

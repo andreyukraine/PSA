@@ -2,13 +2,14 @@ package ua.artcode.db;
 
 import ua.artcode.model.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by serhii on 21.08.16.
  */
-public class AppDBImpl implements IAppDB {
+public class AppDBImpl implements IAppDB, Serializable{
 
     private List<Company> companyList = new ArrayList<>();
     private List<Client> clientList = new ArrayList<>();

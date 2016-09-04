@@ -6,7 +6,7 @@ import ua.artcode.model.*;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgramms.showStartMenu;
+import static ua.artcode.run.RunProgram.showStartMenu;
 
 /**
  * Created by IT on 25.08.2016.

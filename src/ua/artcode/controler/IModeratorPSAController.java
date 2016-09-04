@@ -1,5 +1,6 @@
 package ua.artcode.controler;
 import ua.artcode.db.IAppDB;
+import ua.artcode.exceptions.AppException;
 import ua.artcode.model.*;
 
 import java.util.List;
@@ -60,6 +61,13 @@ public interface IModeratorPSAController {
 
     //посмотреть комментарии сервиса PSA
     List<Comment> listAllComment();
+
+    void saveAllToDb() throws AppException;
+
+    void loadAllFromDb() throws AppException;
+
+    String dbToJson() throws AppException;
+
 
 
 }

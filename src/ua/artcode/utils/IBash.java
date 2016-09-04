@@ -1,6 +1,8 @@
 package ua.artcode.utils;
 
 
+import ua.artcode.exceptions.AppDbException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -43,7 +45,7 @@ public interface IBash {
 
     void saveObjToFile(Object obj, String filePath);
 
-    Object loadObjFromFile( String filePath);
+    Object loadObjFromFile( String filePath) throws AppDbException;
 
     void downloadFile(String url, String localPathName);
 

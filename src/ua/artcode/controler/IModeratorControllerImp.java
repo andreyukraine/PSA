@@ -1,21 +1,21 @@
 package ua.artcode.controler;
 
-import ua.artcode.controler.IModeratorController;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
-import ua.artcode.run.RunProgramms;
+import ua.artcode.run.RunProgram;
 
 import java.util.List;
-
-import static ua.artcode.run.RunProgramms.appDB;
-import static ua.artcode.run.RunProgramms.appJSON;
 
 /**
  * Created by IT on 21.08.2016.
  */
 public class IModeratorControllerImp implements IModeratorController {
 
-    private IAppDB iAppDB;
+    private IAppDB appDB;
+
+    public IModeratorControllerImp(IAppDB appDB) {
+        this.appDB = appDB;
+    }
 
     @Override
     public Moderator addModerator(String fullname, String email, String phone, String pass, String role) {
@@ -57,7 +57,7 @@ public class IModeratorControllerImp implements IModeratorController {
     @Override
     public Worker createWorker(String fullName, String email, String phone, String pass) {
         Worker worker = new Worker(fullName,email,phone,pass,new Status().statusClientRole(3));
-        return appDB.createWorker(RunProgramms.MODERATOR_LOGIN, worker);
+        return appDB.createWorker(RunProgram.MODERATOR_LOGIN, worker);
     }
 
     @Override

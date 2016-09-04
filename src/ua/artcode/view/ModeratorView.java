@@ -2,13 +2,12 @@ package ua.artcode.view;
 
 import ua.artcode.controler.IModeratorController;
 import ua.artcode.db.IAppDB;
-import ua.artcode.model.Client;
 import ua.artcode.model.Status;
 import ua.artcode.model.Worker;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgramms.showStartMenu;
+import static ua.artcode.run.RunProgram.showStartMenu;
 
 /**
  * Created by IT on 25.08.2016.
