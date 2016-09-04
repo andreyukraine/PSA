@@ -4,8 +4,6 @@ import ua.artcode.model.*;
 
 import java.util.List;
 
-import static ua.artcode.test.controller.IWorkerControllerTest.orders;
-
 
 /**
  * Created by IT on 22.08.2016.

@@ -58,7 +58,7 @@ public class ClientView {
         String name = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String description = scanner.nextLine();
-        Location location = new Location().setLocationMenu();
+        Location location = new Location().setLocationMenu(new Scanner(System.in));
 
         Company company = iClientController.addCompany(name,description,client,location, null);
         iAppDB.addModeratorCompany(client, company);

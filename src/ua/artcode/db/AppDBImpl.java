@@ -48,8 +48,6 @@ public class AppDBImpl implements IAppDB {
         return null;
     }
 
-
-
     @Override
     public Worker createWorker(Moderator moderator, Worker worker) {
         workerList.add(worker);
@@ -73,6 +71,19 @@ public class AppDBImpl implements IAppDB {
         for (int i = 0; i < serviceList.size() ; i++) {
             if (serviceList.get(i).getId() == serviceId){
                 return serviceList.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Service> addServiceCompany(Service service, String nameCompany) {
+        for (int i = 0; i < companyList.size(); i++) {
+            if (companyList.get(i).getNameCompany().equals(nameCompany)){
+                List<Service> services = new ArrayList<>();
+                services.add(service);
+                companyList.get(i).setServices(services);
+                return services;
             }
         }
         return null;
@@ -162,9 +173,11 @@ public class AppDBImpl implements IAppDB {
                         clientList.get(i).getPhone(), clientList.get(i).getPass(),new Status().statusClientRole(2),null);
                 moderator.setCompany(company);
                 moderator.setServices(company.getServices());
-                company.setModerator(client);
                 moderatorList.add(moderator);
+
+                company.setModerator(client);
                 company.setServices(moderator.getServices());
+
                 clientList.remove(i);
                 return client;
 
@@ -200,26 +213,6 @@ public class AppDBImpl implements IAppDB {
     public List<Company> getListCompanies() {
         return companyList;
     }
-
-
-
-
-//    public Service updateService(long serviceId, Service service){
-//
-//            for (int i = 0; i < serviceList.size(); i++) {
-//                if (serviceList.get(i).getId() == serviceId){
-//                    serviceList.set(i, service);
-//                    return service;
-//                }
-//            }
-//        try {
-//            throw new ServiceNotUpdateException("Servise doesn't exist");
-//
-//        } catch (ServiceNotUpdateException e) {
-//            e.printStackTrace();
-//        }
-//        return null; //надо как-то правильно добавить exception, чтоб убрать return null;
-//    }
 
     // constructors --------------------------------------------------------------------------------
 

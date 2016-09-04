@@ -2,6 +2,7 @@ package ua.artcode.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by serhii on 21.08.16.
@@ -11,8 +12,8 @@ public class Service implements Serializable {
     private long id;
     private String nameService;
     private String descriptionService;
-    private Worker[] workers;
-    private Comment[] commentsService;
+    private List<Worker> workers;
+    private List<Comment> commentsService;
     private Rate rateService;
 
     // constructors --------------------------------------------------------------------------------
@@ -52,19 +53,19 @@ public class Service implements Serializable {
         this.descriptionService = descriptionService;
     }
 
-    public Worker[] getWorkers() {
+    public List<Worker> getWorkers() {
         return workers;
     }
 
-    public void setWorkers(Worker[] workers) {
+    public void setWorkers(List<Worker> workers) {
         this.workers = workers;
     }
 
-    public Comment[] getCommentsService() {
+    public List<Comment> getCommentsService() {
         return commentsService;
     }
 
-    public void setCommentsService(Comment[] commentsService) {
+    public void setCommentsService(List<Comment> commentsService) {
         this.commentsService = commentsService;
     }
 
@@ -75,14 +76,15 @@ public class Service implements Serializable {
     public void setRateService(Rate rateService) {
         this.rateService = rateService;
     }
+
     @Override
     public String toString() {
         return "Service{" +
                 "id=" + id +
                 ", nameService='" + nameService + '\'' +
                 ", descriptionService='" + descriptionService + '\'' +
-                ", workers=" + Arrays.toString(workers) +
-                ", commentsService=" + Arrays.toString(commentsService) +
+                ", workers=" + workers +
+                ", commentsService=" + commentsService +
                 ", rateService=" + rateService +
                 '}';
     }

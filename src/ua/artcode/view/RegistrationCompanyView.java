@@ -10,6 +10,7 @@ import ua.artcode.model.*;
 import java.util.Scanner;
 
 import static ua.artcode.run.RunProgramms.appDB;
+import static ua.artcode.run.RunProgramms.appJSON;
 
 /**
  * Created by IT on 25.08.2016.
@@ -38,9 +39,9 @@ public class RegistrationCompanyView {
     }
 
     LoginView loginView = new LoginView(new Scanner(System.in), iModeratorPSAController,
-            iModeratorController, iWorkerController, iClientController, appDB);
+            iModeratorController, iWorkerController, iClientController, appDB, appJSON);
 
-
+// тут добавить возврат менюшки как модератора
     public void start() {
         showLoginOrNewClient();
         int choice = -1;
@@ -52,6 +53,8 @@ public class RegistrationCompanyView {
                 System.out.println("--------------------------------");
                 addCompany();
 
+                ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
+                moderatorView.start();
 
 
             }
@@ -78,18 +81,18 @@ public class RegistrationCompanyView {
         System.out.println("Input client pass");
         String passClient = scanner.nextLine();
 
-        Status status = new Status();
-        String roleUser = status.statusClientRole(2);
+
+        String roleUser = Status.statusClientRole(2);
         clientTemp = iModeratorPSAController.addClient(fullnameClient, emailClient, phoneClient, passClient, roleUser);
     }
 
     public void searchServiceMenu() {
         System.out.println("Input nameService");
         String name = scanner.nextLine();
-        System.out.println(iClientController.searchService(name));
-        System.out.println("Input service ID");
-        int serviceId = scanner.nextInt();
-        serviceTemp = iClientController.inputService(serviceId);
+            System.out.println(iClientController.searchService(name));
+            System.out.println("Input service ID");
+            int serviceId = Integer.parseInt(scanner.nextLine());
+            serviceTemp = iClientController.inputService(serviceId);
 
     }
 
@@ -98,9 +101,10 @@ public class RegistrationCompanyView {
         String nameCompany = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String descriptionCompany = scanner.nextLine();
-        Location location = new Location().setLocationMenu();
+        Location location = new Location().setLocationMenu(new Scanner(System.in));
 
         Company company = iClientController.addCompany(nameCompany, descriptionCompany, null, location, null);
+        iAppDB.addServiceCompany(serviceTemp, nameCompany);
         iAppDB.addModeratorCompany(clientTemp, company);
     }
 

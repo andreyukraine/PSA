@@ -2,11 +2,13 @@ package ua.artcode.view;
 
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.db.IAppDB;
+import ua.artcode.db.Ijson;
 import ua.artcode.model.*;
+import ua.artcode.run.RunProgramms;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgramms.showStartMenu;
+import static ua.artcode.run.RunProgramms.*;
 
 /**
  * Created by IT on 25.08.2016.
@@ -16,13 +18,15 @@ public class ModeratorPSAView {
     private Scanner scanner;
     private IModeratorPSAController iModeratorPSAController;
     private IAppDB iAppDB;
+    private Ijson ijson;
 
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController, IAppDB iAppDB) {
+    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController, IAppDB iAppDB, Ijson ijson ) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iAppDB = iAppDB;
+        this.ijson = ijson;
     }
 
     // methods --------------------------------------------------------------------------------------
@@ -68,6 +72,9 @@ public class ModeratorPSAView {
                 getListServise();
             }
             if (choice == 13){
+                appJSON.addModeratorPSAJson(appDB);
+            }
+            if (choice == 14){
                 showStartMenu();
             }
         }
@@ -87,8 +94,9 @@ public class ModeratorPSAView {
         System.out.println("10. getListCompany");
         System.out.println("11. getListClient");
         System.out.println("12. getListServise");
+        System.out.println("13. save JSON");
         System.out.println("---------------------------------------------");
-        System.out.println("13. Exit");
+        System.out.println("14. Exit");
     }
 
 
@@ -198,7 +206,7 @@ public class ModeratorPSAView {
         String name = scanner.nextLine();
         System.out.println("Input descriptionCompany");
         String description = scanner.nextLine();
-        Location location = new Location().setLocationMenu();
+        Location location = new Location().setLocationMenu(new Scanner(System.in));
 
         iModeratorPSAController.addCompany(name,description,null,location, null);
     }
