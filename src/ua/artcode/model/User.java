@@ -1,9 +1,11 @@
 package ua.artcode.model;
 
+import java.io.Serializable;
+
 /**
  * Created by serhii on 21.08.16.
  */
-public class User{
+public class User implements Serializable {
 
     //u+1
     //u+2

@@ -1,0 +1,11 @@
+1. Save to a db (Java Serialization)
+2. Export/ Import Json (library GSon)
+3. Loggin (save user action in controllers)
+4. Search and sorting(filters)
+5. SMTP
+
+
+1.
+
+Contr -> DB
+      -> DBUtils - DB -> File

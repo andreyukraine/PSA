@@ -1,11 +1,12 @@
 package ua.artcode.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by serhii on 21.08.16.
  */
-public class Comment {
+public class Comment implements Serializable {
 
     private long id;
     private String title;

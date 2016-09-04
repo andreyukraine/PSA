@@ -1,13 +1,14 @@
 package ua.artcode.model;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  * Created by IT on 21.08.2016.
  */
-public class Location {
+public class Location implements Serializable{
 
-    Scanner scanner = new Scanner(System.in);
+    transient Scanner scanner = new Scanner(System.in);
     private long id;
     private String country;
     private String city;

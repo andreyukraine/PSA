@@ -1,11 +1,12 @@
 package ua.artcode.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
  * Created by serhii on 21.08.16.
  */
-public class Service {
+public class Service implements Serializable {
 
     private long id;
     private String nameService;
