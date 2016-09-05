@@ -27,4 +27,9 @@ public class CompanyImp implements ICompany {
     public List<Company> getAllCompanies() {
         return null;
     }
+
+    @Override
+    public Company findCompany(long companyId) {
+        return null;
+    }
 }
