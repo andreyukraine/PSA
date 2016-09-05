@@ -1,9 +1,10 @@
 package ua.artcode.utils.init;
 
-import ua.artcode.controler.*;
+import ua.artcode.controler.IModeratorController;
+import ua.artcode.controler.IModeratorControllerImp;
+import ua.artcode.controler.IModeratorPSAController;
+import ua.artcode.controler.IModeratorPSAControllerImp;
 import ua.artcode.db.AppDBImpl;
-import ua.artcode.model.Status;
-import ua.artcode.run.RunProgram;
 import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandlerImpl;
 import ua.artcode.utils.IBash;

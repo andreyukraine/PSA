@@ -5,7 +5,6 @@ import ua.artcode.controler.IModeratorController;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
-import ua.artcode.model.Status;
 import ua.artcode.run.RunProgram;
 import ua.artcode.utils.CheckLoginPass;
 import ua.artcode.utils.Constants;

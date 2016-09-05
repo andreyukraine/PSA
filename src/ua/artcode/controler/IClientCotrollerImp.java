@@ -1,9 +1,7 @@
 package ua.artcode.controler;
 
 import ua.artcode.db.AppDBImpl;
-import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
-import ua.artcode.run.RunProgram;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;

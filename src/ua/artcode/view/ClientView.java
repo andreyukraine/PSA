@@ -1,8 +1,7 @@
 package ua.artcode.view;
 
 import ua.artcode.controler.IClientController;
-import ua.artcode.db.IAppDB;
-import ua.artcode.model.*;
+import ua.artcode.model.Location;
 
 import java.util.Scanner;
 

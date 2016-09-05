@@ -1,12 +1,6 @@
 package ua.artcode.utils;
 
 import ua.artcode.db.IAppDB;
-import ua.artcode.model.Status;
-import ua.artcode.run.RunProgram;
-import ua.artcode.view.ClientView;
-import ua.artcode.view.ModeratorPSAView;
-import ua.artcode.view.ModeratorView;
-import ua.artcode.view.WorkerView;
 
 import java.util.Scanner;
 
