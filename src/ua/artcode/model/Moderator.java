@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import ua.artcode.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Moderator extends User{
 
     // constructors --------------------------------------------------------------------------------
 
-    public Moderator(String fullname ,String email, String phone, String pass, String role, List<Worker> worker) {
+    public Moderator(String fullname , String email, String phone, String pass, Constants.statusClientRole role, List<Worker> worker) {
         super(fullname, email, phone, pass, role);
         this.workers = worker;
     }

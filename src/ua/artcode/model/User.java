@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import ua.artcode.utils.Constants;
+
 import java.io.Serializable;
 
 /**
@@ -14,14 +16,14 @@ public class User implements Serializable {
     private String fullname;
     private String phone;
     private String pass;
-    private String role;
+    private Constants.statusClientRole role;
 
     // constructors --------------------------------------------------------------------------------
 
     public User() {
     }
 
-    public User(String fullname ,String email, String phone, String pass, String role) {
+    public User(String fullname ,String email, String phone, String pass, Constants.statusClientRole role) {
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
@@ -31,11 +33,12 @@ public class User implements Serializable {
 
     // geters & seters -----------------------------------------------------------------------------
 
-    public String getRole() {
+
+    public Constants.statusClientRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Constants.statusClientRole role) {
         this.role = role;
     }
 

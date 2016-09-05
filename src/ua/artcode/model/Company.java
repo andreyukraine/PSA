@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import ua.artcode.utils.Constants;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +13,7 @@ public class Company implements Serializable {
     private long id;
     private String nameCompany;
     private String descriptionCompany;
-    private String changeStatusCompany;
+    private Constants.statusCompany changeStatusCompany;
     private Location location;
 
     private Client moderator;
@@ -31,7 +33,7 @@ public class Company implements Serializable {
         this.moderator = moderator;
         this.location = location;
         this.services = services;
-        changeStatusCompany = new Status().statusCompany(1);
+        changeStatusCompany = Constants.statusCompany.NEW;
     }
 
     // geters & seters -----------------------------------------------------------------------------
@@ -60,11 +62,11 @@ public class Company implements Serializable {
         this.descriptionCompany = descriptionCompany;
     }
 
-    public String getChangeStatusCompany() {
+    public Constants.statusCompany getChangeStatusCompany() {
         return changeStatusCompany;
     }
 
-    public void setChangeStatusCompany(String changeStatusCompany) {
+    public void setChangeStatusCompany(Constants.statusCompany changeStatusCompany) {
         this.changeStatusCompany = changeStatusCompany;
     }
 

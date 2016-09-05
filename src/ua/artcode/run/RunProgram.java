@@ -2,8 +2,6 @@ package ua.artcode.run;
 
 import ua.artcode.controler.*;
 import ua.artcode.db.AppDBImpl;
-import ua.artcode.db.Ijson;
-import ua.artcode.db.JsonAppDB;
 import ua.artcode.exceptions.AppDbException;
 import ua.artcode.model.Client;
 import ua.artcode.model.Moderator;
@@ -28,16 +26,14 @@ public class RunProgram {
         DBFileHandler dbFileHandler = new DBFileHandlerImpl(Constants.DB_PATH,new IBashImpl());
         AppDBImpl appDB = dbFileHandler.load();
 
-        Ijson appJSON = new JsonAppDB();
-
 
         IModeratorPSAController iModeratorPSAController = new IModeratorPSAControllerImp(appDB, dbFileHandler);
-        IModeratorController iModeratorController = new IModeratorControllerImp(appDB);
-        IWorkerController iWorkerController = new IWorkerControllerImp();
-        IClientController iClientController = new IClientCotrollerImp(appDB);
+        IModeratorController iModeratorController = new IModeratorControllerImp(appDB, dbFileHandler);
+        IWorkerController iWorkerController = new IWorkerControllerImp(appDB, dbFileHandler);
+        IClientController iClientController = new IClientCotrollerImp(appDB, dbFileHandler);
 
         LoginView loginView =
-                new LoginView(new Scanner(System.in), iModeratorPSAController, iModeratorController, iWorkerController, iClientController, appDB, appJSON);
+                new LoginView(new Scanner(System.in), iModeratorPSAController, iModeratorController, iWorkerController, iClientController, appDB);
 
 
         showStartMenu();

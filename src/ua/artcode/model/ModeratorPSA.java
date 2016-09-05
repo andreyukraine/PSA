@@ -1,6 +1,8 @@
 package ua.artcode.model;
 
 
+import ua.artcode.utils.Constants;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class ModeratorPSA extends User{
 
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorPSA(String fullname, String email, String phone, String pass, String role) {
+    public ModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
         super(fullname, email, phone, pass, role);
     }
 

@@ -28,18 +28,6 @@ public interface IClientController {
     //посмотреть свои заказы
     List<Order> listOrders(Client client);
 
-    //оставить комментарий сервису
-    Comment addCommentService (Service service);
-
-    //оставить комментарий компании
-    Comment addCommentCompany (Company company);
-
-    //оставить комментарий сотруднику
-    Comment addCommentWorker (Worker worker);
-
-    //оставить комментарий про систему
-    Comment addCommentPSA();
-
     //поиск сервиса
     String searchService(String serviceName);
 

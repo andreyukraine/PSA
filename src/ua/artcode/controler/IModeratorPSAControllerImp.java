@@ -2,7 +2,9 @@ package ua.artcode.controler;
 
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.exceptions.AppException;
+import ua.artcode.exceptions.ModeratorExeption;
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, String role) {
+    public ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
         ModeratorPSA moderatorPSA = new ModeratorPSA(fullname, email, phone, pass, role);
         return appDB.addModeratorPSA(moderatorPSA);
     }
@@ -47,10 +49,10 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public Company changeStatusCompany(long companyId, int status) {
+    public Company changeStatusCompany(long companyId, Constants.statusCompany status) {
         for (int i = 0; i < appDB.getListCompanies().size(); i++) {
             if (appDB.getListCompanies().get(i).getId() == companyId) {
-                appDB.getListCompanies().get(i).setChangeStatusCompany(new Status().statusCompany(status));
+               // appDB.getListCompanies().get(i).setChangeStatusCompany(Constants.statusCompany.);
                 return appDB.getListCompanies().get(i);
             }
         }
@@ -89,12 +91,12 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public List<Client> listAllModerator() {
-        return null;
+    public List<Moderator> listAllModerator() throws ModeratorExeption {
+        return appDB.getListModerator();
     }
 
     @Override
-    public Client addClient(String fullname, String email, String phone, String pass, String role) {
+    public Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
         Client client = new Client(fullname, email, phone, pass, role);
         return appDB.addClient(client);
     }
@@ -104,21 +106,6 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     public Location addLocation(String country, String city) {
         Location location = new Location(country, city);
         return appDB.addLocation(location);
-    }
-
-    @Override
-    public Comment replyToComment(long commentID, Comment comment) {
-        return null;
-    }
-
-    @Override
-    public Comment removeComment(long commentID) {
-        return null;
-    }
-
-    @Override
-    public List<Comment> listAllComment() {
-        return null;
     }
 
     @Override

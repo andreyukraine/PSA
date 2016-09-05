@@ -10,19 +10,19 @@ import java.util.Scanner;
  */
 public class WorkerView {
 
-    Scanner scanner;
-    IWorkerController iWorkerController;
-    IAppDB iAppDB;
+    private Scanner scanner;
+    private IWorkerController iWorkerController;
 
 
     // constructors --------------------------------------------------------------------------------
 
-    public WorkerView(Scanner scanner, IWorkerController iWorkerController, IAppDB iAppDB) {
+    public WorkerView(Scanner scanner, IWorkerController iWorkerController) {
         this.scanner = scanner;
         this.iWorkerController = iWorkerController;
-        this.iAppDB = iAppDB;
     }
 
+    public void start() {
+    }
 
 
 }

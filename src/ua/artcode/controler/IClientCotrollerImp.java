@@ -1,8 +1,10 @@
 package ua.artcode.controler;
 
+import ua.artcode.db.AppDBImpl;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
 import ua.artcode.run.RunProgram;
+import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
 
@@ -12,10 +14,15 @@ import java.util.List;
 public class IClientCotrollerImp implements IClientController {
 
 
-    private IAppDB appDB;
+    private AppDBImpl appDB;
+    private DBFileHandler dbFileHandler;
 
-    public IClientCotrollerImp(IAppDB appDB) {
+    public IClientCotrollerImp() {
+    }
+
+    public IClientCotrollerImp(AppDBImpl appDB, DBFileHandler dbFileHandler) {
         this.appDB = appDB;
+        this.dbFileHandler = dbFileHandler;
     }
 
     @Override
@@ -56,26 +63,6 @@ public class IClientCotrollerImp implements IClientController {
 
     @Override
     public List<Order> listOrders(Client client) {
-        return null;
-    }
-
-    @Override
-    public Comment addCommentService(Service service) {
-        return null;
-    }
-
-    @Override
-    public Comment addCommentCompany(Company company) {
-        return null;
-    }
-
-    @Override
-    public Comment addCommentWorker(Worker worker) {
-        return null;
-    }
-
-    @Override
-    public Comment addCommentPSA() {
         return null;
     }
 

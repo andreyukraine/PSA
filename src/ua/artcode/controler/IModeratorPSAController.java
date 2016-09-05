@@ -1,7 +1,8 @@
 package ua.artcode.controler;
-import ua.artcode.db.IAppDB;
 import ua.artcode.exceptions.AppException;
+import ua.artcode.exceptions.ModeratorExeption;
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IModeratorPSAController {
 
 
     //создать модератора пса
-    ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, String role);
+    ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
     //добавить сервис
     Service addService(String nameService, String descriptionService);
@@ -24,9 +25,9 @@ public interface IModeratorPSAController {
     String editService(long serviceId, String newNameService, String newDescriptionService);
 
     //подтвердить/отказать добавление компании
-    Company changeStatusCompany(long companyId, int statusIndex);
+    Company changeStatusCompany(long companyId, Constants.statusCompany status);
 
-    Client addClient(String fullname, String email, String phone, String pass, String role);
+    Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
     //убрать добавление компании
     //добавить компанию
@@ -48,19 +49,11 @@ public interface IModeratorPSAController {
     List<Service> listAllService();
 
     //посмотреть всех модераторов
-    List<Client> listAllModerator();
+    List<Moderator> listAllModerator() throws ModeratorExeption;
 
     //добавить локацию
     Location addLocation(String country, String city);
 
-    //ответить на коментарий сервиса PSA
-    Comment replyToComment(long commentID, Comment comment);
-
-    //удалить комментарий сервиса PSA
-    Comment removeComment(long commentID);
-
-    //посмотреть комментарии сервиса PSA
-    List<Comment> listAllComment();
 
     void saveAllToDb() throws AppException;
 

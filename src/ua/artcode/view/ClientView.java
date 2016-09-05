@@ -15,17 +15,13 @@ public class ClientView {
 
     private Scanner scanner;
     private IClientController iClientController;
-    private IAppDB iAppDB;
-    private Client client;
-    private Service serviceTemp = null;
+
     // constructors --------------------------------------------------------------------------------
 
 
-    public ClientView(Scanner scanner, IClientController iClientController, IAppDB iAppDB, Client client) {
+    public ClientView(Scanner scanner, IClientController iClientController) {
         this.scanner = scanner;
         this.iClientController = iClientController;
-        this.iAppDB = iAppDB;
-        this.client = client;
     }
 
     public void start(){
@@ -60,8 +56,8 @@ public class ClientView {
         String description = scanner.nextLine();
         Location location = new Location().setLocationMenu(new Scanner(System.in));
 
-        Company company = iClientController.addCompany(name,description,client,location, null);
-        iAppDB.addModeratorCompany(client, company);
+        //Company company = iClientController.addCompany(name,description,client,location, null);
+        //iAppDB.addModeratorCompany(client, company);
     }
 
     public void searchServiceMenu() {

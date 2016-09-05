@@ -1,6 +1,7 @@
 package ua.artcode.db;
 
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -171,7 +172,7 @@ public class AppDBImpl implements IAppDB, Serializable{
         for (int i = 0; i < clientList.size(); i++) {
             if (clientList.get(i).getId() == client.getId()) {
                 Moderator moderator = new Moderator(clientList.get(i).getFullname(), clientList.get(i).getEmail(),
-                        clientList.get(i).getPhone(), clientList.get(i).getPass(),new Status().statusClientRole(2),null);
+                        clientList.get(i).getPhone(), clientList.get(i).getPass(), Constants.statusClientRole.MODERATOR,null);
                 moderator.setCompany(company);
                 moderator.setServices(company.getServices());
                 moderatorList.add(moderator);

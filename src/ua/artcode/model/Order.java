@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import ua.artcode.utils.Constants;
+
 import java.util.Date;
 
 /**
@@ -17,7 +19,7 @@ public class Order {
     private Client client;  //изменила юзер на клиент
     private Worker worker;
     private String descriptionOrder;
-    private Status status;
+    private Constants.statusOrder status;
 
     // constructors --------------------------------------------------------------------------------
 
@@ -27,7 +29,7 @@ public class Order {
         this.service = service;
         this.client = client;
         this.descriptionOrder = descriptionOrder;
-
+        this.status = Constants.statusOrder.NEW;
     }
 
     public Order() {
@@ -35,11 +37,12 @@ public class Order {
 
     // geters & seters -----------------------------------------------------------------------------
 
-    public Status getStatus() {
+
+    public Constants.statusOrder getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Constants.statusOrder status) {
         this.status = status;
     }
 

@@ -1,8 +1,11 @@
 package ua.artcode.controler;
 
+import ua.artcode.db.AppDBImpl;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
 import ua.artcode.run.RunProgram;
+import ua.artcode.utils.Constants;
+import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
 
@@ -11,14 +14,17 @@ import java.util.List;
  */
 public class IModeratorControllerImp implements IModeratorController {
 
-    private IAppDB appDB;
+    private AppDBImpl appDB;
+    private DBFileHandler dbFileHandler;
 
-    public IModeratorControllerImp(IAppDB appDB) {
+    public IModeratorControllerImp(AppDBImpl appDB, DBFileHandler dbFileHandler) {
         this.appDB = appDB;
+        this.dbFileHandler = dbFileHandler;
     }
 
+
     @Override
-    public Moderator addModerator(String fullname, String email, String phone, String pass, String role) {
+    public Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
         Moderator moderator= new Moderator(fullname, email, phone, pass, role, null);
         return appDB.addModerator(moderator);
     }
@@ -56,8 +62,9 @@ public class IModeratorControllerImp implements IModeratorController {
 
     @Override
     public Worker createWorker(String fullName, String email, String phone, String pass) {
-        Worker worker = new Worker(fullName,email,phone,pass,new Status().statusClientRole(3));
-        return appDB.createWorker(RunProgram.MODERATOR_LOGIN, worker);
+        //Worker worker = new Worker(fullName,email,phone,pass, Constants.statusClientRole.WORKER);
+      //  return appDB.createWorker(RunProgram.MODERATOR_LOGIN, worker);
+        return null;
     }
 
     @Override

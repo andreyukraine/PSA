@@ -1,5 +1,7 @@
 package ua.artcode.model;
 
+import ua.artcode.utils.Constants;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +11,8 @@ import java.util.List;
  */
 public class Worker extends User {
 
-    //w+1
-    //w+2
     private Company company;
-    private String descriptionWorker;
-    private Status status;
+    private Constants.statusCompany status;
     private Rate rateWorker;
 
     private List<Service> service;
@@ -26,10 +25,10 @@ public class Worker extends User {
     public Worker() {
     }
 
-    public Worker(String fullname, String email, String phone, String pass, String descriptionWorker) {
+    public Worker(String fullname, String email, String phone,String pass, Constants.statusClientRole role) {
 
-        super(fullname, email, phone, pass, descriptionWorker);
-        this.descriptionWorker = descriptionWorker;
+        super(fullname, email, phone, pass, role);
+
     }
 
 
@@ -43,19 +42,11 @@ public class Worker extends User {
         this.company = company;
     }
 
-    public String getDescriptionWorker() {
-        return descriptionWorker;
-    }
-
-    public void setDescriptionWorker(String descriptionWorker) {
-        this.descriptionWorker = descriptionWorker;
-    }
-
-    public Status getStatus() {
+    public Constants.statusCompany getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Constants.statusCompany status) {
         this.status = status;
     }
 

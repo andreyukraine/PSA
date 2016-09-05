@@ -6,17 +6,6 @@ package ua.artcode.utils;
  */
 public class Utils {
 
-    private String login;
-    private String pass;
-
-    public Utils(String login, String pass) {
-        this.login = login;
-        this.pass = pass;
-    }
-
-    public boolean checkLoginPass(String login, String pass){
-        return false;
-    }
 
 
 

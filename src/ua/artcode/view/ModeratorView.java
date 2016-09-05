@@ -16,29 +16,24 @@ public class ModeratorView {
 
     Scanner scanner;
     IModeratorController iModeratorController;
-    IAppDB iAppDB;
 
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorView(Scanner scanner, IModeratorController iModeratorController, IAppDB iAppDB) {
+    public ModeratorView(Scanner scanner, IModeratorController iModeratorController) {
         this.scanner = scanner;
         this.iModeratorController = iModeratorController;
-        this.iAppDB = iAppDB;
     }
 
     public void start(){
         showMainMenu();
         int choice = -1;
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0){
-
             if(choice == 1){
                 createWorkerMenu();
             }
             if (choice == 2){
                 showStartMenu();
             }
-
-
         }
     }
 
@@ -60,9 +55,7 @@ public class ModeratorView {
             System.out.println("Input worker description");
             String desc = scanner.nextLine();
 
-            Status status = new Status();
-            String roleUser = status.statusClientRole(3);
-            Worker worker = iModeratorController.createWorker(fullname,email,phone,pass);
+            iModeratorController.createWorker(fullname,email,phone,pass);
 
     }
 }

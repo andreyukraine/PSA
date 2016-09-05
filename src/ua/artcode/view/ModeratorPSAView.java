@@ -3,6 +3,7 @@ package ua.artcode.view;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.exceptions.AppException;
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 
 import java.util.Scanner;
 
@@ -108,7 +109,7 @@ public class ModeratorPSAView {
         System.out.println("Input company status");
         String statusIndex = scanner.nextLine();
 
-        iModeratorPSAController.changeStatusCompany(0, 2);
+        iModeratorPSAController.changeStatusCompany(0, null);
     }
 
     public void addServiceMenu() {
@@ -182,9 +183,7 @@ public class ModeratorPSAView {
         System.out.println("Input client pass");
         String pass = scanner.nextLine();
 
-        Status status = new Status();
-        String roleUser = status.statusClientRole(4);
-        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, roleUser);
+        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, Constants.statusClientRole.CLIENT);
     }
 
     public void addModeratorPSAMenu() {
@@ -197,9 +196,7 @@ public class ModeratorPSAView {
         System.out.println("Input ModeratorPSA pass");
         String pass = scanner.nextLine();
 
-        Status status = new Status();
-        String roleUser = status.statusClientRole(1);
-        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, roleUser);
+        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
 
     }
 
@@ -219,7 +216,7 @@ public class ModeratorPSAView {
         System.out.println("Input company statusIndex");
         int statusIndex = scanner.nextInt();
 
-        Company company = iModeratorPSAController.changeStatusCompany(companyId, statusIndex);
+        Company company = iModeratorPSAController.changeStatusCompany(companyId, Constants.statusCompany.NEW);
         System.out.println(company.toString());
     }
 

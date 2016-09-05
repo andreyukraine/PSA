@@ -6,6 +6,7 @@ import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 
 import java.util.Scanner;
 
@@ -54,10 +55,6 @@ public class RegistrationCompanyView {
                 System.out.println("--------------------------------");
                 addCompany();
 
-                ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
-                moderatorView.start();
-
-
             }
             if (choice == 2) {
                 if (loginView.showLoginMenu() == true) {
@@ -83,8 +80,8 @@ public class RegistrationCompanyView {
         String passClient = scanner.nextLine();
 
 
-        String roleUser = Status.statusClientRole(2);
-        clientTemp = iModeratorPSAController.addClient(fullnameClient, emailClient, phoneClient, passClient, roleUser);
+
+        clientTemp = iModeratorPSAController.addClient(fullnameClient, emailClient, phoneClient, passClient, Constants.statusClientRole.MODERATOR);
     }
 
     public void searchServiceMenu() {

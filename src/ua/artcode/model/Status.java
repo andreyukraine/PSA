@@ -18,35 +18,6 @@ public class Status {
         //-closed
         //-refused
 
-    //статус компании
-    public static String statusCompany(int statusIndex){
-        switch (statusIndex){
-            case 1:
-                return "NEW";
-            case 2:
-                return "IN_PROGRESS";
-            case 3:
-                return "DONE";
-            default:
-                return "UknownNow";
-        }
-    }
-
-    //роли сервиса PSA
-public static String statusClientRole(int statusIndex){
-    switch (statusIndex){
-        case 1:
-            return "moderatorPSA";
-        case 2:
-            return "moderator";
-        case 3:
-            return "worker";
-        case 4:
-            return "client";
-        default:
-            return "UknownNow";
-    }
-}
 
 
 }

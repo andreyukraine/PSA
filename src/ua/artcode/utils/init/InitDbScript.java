@@ -21,7 +21,7 @@ public class InitDbScript {
         DBFileHandlerImpl dbFileHandler = new DBFileHandlerImpl(Constants.DB_PATH, iBash);
         IModeratorPSAController iModeratorPSAController =
                 new IModeratorPSAControllerImp(appDB, dbFileHandler);
-        IModeratorController iModeratorController = new IModeratorControllerImp(appDB);
+        IModeratorController iModeratorController = new IModeratorControllerImp(appDB,dbFileHandler);
         initData(iModeratorPSAController, iModeratorController);
 
         iBash.saveObjToFile(appDB, Constants.DB_PATH);
@@ -29,10 +29,10 @@ public class InitDbScript {
 
 
     public static void initData(IModeratorPSAController iModeratorPSAController, IModeratorController iModeratorController) {
-        iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", new Status().statusClientRole(1));
-        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", new Status().statusClientRole(2));
-        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", new Status().statusClientRole(2));
-        iModeratorPSAController.addClient("Client", "c", "+380", "c", new Status().statusClientRole(4));
+        iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", Constants.statusClientRole.MODERATOR_PSA);
+        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.statusClientRole.MODERATOR);
+        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.statusClientRole.MODERATOR);
+        iModeratorPSAController.addClient("Client", "c", "+380", "c", Constants.statusClientRole.CLIENT);
         iModeratorController.addCompany("Company", "DescComp", null, null, null);
         iModeratorPSAController.addService("Service1", "Description");
 

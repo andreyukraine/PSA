@@ -1,6 +1,7 @@
 package ua.artcode.controler;
 
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface IModeratorController {
 
     // создаем модератора
-    Moderator addModerator(String fullname, String email, String phone, String pass, String role);
+    Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
     // создаем компанию
     Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);

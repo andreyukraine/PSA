@@ -5,9 +5,10 @@ import ua.artcode.controler.IModeratorController;
 import ua.artcode.controler.IModeratorPSAController;
 import ua.artcode.controler.IWorkerController;
 import ua.artcode.db.IAppDB;
-import ua.artcode.db.Ijson;
 import ua.artcode.model.Status;
 import ua.artcode.run.RunProgram;
+import ua.artcode.utils.CheckLoginPass;
+import ua.artcode.utils.Constants;
 
 import java.util.Scanner;
 
@@ -23,19 +24,18 @@ public class LoginView {
     private IWorkerController iWorkerController;
     private IClientController iClientController;
     private IAppDB iAppDB;
-    private Ijson ijson;
+
 
 
     // constructors --------------------------------------------------------------------------------
 
     public LoginView(Scanner scanner, IModeratorPSAController iModeratorPSAController,
-                     IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB, Ijson ijson) {
+                     IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IAppDB appDB) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iModeratorController = iModeratorController;
         this.iClientController = iClientController;
         this.iAppDB = appDB;
-        this.ijson = ijson;
     }
 
     // methods --------------------------------------------------------------------------------------
@@ -50,38 +50,23 @@ public class LoginView {
 
         // check if user is in the system
 
-        for (int i = 0; i < iAppDB.getModeratorPSA().size() ; i++) {
-            if (iAppDB.getModeratorPSA().get(i).getEmail().equals(login) && iAppDB.getModeratorPSA().get(i).getPass().equals(pass)
-                    && iAppDB.getModeratorPSA().get(i).getRole().equals(new Status().statusClientRole(1))){
-                ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner,iModeratorPSAController);
-                moderatorPSAView.start();
-                return true;
-            }
+        Constants.statusClientRole role = CheckLoginPass.CheckLoginPassw(login,pass,iAppDB,scanner);
+
+        if (role.equals(Constants.statusClientRole.MODERATOR_PSA)){
+            ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner, iModeratorPSAController);
+            moderatorPSAView.start();
+        }else if (role.equals(Constants.statusClientRole.MODERATOR)){
+            ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController);
+            moderatorView.start();
+        }else if (role.equals(Constants.statusClientRole.WORKER)){
+            WorkerView workerView = new WorkerView(scanner, iWorkerController);
+            workerView.start();
+        }else{
+            ClientView clientView = new ClientView(scanner, iClientController);
+            clientView.start();
         }
-        for (int i = 0; i < iAppDB.getListModerator().size(); i++) {
-            if (iAppDB.getListModerator().get(i).getEmail().equals(login) && iAppDB.getListModerator().get(i).getPass().equals(pass) &&
-                    iAppDB.getListModerator().get(i).getRole().equals(new Status().statusClientRole(2))){
-                ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iAppDB);
-                RunProgram.MODERATOR_LOGIN = iAppDB.getListModerator().get(i);
-                moderatorView.start();
-                return true;
-            }
-        }
-        for (int i = 0; i < iAppDB.getListClients().size(); i++) {
-            if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusClientRole(3))){
-                WorkerView workerView = new WorkerView(scanner, iWorkerController, iAppDB);
-                return true;
-            }
-        }
-        for (int i = 0; i < iAppDB.getListClients().size(); i++) {
-            if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-                    iAppDB.getListClients().get(i).getRole().equals(new Status().statusClientRole(4))){
-                ClientView clientView = new ClientView(scanner, iClientController, iAppDB, iAppDB.getListClients().get(i));
-                clientView.start();
-                return true;
-            }
-        }
+
+
         RunProgram.showStartMenu();
         return false;
     }
