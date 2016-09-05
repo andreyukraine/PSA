@@ -2,13 +2,14 @@ package ua.artcode.db;
 
 import ua.artcode.model.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
 /**
  * crud operation
  */
-public interface IAppDB {
+public interface IAppDB{
 
     //
     ModeratorPSA addModeratorPSA(ModeratorPSA moderatorPSA);

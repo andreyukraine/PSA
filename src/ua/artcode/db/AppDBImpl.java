@@ -13,12 +13,15 @@ import java.util.List;
 public class AppDBImpl implements IAppDB, Serializable{
 
     private List<Company> companyList = new ArrayList<>();
+
     private List<Client> clientList = new ArrayList<>();
     private List<Moderator> moderatorList = new ArrayList<>();
     private List<Worker> workerList = new ArrayList<>();
+    private List<ModeratorPSA> moderatorPSA = new ArrayList<>();
+
     private List<Location> locations = new ArrayList<>();
     private List<Service> serviceList = new ArrayList<>();
-    private List<ModeratorPSA> moderatorPSA = new ArrayList<>();
+
     private List<Comment> commentsPSA = new ArrayList<>();
     private List<Comment> commentsCompany = new ArrayList<>();
     private List<Comment> commentsService = new ArrayList<>();
@@ -218,7 +221,7 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     // constructors --------------------------------------------------------------------------------
 
-    public AppDBImpl() {
+    public AppDBImpl()  {
     }
 
     public AppDBImpl(ArrayList<Company> companies, ArrayList<Client> clients, ArrayList<Moderator> moderator,
