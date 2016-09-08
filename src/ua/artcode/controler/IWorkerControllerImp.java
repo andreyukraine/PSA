@@ -25,13 +25,28 @@ public class IWorkerControllerImp implements IWorkerController {
     }
 
     @Override
-    public Worker addWorker(String fullname, String email, String phone, String pass, String descriptionWorker) {
+    public Worker addWorker(String fullname, String email, String phone, String pass) {
         Worker worker = new Worker(fullname, email, phone, pass, Constants.statusClientRole.WORKER);
         return worker;
     }
 
     @Override
+    public Worker editWorker(long workerId, String newFullname, String newEmail, String newPhone, String newPass, String newDescriptionWorker) {
+        return null;
+    }
+
+    @Override
     public List<Worker> myServices(Worker worker) {
+        return null;
+    }
+
+    @Override
+    public Service asignServiceWorker(long serviceId, Worker worker) {
+        return null;
+    }
+
+    @Override
+    public Worker removeWorker(long workerId) {
         return null;
     }
 
@@ -42,6 +57,16 @@ public class IWorkerControllerImp implements IWorkerController {
 
     @Override
     public Order closeOrder(Order order) {
+        return null;
+    }
+
+    @Override
+    public List<Worker> getOwnWorkersInCompany(long companyId) {
+        return null;
+    }
+
+    @Override
+    public List<Worker> showAllFreeWorker(int statusIndex) {
         return null;
     }
 

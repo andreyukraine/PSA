@@ -203,17 +203,12 @@ public class AppDBImpl implements IAppDB, Serializable{
         return location;
     }
 
-    public Client addModeratorCompany(Client client, Company company) {
+    public Client addModeratorCompany(Client client) {
         for (int i = 0; i < clientList.size(); i++) {
             if (clientList.get(i).getId() == client.getId()) {
                 Moderator moderator = new Moderator(clientList.get(i).getFullname(), clientList.get(i).getEmail(),
                         clientList.get(i).getPhone(), clientList.get(i).getPass(), Constants.statusClientRole.MODERATOR,null);
-                moderator.setCompany(company);
-                moderator.setServices(company.getServices());
                 moderatorList.add(moderator);
-
-                company.setModerator(client);
-                company.setServices(moderator.getServices());
 
                 clientList.remove(i);
                 return client;

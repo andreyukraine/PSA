@@ -11,49 +11,10 @@ import java.util.List;
 public interface IModeratorController {
 
     // создаем модератора
-    Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role, Company company);
-
-    // создаем компанию
-    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
-
-    // изменяем данные про компанию
-    Company editCompany(long companyId, String newNameCompany, String newDescriptionCompany, Moderator moderator, Location location);
-
-    // удаляем компанию
-    Company removeCompany(long companyId);
-
-    // ищем компанию
-    Company findCompany(long companyId);
+    Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
     // добавить сервис компании
     Service addServiceToCompany(long companyId, long serviceId);
-
-    //удалить сервис
-    Service removeService(long serviceId);
-
-    //создать работника
-    Worker createWorker(String fullName, String email, String phone, String pass);
-
-    //передаем заказ в работу сотруднику
-    Worker asignOrderWorker(long workerId, Order order);
-
-    // посмотреть всех сотрудников
-    List<Worker> getOwnWorkersInCompany(long companyId);
-
-    //назначить сервису работника
-    Service asignServiceWorker(long serviceId, Worker worker);
-
-    //удалить сотрудника с компании
-    Worker removeWorker(long workerId);
-
-    // редактировать сотрудника
-    Worker editWorker(long workerId, String newFullname, String newEmail, String newPhone, String newPass, String newDescriptionWorker);
-
-    // изменить статус заказа
-    Order assignStatusOrder(long orderId, int statusIndex);
-
-    //посмотреть всех свободных сотрудников
-    List<Worker> showAllFreeWorker(int statusIndex);
 
     Company getCompanyModerator(int moderatroId);
 

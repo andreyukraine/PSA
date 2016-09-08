@@ -35,6 +35,8 @@ public class LoginView {
         this.iClientController = iClientController;
         this.iService = iService;
         this.iCompany = iCompany;
+        this.iWorkerController = iWorkerController;
+
 
         this.iAppDB = appDB;
     }
@@ -54,10 +56,10 @@ public class LoginView {
         Constants.statusClientRole role = CheckLoginPass.CheckLoginPassw(login,pass,iAppDB,scanner);
 
         if (role.equals(Constants.statusClientRole.MODERATOR_PSA)){
-            ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner, iModeratorPSAController, iClientController, iService, iCompany);
+            ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner, iModeratorPSAController, iClientController, iService, iCompany, iWorkerController);
             moderatorPSAView.start();
         }else if (role.equals(Constants.statusClientRole.MODERATOR)){
-            ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController);
+            ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iClientController,iService, iCompany, iWorkerController);
             moderatorView.start();
         }else if (role.equals(Constants.statusClientRole.WORKER)){
             WorkerView workerView = new WorkerView(scanner, iWorkerController);

@@ -34,7 +34,7 @@ public interface IAppDB{
     List<Moderator> getListModerator();
     List<Client> getListClients();
     List<Worker> getListWorkers();
-    Client addModeratorCompany(Client client, Company company);
+    Client addModeratorCompany(Client client);
     Service addService(Service service);
     Client removeClient(long clientId);
     Client addClient(Client client);

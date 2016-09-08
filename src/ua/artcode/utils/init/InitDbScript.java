@@ -23,7 +23,9 @@ public class InitDbScript {
         IModeratorController iModeratorController = new IModeratorControllerImp(appDB,dbFileHandler);
         IClientController iClientController = new IClientCotrollerImp(appDB,dbFileHandler);
         IService iService = new ServiceImp(appDB,dbFileHandler);
-        initData(iModeratorPSAController, iModeratorController, iClientController, iService);
+        IWorkerController iWorkerController = new IWorkerControllerImp(appDB,dbFileHandler);
+        ICompany iCompany = new CompanyImp(appDB, dbFileHandler);
+        initData(iModeratorPSAController, iModeratorController, iClientController, iService, iWorkerController, iCompany);
 
         iBash.saveObjToFile(appDB, Constants.DB_PATH);
         try {
@@ -34,12 +36,13 @@ public class InitDbScript {
     }
 
 
-    public static void initData(IModeratorPSAController iModeratorPSAController, IModeratorController iModeratorController, IClientController iClientController, IService iService) {
+    public static void initData(IModeratorPSAController iModeratorPSAController, IModeratorController iModeratorController,
+                                IClientController iClientController,IService iService, IWorkerController iWorkerController, ICompany iCompany) {
         iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", Constants.statusClientRole.MODERATOR_PSA);
-        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.statusClientRole.MODERATOR, iModeratorController.getCompanyModerator(0));
-        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.statusClientRole.MODERATOR, iModeratorController.getCompanyModerator(0));
+        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.statusClientRole.MODERATOR);
+        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.statusClientRole.MODERATOR);
         iClientController.addClient("Client", "c", "+380", "c", Constants.statusClientRole.CLIENT);
-        iModeratorController.addCompany("Company", "DescComp", null, null, null);
+        iCompany.addCompany("Company", "DescComp", null, null, null);
         iService.addService("Service1", "Description");
 
     }

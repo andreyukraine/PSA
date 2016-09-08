@@ -1,9 +1,6 @@
 package ua.artcode.view;
 
-import ua.artcode.controler.IClientController;
-import ua.artcode.controler.ICompany;
-import ua.artcode.controler.IModeratorPSAController;
-import ua.artcode.controler.IService;
+import ua.artcode.controler.*;
 import ua.artcode.exceptions.AppException;
 import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
@@ -22,15 +19,16 @@ public class ModeratorPSAView {
     private IClientController iClientController;
     private IService iService;
     private ICompany iCompany;
-
+    private IWorkerController iWorkerController;
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController, IClientController iClientController, IService iService, ICompany iCompany) {
+    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController, IClientController iClientController, IService iService, ICompany iCompany, IWorkerController iWorkerController) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iClientController = iClientController;
         this.iService = iService;
         this.iCompany = iCompany;
+        this.iWorkerController = iWorkerController;
     }
 
     // methods --------------------------------------------------------------------------------------

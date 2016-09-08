@@ -33,15 +33,9 @@ public final class Constants {
     }
 
     //статус работника
-
-    //-free
-    //-busy
-
-    //статус заказа
-
-    //-new
-    //-in progress
-    //-closed
-    //-refused
+    public static enum statusWorker{
+        FREE,
+        BUSY;
+    }
 
 }

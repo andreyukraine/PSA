@@ -1,6 +1,6 @@
 package ua.artcode.view;
 
-import ua.artcode.controler.IModeratorController;
+import ua.artcode.controler.*;
 import ua.artcode.utils.Constants;
 
 import java.util.Scanner;
@@ -13,12 +13,20 @@ public class ModeratorView {
 
     Scanner scanner;
     IModeratorController iModeratorController;
+    IClientController iClientController;
+    IService iService;
+    ICompany iCompany;
+    IWorkerController iWorkerController;
 
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorView(Scanner scanner, IModeratorController iModeratorController) {
+    public ModeratorView(Scanner scanner, IModeratorController iModeratorController, IClientController iClientController, IService iService, ICompany iCompany, IWorkerController iWorkerController) {
         this.scanner = scanner;
         this.iModeratorController = iModeratorController;
+        this.iClientController = iClientController;
+        this.iService = iService;
+        this.iCompany = iCompany;
+        this.iWorkerController = iWorkerController;
     }
 
     public void start(){
@@ -55,7 +63,7 @@ public class ModeratorView {
             System.out.println("Input worker description");
             String desc = scanner.nextLine();
 
-            iModeratorController.createWorker(fullname,email,phone,pass);
+            iWorkerController.addWorker(fullname,email,phone,pass);
     }
 
     public void addModeratorMenu() {
@@ -68,6 +76,6 @@ public class ModeratorView {
         System.out.println("Input Moderator pass");
         String pass = scanner.nextLine();
 
-        iModeratorController.addModerator(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA, iModeratorController.getCompanyModerator(0));
+        iModeratorController.addModerator(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
     }
 }
