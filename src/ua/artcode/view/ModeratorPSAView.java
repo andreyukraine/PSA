@@ -1,6 +1,9 @@
 package ua.artcode.view;
 
+import ua.artcode.controler.IClientController;
+import ua.artcode.controler.ICompany;
 import ua.artcode.controler.IModeratorPSAController;
+import ua.artcode.controler.IService;
 import ua.artcode.exceptions.AppException;
 import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
@@ -16,12 +19,18 @@ public class ModeratorPSAView {
 
     private Scanner scanner;
     private IModeratorPSAController iModeratorPSAController;
+    private IClientController iClientController;
+    private IService iService;
+    private ICompany iCompany;
 
     // constructors --------------------------------------------------------------------------------
 
-    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController) {
+    public ModeratorPSAView(Scanner scanner, IModeratorPSAController iModeratorPSAController, IClientController iClientController, IService iService, ICompany iCompany) {
         this.scanner = scanner;
         this.iModeratorPSAController = iModeratorPSAController;
+        this.iClientController = iClientController;
+        this.iService = iService;
+        this.iCompany = iCompany;
     }
 
     // methods --------------------------------------------------------------------------------------
@@ -35,17 +44,18 @@ public class ModeratorPSAView {
             } else if (choice == 2) {
                 addServiceMenu();
             } else if (choice == 3) {
-                changeStatusCompany();
+                removeServiceMenu();
             } else if (choice == 4) {
                 editServiceMenu();
             } else if (choice == 5) {
-                removeServiceMenu();
+                changeStatusCompany();
             } else if (choice == 6) {
-                addClientMenu();
-            } else if (choice == 7) {
                 addCompanyMenu();
-            } else if (choice == 8) {
+            } else if (choice == 7) {
                 removeCompanyMenu();
+            } else if (choice == 8) {
+                addClientMenu();
+                break;
             } else if (choice == 9) {
                 removeClientMenu();
             } else if (choice == 10) {
@@ -61,7 +71,9 @@ public class ModeratorPSAView {
             } else if (choice == 15) {
                 showStartMenu();
             }
+
         }
+        return;
     }
 
     private void saveAllToDbMenu() {
@@ -85,13 +97,18 @@ public class ModeratorPSAView {
     public void showMainMenu() {
         System.out.println("1. addModeratorPSA");
         System.out.println("2. addService");
-        System.out.println("3. changeStatusCompany");
+        System.out.println("3. removeService");
         System.out.println("4. editService");
-        System.out.println("5. removeService");
-        System.out.println("6. addClient");
-        System.out.println("7. addCompany");
-        System.out.println("8. removeCompany");
+        System.out.println("5. changeStatusCompany");
+        System.out.println("6. addCompany");
+        System.out.println("7. removeCompany");
+        System.out.println("8. addClient");
         System.out.println("9. removeClient");
+
+
+
+
+
         System.out.println("10. getListCompany");
         System.out.println("11. getListClient");
         System.out.println("12. getListServise");
@@ -107,9 +124,10 @@ public class ModeratorPSAView {
         String companyId = scanner.nextLine();
 
         System.out.println("Input company status");
+
         String statusIndex = scanner.nextLine();
 
-        iModeratorPSAController.changeStatusCompany(0, null);
+        iCompany.changeStatusCompany(0, Constants.statusCompany.DONE);
     }
 
     public void addServiceMenu() {
@@ -118,7 +136,7 @@ public class ModeratorPSAView {
         System.out.println("Input service description");
         String serviceDesc = scanner.nextLine();
 
-        Service addService = iModeratorPSAController.addService(serviceName, serviceDesc);
+        Service addService = iService.addService(serviceName, serviceDesc);
         System.out.println(addService.toString());
     }
 
@@ -131,8 +149,7 @@ public class ModeratorPSAView {
         System.out.println("Input service new description");
         String serviceNewDesc = scanner.nextLine();
 
-        String editService = iModeratorPSAController.editService(serviceId, serviceNewName, serviceNewDesc);
-        ;
+        Service editService = iService.editService(serviceId, serviceNewName, serviceNewDesc);
         System.out.println(editService.toString());
     }
 
@@ -140,7 +157,7 @@ public class ModeratorPSAView {
         System.out.println("Input service id");
         long serviceId = scanner.nextLong();
 
-        Service removeService = iModeratorPSAController.removeService(serviceId);
+        Service removeService = iService.rmServiceFromApp(serviceId);
         System.out.println("Remove service: " + removeService.toString());
     }
 
@@ -148,29 +165,29 @@ public class ModeratorPSAView {
         System.out.println("Input client id");
         long clientId = scanner.nextLong();
 
-        Client removeClient = iModeratorPSAController.removeClient(clientId);
+        Client removeClient = iClientController.removeClient(clientId);
         System.out.println("Remove client: " + removeClient.toString());
     }
 
     public void removeCompanyMenu() {
+        System.out.println(iCompany.listAllCompany().toString());
         System.out.println("Input company id");
         long companyId = scanner.nextLong();
+        Company removeCompany = iCompany.removeCompany(companyId);
 
-        Company removeCompany = iModeratorPSAController.removeCompany(companyId);
-        ;
         System.out.println("Remove company: " + removeCompany.toString());
     }
 
     public void getListCompany() {
-        System.out.println(iModeratorPSAController.listAllCompany().toString());
+        System.out.println(iCompany.listAllCompany().toString());
     }
 
     public void getListServise() {
-        System.out.println(iModeratorPSAController.listAllService().toString());
+        System.out.println(iService.getAllServicesApp().toString());
     }
 
     public void getListClient() {
-        System.out.println(iModeratorPSAController.listAllClient().toString());
+        System.out.println(iClientController.listAllClient().toString());
     }
 
     public void addClientMenu() {
@@ -183,7 +200,7 @@ public class ModeratorPSAView {
         System.out.println("Input client pass");
         String pass = scanner.nextLine();
 
-        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, Constants.statusClientRole.CLIENT);
+        iClientController.addClient(fullname, email, phone, pass, Constants.statusClientRole.CLIENT);
     }
 
     public void addModeratorPSAMenu() {
@@ -196,8 +213,7 @@ public class ModeratorPSAView {
         System.out.println("Input ModeratorPSA pass");
         String pass = scanner.nextLine();
 
-        Client client = iModeratorPSAController.addClient(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
-
+        iModeratorPSAController.addModeratorPSA(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
     }
 
     public void addCompanyMenu() {
@@ -206,8 +222,12 @@ public class ModeratorPSAView {
         System.out.println("Input descriptionCompany");
         String description = scanner.nextLine();
         Location location = new Location().setLocationMenu(new Scanner(System.in));
+        System.out.println(iService.getAllServicesApp().toString());
+        System.out.println("Input serviceId");
+        int serviceId = Integer.parseInt(scanner.nextLine());
 
-        iModeratorPSAController.addCompany(name, description, null, location, null);
+        Company company = iCompany.addCompany(name, description, null, location, null);
+        iService.addServiceToCompany(company, iService.setService(serviceId));
     }
 
     public void statusCompanyMenu() {
@@ -216,7 +236,7 @@ public class ModeratorPSAView {
         System.out.println("Input company statusIndex");
         int statusIndex = scanner.nextInt();
 
-        Company company = iModeratorPSAController.changeStatusCompany(companyId, Constants.statusCompany.NEW);
+        Company company = iCompany.changeStatusCompany(companyId, Constants.statusCompany.NEW);
         System.out.println(company.toString());
     }
 

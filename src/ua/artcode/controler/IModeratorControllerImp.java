@@ -20,12 +20,26 @@ public class IModeratorControllerImp implements IModeratorController {
         this.dbFileHandler = dbFileHandler;
     }
 
-
     @Override
-    public Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+    public Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role, Company company) {
         Moderator moderator= new Moderator(fullname, email, phone, pass, role, null);
         return appDB.addModerator(moderator);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service ) {
@@ -99,6 +113,12 @@ public class IModeratorControllerImp implements IModeratorController {
     public List<Worker> showAllFreeWorker(int statusIndex) {
         return null;
     }
+
+    @Override
+    public Company getCompanyModerator(int moderatroId) {
+        return appDB.getCompanyModerator(moderatroId);
+    }
+
 
 
 }

@@ -3,6 +3,8 @@ package ua.artcode.utils;
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.exceptions.AppDbException;
 
+import java.io.IOException;
+
 /**
  * Created by serhii on 04.09.16.
  */
@@ -14,7 +16,7 @@ public interface DBFileHandler {
 
     String exportToJson(AppDBImpl appDB) throws AppDbException;
 
-    AppDBImpl importFromJson(String json) throws AppDbException;
+    AppDBImpl importFromJson() throws AppDbException;
 
 
 }

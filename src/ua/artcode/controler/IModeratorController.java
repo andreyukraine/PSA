@@ -11,7 +11,7 @@ import java.util.List;
 public interface IModeratorController {
 
     // создаем модератора
-    Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
+    Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role, Company company);
 
     // создаем компанию
     Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
@@ -55,6 +55,6 @@ public interface IModeratorController {
     //посмотреть всех свободных сотрудников
     List<Worker> showAllFreeWorker(int statusIndex);
 
-    //добавить комментрии
+    Company getCompanyModerator(int moderatroId);
 
 }

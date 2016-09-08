@@ -2,6 +2,7 @@ package ua.artcode.controler;
 
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.model.*;
+import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
@@ -24,15 +25,25 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
-    public Client addClient(String email, String fullname, String phone, String pass, String role) {
-        return null;
+    public Client removeClient(long clientId) {
+        return appDB.removeClient(clientId);
     }
 
     @Override
-    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service) {
-        Company company = new Company(nameCompany,descriptionCompany,client,location, service);
-        return appDB.addCompany(company);
+    public List<Client> listAllClient() {
+        return appDB.getListClients();
     }
+
+    @Override
+    public Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+        Client client = new Client(fullname, email, phone, pass, role);
+        return appDB.addClient(client);
+    }
+
+
+
+
+
 
     @Override
     public String searchService(String serviceName) {

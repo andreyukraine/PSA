@@ -1,6 +1,8 @@
 package ua.artcode.utils;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import ua.artcode.exceptions.AppDbException;
 
 import java.io.*;
@@ -11,6 +13,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static ua.artcode.utils.Constants.DB_PATH_JSON;
 
 /**
  * Created by alexnagorniy on 28.08.16.
@@ -267,6 +271,23 @@ public class IBashImpl implements IBash {
     }
 
     @Override
+    public String saveObjToJSON(Object obj, String filePath) throws AppDbException{
+        try {
+            try (Writer writer = new FileWriter(DB_PATH_JSON)){
+                Gson gson = new GsonBuilder().create();
+                String json = gson.toJson(obj);
+                gson.toJson(obj,writer);
+                writer.close();
+                return json;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "sss";
+
+    }
+
+    @Override
     public Object loadObjFromFile(String filePath) throws AppDbException {
 
         try (FileInputStream fis = new FileInputStream(filePath);
@@ -281,6 +302,21 @@ public class IBashImpl implements IBash {
         }
 
     }
+
+    @Override
+    public Object loadObjFromJSON(String filePath) throws AppDbException {
+        try (FileInputStream fis = new FileInputStream(filePath);
+             ObjectInputStream input =
+                     new ObjectInputStream(
+                             new BufferedInputStream(fis))) {
+
+            return input.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AppDbException(e.getMessage());
+        }
+    }
+
 
     @Override
     public void downloadFile(String url, String localPathName) {

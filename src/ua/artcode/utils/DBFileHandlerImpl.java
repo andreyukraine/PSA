@@ -3,6 +3,9 @@ package ua.artcode.utils;
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.exceptions.AppDbException;
 
+import java.io.IOException;
+
+
 /**
  * Created by serhii on 04.09.16.
  */
@@ -28,12 +31,18 @@ public class DBFileHandlerImpl implements DBFileHandler {
     }
 
     @Override
-    public String exportToJson(AppDBImpl appDB) throws AppDbException {
-        return null;
+    public String exportToJson(AppDBImpl appDB) throws AppDbException{
+        try {
+            return bash.saveObjToJSON(appDB,path);
+        } catch (AppDbException e) {
+            e.printStackTrace();
+        }
+        return "dd";
     }
 
     @Override
-    public AppDBImpl importFromJson(String json) throws AppDbException {
-        return null;
+    public AppDBImpl importFromJson() throws AppDbException {
+        AppDBImpl appDB = (AppDBImpl) bash.loadObjFromJSON(path);
+        return appDB;
     }
 }

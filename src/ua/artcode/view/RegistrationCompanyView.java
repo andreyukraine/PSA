@@ -1,9 +1,6 @@
 package ua.artcode.view;
 
-import ua.artcode.controler.IClientController;
-import ua.artcode.controler.IModeratorController;
-import ua.artcode.controler.IModeratorPSAController;
-import ua.artcode.controler.IWorkerController;
+import ua.artcode.controler.*;
 import ua.artcode.db.IAppDB;
 import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
@@ -24,22 +21,25 @@ public class RegistrationCompanyView {
     IModeratorPSAController iModeratorPSAController;
     IWorkerController iWorkerController;
     IClientController iClientController;
+    IService iService;
+    ICompany iCompany;
     IAppDB iAppDB;
     Client clientTemp = null;
     Service serviceTemp = null;
-
     LoginView loginView;
 
 
 
     public RegistrationCompanyView(Scanner scanner, IModeratorController iModeratorController, IModeratorPSAController iModeratorPSAController,
-                                   IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB,LoginView loginView) {
+                                   IWorkerController iWorkerController, IClientController iClientController, IAppDB iAppDB,IService iService, ICompany iCompany, LoginView loginView) {
         this.loginView = loginView;
         this.scanner = scanner;
         this.iModeratorController = iModeratorController;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iWorkerController = iWorkerController;
         this.iClientController = iClientController;
+        this.iService = iService;
+        this.iCompany = iCompany;
         this.iAppDB = iAppDB;
     }
 
@@ -53,12 +53,12 @@ public class RegistrationCompanyView {
                 System.out.println("-------------------------------");
                 searchServiceMenu();
                 System.out.println("--------------------------------");
-                addCompany();
+                addCompanyMenu();
 
             }
             if (choice == 2) {
                 if (loginView.showLoginMenu() == true) {
-                    addCompany();
+                    addCompanyMenu();
                 }
             }
         }
@@ -79,31 +79,32 @@ public class RegistrationCompanyView {
         System.out.println("Input client pass");
         String passClient = scanner.nextLine();
 
+        clientTemp = iClientController.addClient(fullnameClient, emailClient, phoneClient, passClient, Constants.statusClientRole.MODERATOR);
+    }
 
+    public void addCompanyMenu(){
+        System.out.println("Input nameCompany");
+        String name = scanner.nextLine();
+        System.out.println("Input descriptionCompany");
+        String description = scanner.nextLine();
+        Location location = new Location().setLocationMenu(new Scanner(System.in));
+        System.out.println(iService.getAllServicesApp().toString());
+        System.out.println("Input serviceId");
+        int serviceId = Integer.parseInt(scanner.nextLine());
 
-        clientTemp = iModeratorPSAController.addClient(fullnameClient, emailClient, phoneClient, passClient, Constants.statusClientRole.MODERATOR);
+        Company company = iCompany.addCompany(name, description, null, location, null);
+        iService.addServiceToCompany(company, iService.setService(serviceId));
     }
 
     public void searchServiceMenu() {
         System.out.println("Input nameService");
-        String name = scanner.nextLine();
-            System.out.println(iClientController.searchService(name));
-            System.out.println("Input service ID");
-            int serviceId = Integer.parseInt(scanner.nextLine());
-            serviceTemp = iClientController.inputService(serviceId);
+        System.out.println(iService.getAllServicesApp().toString());
+        System.out.println("Input service ID");
+        int serviceId = Integer.parseInt(scanner.nextLine());
+        serviceTemp = iClientController.inputService(serviceId);
 
     }
 
-    public void addCompany() {
-        System.out.println("Input nameCompany");
-        String nameCompany = scanner.nextLine();
-        System.out.println("Input descriptionCompany");
-        String descriptionCompany = scanner.nextLine();
-        Location location = new Location().setLocationMenu(new Scanner(System.in));
 
-        Company company = iClientController.addCompany(nameCompany, descriptionCompany, null, location, null);
-        iAppDB.addServiceCompany(serviceTemp, nameCompany);
-        iAppDB.addModeratorCompany(clientTemp, company);
-    }
 
 }

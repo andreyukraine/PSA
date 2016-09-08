@@ -2,9 +2,11 @@ package ua.artcode.utils;
 
 
 import ua.artcode.exceptions.AppDbException;
+import ua.artcode.exceptions.AppException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -45,10 +47,15 @@ public interface IBash {
 
     void saveObjToFile(Object obj, String filePath);
 
-    Object loadObjFromFile( String filePath) throws AppDbException;
+    String saveObjToJSON(Object obj, String filePath) throws AppDbException;
+
+    Object loadObjFromFile(String filePath) throws AppDbException;
+
+    Object loadObjFromJSON(String filePath) throws AppDbException;
 
     void downloadFile(String url, String localPathName);
 
     // implement recursive search (find in curr directory, then find in child dir, then repeat...)
     List<String> find(File dir, String keyWord);
+
 }

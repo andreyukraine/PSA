@@ -72,6 +72,17 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
 
     @Override
+    public Company getCompanyModerator(int moderatroId){
+        for (int i = 0; i < getListModerator().size(); i++) {
+            if (getListModerator().get(i).getId() == moderatroId){
+                return getListModerator().get(i).getCompany();
+            }
+        }
+        return null;
+    }
+
+
+    @Override
     public Service inputService(int serviceId) {
         for (int i = 0; i < serviceList.size() ; i++) {
             if (serviceList.get(i).getId() == serviceId){
@@ -81,18 +92,18 @@ public class AppDBImpl implements IAppDB, Serializable{
         return null;
     }
 
-    @Override
-    public List<Service> addServiceCompany(Service service, String nameCompany) {
-        for (int i = 0; i < companyList.size(); i++) {
-            if (companyList.get(i).getNameCompany().equals(nameCompany)){
-                List<Service> services = new ArrayList<>();
-                services.add(service);
-                companyList.get(i).setServices(services);
-                return services;
-            }
-        }
-        return null;
-    }
+//    @Override
+//    public List<Service> addServiceCompany(Service service, String nameCompany) {
+//        for (int i = 0; i < companyList.size(); i++) {
+//            if (companyList.get(i).getNameCompany().equals(nameCompany)){
+//                List<Service> services = new ArrayList<>();
+//                services.add(service);
+//                companyList.get(i).setServices(services);
+//                return services;
+//            }
+//        }
+//        return null;
+//    }
 
     @Override
     public ModeratorPSA addModeratorPSA(ModeratorPSA moderatorPSA) {
@@ -101,20 +112,41 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
 
     @Override
-    public String editService(long serviceId, String newNameService, String newDescriptionService) {
-        String oldService = "";
-        String newService = "";
+    public Service editService(long serviceId, String newNameService, String newDescriptionService) {
+
         for (int i = 0; i < serviceList.size(); i++) {
             if (serviceList.get(i).getId() == serviceId) {
-                oldService = serviceList.get(i).toString();
                 serviceList.get(i).setNameService(newNameService);
                 serviceList.get(i).setDescriptionService(newDescriptionService);
-                newService = serviceList.get(i).toString();
-                return String.format("Old service %s, New service %s", oldService, newService);
+                return serviceList.get(i);
             }
         }
         return null;
     }
+
+    @Override
+    public Service setService(long serviceId) {
+        for (int i = 0; i < serviceList.size() ; i++) {
+            if (serviceList.get(i).getId() == serviceId){
+                return serviceList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Service addServiceToCompany(Company company, Service service){
+        for (int i = 0; i < companyList.size() ; i++) {
+            if (companyList.get(i).getId() == company.getId()){
+                List<Service> services = new ArrayList<>();
+                services.add(service);
+                companyList.get(i).setServices(services);
+                return service;
+            }
+        }
+        return null;
+    }
+
+
 
     @Override
     public Service removeService(long serviceId) {
@@ -142,7 +174,7 @@ public class AppDBImpl implements IAppDB, Serializable{
     public Company removeCompany(long companyId) {
         for (int i = 0; i < companyList.size() ; i++) {
             if (companyList.get(i).getId() == companyId){
-                Company company = companyList.get((int) companyId);
+                Company company = companyList.get(i);
                 companyList.remove(i);
                 return company;
             }
@@ -206,7 +238,7 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
 
     @Override
-    public List<Service> getListService() {
+    public List<Service> getListServiceApp() {
         return serviceList;
     }
 

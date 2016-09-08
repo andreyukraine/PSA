@@ -13,17 +13,29 @@ public interface IAppDB{
 
     //
     ModeratorPSA addModeratorPSA(ModeratorPSA moderatorPSA);
+    Service removeService(long serviceId);
+    Service editService(long serviceId, String newNameService, String newDescriptionService);
+    Service setService(long serviceId);
+    Service addServiceToCompany(Company company, Service service);
+    Company removeCompany(long companyId);
+    List<Service> getListServiceApp();
     List<ModeratorPSA> getModeratorPSA();
     List<Company> getListCompanies();
-    List<Service> getListService();
+    Company getCompanyModerator(int moderatroId);
+
+
+
+
+
+
+
+
+
     List<Moderator> getListModerator();
     List<Client> getListClients();
     List<Worker> getListWorkers();
     Client addModeratorCompany(Client client, Company company);
     Service addService(Service service);
-    String editService(long serviceId, String newNameService, String newDescriptionService);
-    Service removeService(long serviceId);
-    Company removeCompany(long companyId);
     Client removeClient(long clientId);
     Client addClient(Client client);
     Location addLocation(Location location);
@@ -33,6 +45,6 @@ public interface IAppDB{
     Worker addWorker(Worker worker);
     Moderator addModerator(Moderator moderator);
     Service inputService(int serviceId);
-    List<Service> addServiceCompany(Service service, String nameCompany);
+    //List<Service> addServiceCompany(Service service, String nameCompany);
 
 }

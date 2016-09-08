@@ -8,6 +8,7 @@ public final class Constants {
     private Constants(){}
 
     public static final String DB_PATH = "mydb.txt";
+    public static final String DB_PATH_JSON = "mydb.json";
 
     //статус компании
     public static enum statusCompany{
@@ -30,4 +31,17 @@ public final class Constants {
         IN_PROGRESS,
         DONE;
     }
+
+    //статус работника
+
+    //-free
+    //-busy
+
+    //статус заказа
+
+    //-new
+    //-in progress
+    //-closed
+    //-refused
+
 }
