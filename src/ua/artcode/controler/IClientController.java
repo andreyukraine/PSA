@@ -10,11 +10,6 @@ import java.util.List;
  */
 public interface IClientController {
 
-
-
-
-
-
     // создаем клиента
     Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
@@ -23,12 +18,6 @@ public interface IClientController {
 
     //посмотреть всех клиентов
     List<Client> listAllClient();
-
-
-
-
-
-
 
     //создать заказ
     Order createOrder(Company company, Service service);
@@ -48,14 +37,4 @@ public interface IClientController {
 
     //выбор сервиса
     Service inputService(int serviceId);
-
-
-
-
-
-
-
-
-
-
 }
