@@ -5,7 +5,7 @@ import ua.artcode.utils.Constants;
 /**
  * Created by IT on 22.08.2016.
  */
-public class Client extends User {
+public class   Client extends User {
 
 
 
