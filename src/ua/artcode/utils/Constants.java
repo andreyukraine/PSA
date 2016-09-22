@@ -9,6 +9,9 @@ public final class Constants {
 
     public static final String DB_PATH = "mydb.txt";
     public static final String DB_PATH_JSON = "mydb.json";
+    public static final Integer VIEW_HIGHT = 250;
+    public static final Integer VIEW_WIDTH = 650;
+
 
     //статус компании
     public static enum statusCompany{
@@ -37,5 +40,6 @@ public final class Constants {
         FREE,
         BUSY;
     }
+
 
 }

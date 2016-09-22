@@ -1,5 +1,6 @@
 package ua.artcode.view.swing;
 
+import ua.artcode.utils.Constants;
 import ua.artcode.view.swing.registration_forms.ClientRegistrationForm;
 import ua.artcode.view.swing.registration_forms.CompanyRegistrationForm;
 import ua.artcode.view.swing.registration_forms.WorkerRegistrationForm;
@@ -23,7 +24,9 @@ public class RegistrationMenu extends JFrame {
     public RegistrationMenu() {
 
         setTitle("Registration");
-        setSize(600, 600);
+        setSize(Constants.VIEW_WIDTH, Constants.VIEW_HIGHT-100);
+        setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
         init();
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
