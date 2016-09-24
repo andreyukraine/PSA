@@ -19,17 +19,19 @@ import java.util.Map;
  */
 public class UserFormMain extends JFrame {
 
-    private JButton[] actions = new JButton[4];
+    private JButton[] jButtons = new JButton[4];
     private User user;
     private boolean ordersSetting;
     private Font font;
 
     public UserFormMain(User user) throws HeadlessException {
         this.user = user;
-        font = new Font("Verdana", Font.PLAIN, 12);
+
         setTitle("Public Service Application");
+
         setSize(Constants.VIEW_WIDTH, Constants.VIEW_HIGHT);
         setBackground(Color.WHITE);
+
         init();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -38,8 +40,11 @@ public class UserFormMain extends JFrame {
 
     private void init() {
 
+        font = new Font("Verdana", Font.PLAIN, 12);
+
         Map attributes = font.getAttributes();
         attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+
         GridLayout gridLayout = new GridLayout(2, 1);
         setLayout(gridLayout);
 
@@ -48,8 +53,7 @@ public class UserFormMain extends JFrame {
         JPanel emptyhead = new JPanel();
         emptyhead.setBackground(Color.WHITE);
 
-
-        ImageIcon image = new ImageIcon("images\\user icon.png");
+        ImageIcon image = new ImageIcon("images/user-icon.png");
         JLabel imageLabel = new JLabel(image);
         JLabel[] emptyLabel = new JLabel[8];
         imageLabel.setVisible(true);
@@ -60,11 +64,9 @@ public class UserFormMain extends JFrame {
         head.add(imageLabel);
         head.add(userName);
 
-        for (int i = 0; i <= 2; i++) {
-            emptyLabel[i] = new JLabel("");
-            head.add(emptyLabel[i]);
-        }
-        ImageIcon imageLogoff = new ImageIcon("images\\logoff.png");
+        createEmptyLabels(head, emptyLabel);
+
+        ImageIcon imageLogoff = new ImageIcon("images/logoff.png");
         JButton imageLogof = new JButton(imageLogoff);
         imageLogof.addActionListener(new ActionListener() {
             @Override
@@ -80,32 +82,32 @@ public class UserFormMain extends JFrame {
         head.add(imageLogof);
 
         JPanel body = new JPanel(new GridLayout(1, 3));
-        actions[0] = new JButton("Add");
-        actions[0].addActionListener(new ActionListener() {
+        jButtons[0] = new JButton("Add");
+        jButtons[0].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!ordersSetting)
                     addOrder();
             }
         });
-        actions[0].setIcon(new ImageIcon("images\\add.png"));
-        actions[1] = new JButton("Find");
-        actions[1].setIcon(new ImageIcon("images\\find.png"));
-        actions[1].addActionListener(new ActionListener() {
+        jButtons[0].setIcon(new ImageIcon("images/add.png"));
+        jButtons[1] = new JButton("Find");
+        jButtons[1].setIcon(new ImageIcon("images/find.png"));
+        jButtons[1].addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: 22.09.16 realizatoin filds find driver
                 findDriver();
             }
         });
-        actions[2] = new JButton("Show all");
-        actions[2].setIcon(new ImageIcon("images\\showall.png"));
-        // actions[3] = new JButton("Log off");
-        //  actions[3].setIcon(new ImageIcon("images\\logoff.png"));
+        jButtons[2] = new JButton("Show all");
+        jButtons[2].setIcon(new ImageIcon("images/showall.png"));
+        // jButtons[3] = new JButton("Log off");
+        //  jButtons[3].setIcon(new ImageIcon("images\\logoff.png"));
         for (int i = 0; i <= 2; i++) {
-            actions[i].setFont(font);
-            actions[i].setBackground(Color.WHITE);
-            body.add(actions[i]);
+            jButtons[i].setFont(font);
+            jButtons[i].setBackground(Color.WHITE);
+            body.add(jButtons[i]);
         }
         fullHead.add(head);
         fullHead.add(emptyhead);
@@ -114,6 +116,13 @@ public class UserFormMain extends JFrame {
         getContentPane().add(fullHead);
         getContentPane().add(body);
 
+    }
+
+    private void createEmptyLabels(JPanel head, JLabel[] emptyLabel) {
+        for (int i = 0; i <= 2; i++) {
+            emptyLabel[i] = new JLabel("");
+            head.add(emptyLabel[i]);
+        }
     }
 
     private void addOrder() {
