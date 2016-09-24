@@ -17,7 +17,7 @@ public interface IClientController {
 
 
     // создаем клиента
-    Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
+    Client addClient(String fullname, String email, String phone, String pass, Constants.StatusClientRole role);
 
     // удалить
     Client removeClient(long clientId);

@@ -44,7 +44,7 @@ public interface ICompany {
     Company findCompany(long companyId);
 
     //change status company id
-   Company changeStatusCompany(String companyName, Constants.statusCompany status);
+   Company changeStatusCompany(String companyName, Constants.StatusCompany status);
 
 
 }

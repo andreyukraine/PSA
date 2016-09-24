@@ -56,7 +56,7 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
-    public Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+    public Client addClient(String fullname, String email, String phone, String pass, Constants.StatusClientRole role) {
         Client client = new Client(fullname, email, phone, pass, role);
         return appDB.addClient(client);
     }

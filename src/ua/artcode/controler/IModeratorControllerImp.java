@@ -5,8 +5,6 @@ import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
-import java.util.List;
-
 /**
  * Created by IT on 21.08.2016.
  */
@@ -21,7 +19,7 @@ public class IModeratorControllerImp implements IModeratorController {
     }
 
     @Override
-    public Moderator addModerator(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+    public Moderator addModerator(String fullname, String email, String phone, String pass, Constants.StatusClientRole role) {
         Moderator moderator= new Moderator(fullname, email, phone, pass, role, null);
         return appDB.addModerator(moderator);
     }

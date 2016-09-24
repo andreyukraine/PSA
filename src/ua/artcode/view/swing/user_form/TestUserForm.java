@@ -9,7 +9,7 @@ import ua.artcode.utils.Constants;
 public class TestUserForm {
     public static void main(String[] args) {
 
-        User user = new User("Вася Володимирович", "mago@mail.ru", "+38099549544", "fdsfsd", Constants.statusClientRole.CLIENT);
+        User user = new User("Вася Володимирович", "mago@mail.ru", "+38099549544", "fdsfsd", Constants.StatusClientRole.CLIENT);
         UserFormMain form = new UserFormMain(user);
     }
 }

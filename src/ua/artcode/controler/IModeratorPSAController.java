@@ -4,7 +4,6 @@ import ua.artcode.exceptions.ModeratorExeption;
 import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Map;
 public interface IModeratorPSAController {
 
     //создать модератора пса
-    ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
+    ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.StatusClientRole role);
 
     //посмотреть всех модераторов
     Map<String, Moderator> listAllModerator() throws ModeratorExeption;

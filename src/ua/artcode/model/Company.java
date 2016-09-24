@@ -13,7 +13,7 @@ public class Company implements Serializable {
     private long id;
     private String nameCompany;
     private String descriptionCompany;
-    private Constants.statusCompany changeStatusCompany;
+    private Constants.StatusCompany changeStatusCompany;
     private Location location;
 
     private Client moderator;
@@ -33,7 +33,7 @@ public class Company implements Serializable {
         this.moderator = moderator;
         this.location = location;
         this.service = service;
-        changeStatusCompany = Constants.statusCompany.NEW;
+        changeStatusCompany = Constants.StatusCompany.NEW;
     }
 
     // geters & seters -----------------------------------------------------------------------------
@@ -62,11 +62,11 @@ public class Company implements Serializable {
         this.descriptionCompany = descriptionCompany;
     }
 
-    public Constants.statusCompany getChangeStatusCompany() {
+    public Constants.StatusCompany getChangeStatusCompany() {
         return changeStatusCompany;
     }
 
-    public void setChangeStatusCompany(Constants.statusCompany changeStatusCompany) {
+    public void setChangeStatusCompany(Constants.StatusCompany changeStatusCompany) {
         this.changeStatusCompany = changeStatusCompany;
     }
 

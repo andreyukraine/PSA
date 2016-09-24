@@ -50,7 +50,6 @@ public class ViewListCommentsOfService extends JFrame{
             getContentPane().add(commentTitleLabel[i]);
             getContentPane().add(commentCreatorTime [i]);
             getContentPane().add(commentBodyText[i]);
-
         }
 
 

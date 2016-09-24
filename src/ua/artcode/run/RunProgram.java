@@ -21,23 +21,10 @@ import java.util.Scanner;
  */
 public class RunProgram {
 
-    public static String base;
-
-
-
     public static void main(String[] args) throws AppDbException {
 
-        //showStartBDMenu();
 
-        //int choiceBd = -1;
-//        while ((choiceBd = Integer.parseInt(new Scanner(System.in).nextLine())) != 0){
-//            if (choiceBd == 1){
-                base = Constants.DB_PATH;
-//            }if (choiceBd == 2) {
-//                base = Constants.DB_PATH_JSON;
-//            }
-
-            DBFileHandler dbFileHandler = new DBFileHandlerImpl(base,new IBashImpl());
+            DBFileHandler dbFileHandler = new DBFileHandlerImpl(Constants.DB_PATH,new IBashImpl());
             AppDBImpl appDB = dbFileHandler.load();
 
            // ICheckAuthorization iCheckAuthorization = new ICheckAuthorizationImp(appDB,dbFileHandler);

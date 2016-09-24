@@ -40,10 +40,10 @@ public class InitDbScript {
 
     public static void initData(IModeratorPSAController iModeratorPSAController, IModeratorController iModeratorController,
                                 IClientController iClientController,IService iService, IWorkerController iWorkerController, ICompany iCompany) {
-        iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", Constants.statusClientRole.MODERATOR_PSA);
-        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.statusClientRole.MODERATOR);
-        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.statusClientRole.MODERATOR);
-        iClientController.addClient("Client", "c", "+380", "c", Constants.statusClientRole.CLIENT);
+        iModeratorPSAController.addModeratorPSA("Andrey", "m", "+380", "m", Constants.StatusClientRole.MODERATOR_PSA);
+        iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.StatusClientRole.MODERATOR);
+        iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.StatusClientRole.MODERATOR);
+        iClientController.addClient("Client", "c", "+380", "c", Constants.StatusClientRole.CLIENT);
         Service service = iService.addService("Service1", "Description");
         iWorkerController.addWorker("lll","0","ooo","0");
 

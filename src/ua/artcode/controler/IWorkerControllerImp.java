@@ -16,9 +16,6 @@ public class IWorkerControllerImp implements IWorkerController {
     private AppDBImpl appDB;
     private DBFileHandler dbFileHandler;
 
-    public IWorkerControllerImp() {
-    }
-
     public IWorkerControllerImp(AppDBImpl appDB, DBFileHandler dbFileHandler) {
         this.appDB = appDB;
         this.dbFileHandler = dbFileHandler;
@@ -26,8 +23,7 @@ public class IWorkerControllerImp implements IWorkerController {
 
     @Override
     public Worker addWorker(String fullname, String email, String phone, String pass) {
-        Worker worker = new Worker(fullname, email, phone, pass, Constants.statusClientRole.WORKER);
-        return worker;
+        return new Worker(fullname, email, phone, pass, Constants.StatusClientRole.WORKER);
     }
 
     @Override

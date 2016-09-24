@@ -79,7 +79,7 @@ public class RegistrationCompanyView {
         System.out.println("Input client pass");
         String passClient = scanner.nextLine();
 
-        clientTemp = iClientController.addClient(fullnameClient, emailClient, phoneClient, passClient, Constants.statusClientRole.MODERATOR);
+        clientTemp = iClientController.addClient(fullnameClient, emailClient, phoneClient, passClient, Constants.StatusClientRole.MODERATOR);
     }
 
     public void addCompanyMenu(){

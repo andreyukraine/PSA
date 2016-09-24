@@ -13,14 +13,15 @@ public class ViewListServicesOfWorker extends JFrame{
     private Worker worker;
 
     public ViewListServicesOfWorker(Worker worker) throws HeadlessException {
+        this.worker = worker;
 
         setLocation(350, 300);
         setTitle("Services of Worker");
-        setSize(350,150);
-        setVisible(true);
+        setSize(350, 150);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.worker = worker;
+
         init();
+        setVisible(true);
     }
 
     private void init() {

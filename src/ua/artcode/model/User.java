@@ -16,14 +16,14 @@ public class User implements Serializable {
     private String fullname;
     private String phone;
     private String pass;
-    private Constants.statusClientRole role;
+    private Constants.StatusClientRole role;
 
     // constructors --------------------------------------------------------------------------------
 
     public User() {
     }
 
-    public User(String fullname ,String email, String phone, String pass, Constants.statusClientRole role) {
+    public User(String fullname ,String email, String phone, String pass, Constants.StatusClientRole role) {
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
@@ -34,11 +34,11 @@ public class User implements Serializable {
     // geters & seters -----------------------------------------------------------------------------
 
 
-    public Constants.statusClientRole getRole() {
+    public Constants.StatusClientRole getRole() {
         return role;
     }
 
-    public void setRole(Constants.statusClientRole role) {
+    public void setRole(Constants.StatusClientRole role) {
         this.role = role;
     }
 

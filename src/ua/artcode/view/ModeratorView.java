@@ -2,7 +2,6 @@ package ua.artcode.view;
 
 import ua.artcode.controler.*;
 import ua.artcode.utils.Constants;
-import ua.artcode.view.swing.registration_forms.ModeratorFrame;
 
 import java.util.Scanner;
 
@@ -83,6 +82,6 @@ public class ModeratorView {
         System.out.println("Input Moderator pass");
         String pass = scanner.nextLine();
 
-        iModeratorController.addModerator(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
+        iModeratorController.addModerator(fullname, email, phone, pass, Constants.StatusClientRole.MODERATOR_PSA);
     }
 }

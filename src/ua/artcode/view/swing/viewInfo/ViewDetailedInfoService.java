@@ -19,10 +19,12 @@ public class ViewDetailedInfoService extends JFrame{
         setLocation(350, 300);
         setTitle("Detailed info Service - " + service.getNameService());
         setSize(450,150);
+        setMinimumSize(new Dimension(100, 100));
         this.service = service;
-        setVisible(true);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         init();
+        setVisible(true);
     }
 
     private void init() {
@@ -52,13 +54,7 @@ public class ViewDetailedInfoService extends JFrame{
         countComment.add(commentsOfServiceLabel);
 
         JButton showComments = new JButton("Show list of comments");
-        showComments.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ViewListCommentsOfService(service);
-            }
-        });
-
+        showComments.addActionListener((ActionEvent event) -> new ViewListCommentsOfService(service));
 
         JTextArea textArea = new JTextArea();
         textArea.setText(service.getDescriptionService());

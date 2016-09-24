@@ -11,7 +11,7 @@ public class   Client extends User {
 
     // constructors --------------------------------------------------------------------------------
 
-    public Client(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+    public Client(String fullname, String email, String phone, String pass, Constants.StatusClientRole role) {
         super(fullname, email, phone, pass, role);
     }
 

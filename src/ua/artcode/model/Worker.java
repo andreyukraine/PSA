@@ -2,8 +2,6 @@ package ua.artcode.model;
 
 import ua.artcode.utils.Constants;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
 public class Worker extends User {
 
     private Company company;
-    private Constants.statusCompany status;
+    private Constants.StatusCompany status;
     private Rate rateWorker;
 
     private List<Service> service;
@@ -25,7 +23,7 @@ public class Worker extends User {
     public Worker() {
     }
 
-    public Worker(String fullname, String email, String phone,String pass, Constants.statusClientRole role) {
+    public Worker(String fullname, String email, String phone,String pass, Constants.StatusClientRole role) {
 
         super(fullname, email, phone, pass, role);
 
@@ -42,11 +40,11 @@ public class Worker extends User {
         this.company = company;
     }
 
-    public Constants.statusCompany getStatus() {
+    public Constants.StatusCompany getStatus() {
         return status;
     }
 
-    public void setStatus(Constants.statusCompany status) {
+    public void setStatus(Constants.StatusCompany status) {
         this.status = status;
     }
 

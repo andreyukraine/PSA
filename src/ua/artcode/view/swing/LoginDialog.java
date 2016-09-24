@@ -21,8 +21,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by IT on 22.09.2016.
  */
-public class LoginDialog extends JDialog
-{
+public class LoginDialog extends JDialog {
     private static final long serialVersionUID = 1L;
 
 
@@ -30,15 +29,14 @@ public class LoginDialog extends JDialog
     public JPasswordField password;
     public JButton btnOk;
     private JLabel incorrectPass;
-    private JLabel authorizationLable, authorizationLable1,authorizationLable2;
+    private JLabel authorizationLable, authorizationLable1, authorizationLable2;
     private LoginView loginView;
     private IClientController iClientController;
     private IModeratorPSAController iModeratorPSAController;
     private IWorkerController iWorkerController;
     private IModeratorController iModeratorController;
 
-    public LoginDialog(JFrame parent,LoginView loginView, IClientController iClientController, IModeratorPSAController iModeratorPSAController, IWorkerController iWorkerController, IModeratorController iModeratorController)
-    {
+    public LoginDialog(JFrame parent, LoginView loginView, IClientController iClientController, IModeratorPSAController iModeratorPSAController, IWorkerController iWorkerController, IModeratorController iModeratorController) {
         super(parent, "Вход в систему");
 
         // добавляем расположение в центр окна
@@ -54,21 +52,19 @@ public class LoginDialog extends JDialog
 
 
     // этот метод будет возвращать панель с созданным расположением
-    private JPanel createGUI(JFrame parent, LoginView loginView, IClientController iClientController, IModeratorPSAController iModeratorPSAController, IWorkerController iWorkerController, IModeratorController iModeratorController)
-    {
+    private JPanel createGUI(JFrame parent, LoginView loginView, IClientController iClientController, IModeratorPSAController iModeratorPSAController, IWorkerController iWorkerController, IModeratorController iModeratorController) {
 
-         String errorSt = "";
+        String errorSt = "";
 
         // Создание панели для размещение компонентов
         JPanel panel = BoxLayoutUtils.createVerticalPanel();
         // Определение отступов от границ ранели. Для этого используем пустую рамку
-        panel.setBorder (BorderFactory.createEmptyBorder(100,200,300,200));
+        panel.setBorder(BorderFactory.createEmptyBorder(100, 200, 300, 200));
         // Создание панели для размещения метки и текстового поля логина
 
         authorizationLable = new JLabel("ModeratorPSA - email: m; pass: m");
         authorizationLable1 = new JLabel("Moderator - email: mc; pass: mc");
         authorizationLable2 = new JLabel("Client - email: c; pass: c");
-
 
 
         JPanel name = BoxLayoutUtils.createHorizontalPanel();
@@ -86,55 +82,55 @@ public class LoginDialog extends JDialog
         password = new JPasswordField(15);
         passwordP.add(password);
 
-        incorrectPass = new JLabel("",SwingConstants.CENTER);
+        incorrectPass = new JLabel("", SwingConstants.CENTER);
 
         // Создание панели для размещения кнопок управления
-        JPanel flow = new JPanel( new FlowLayout( FlowLayout.RIGHT, 0, 0) );
-        JPanel grid = new JPanel( new GridLayout(3,3,5,0));
+        JPanel flow = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        JPanel grid = new JPanel(new GridLayout(3, 3, 5, 0));
         btnOk = new JButton("Accept");
-        btnOk.addActionListener(new ActionListener()  {
+        btnOk.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)  {
-                    String loginSt = login.getText();
-                    String passSt = String.valueOf(password.getPassword());
+            public void actionPerformed(ActionEvent e) {
+                String loginSt = login.getText();
+                String passSt = String.valueOf(password.getPassword());
 
-                    User user = loginView.showLoginMenu(loginSt,passSt);
+                User user = loginView.showLoginMenu(loginSt, passSt);
 
-                    if (user != null){
-                        if (user.getRole().equals(Constants.statusClientRole.MODERATOR_PSA)) {
-                            new ModeratorPSAFrame(iModeratorPSAController).setVisible(true);
-                            dispose();
-                        } else if (user.getRole().equals(Constants.statusClientRole.MODERATOR)) {
-                            new ModeratorFrame(iModeratorController).setVisible(true);
-                            dispose();
-                        } else if (user.getRole().equals(Constants.statusClientRole.WORKER)) {
-                            new WorkerFrame(iWorkerController).setVisible(true);
-                            dispose();
-                        } else {
-                            new ClientFrame(iClientController).setVisible(true);
-                            dispose();
-                        }
-                    }else{
-                        incorrectPass.setText("invalid login or password");
-                        incorrectPass.setForeground(Color.red);
-                        new LoginDialog(parent,loginView,iClientController,iModeratorPSAController,iWorkerController,iModeratorController);
+                if (user != null) {
+                    if (user.getRole().equals(Constants.StatusClientRole.MODERATOR_PSA)) {
+                        new ModeratorPSAFrame(iModeratorPSAController).setVisible(true);
+                        dispose();
+                    } else if (user.getRole().equals(Constants.StatusClientRole.MODERATOR)) {
+                        new ModeratorFrame(iModeratorController).setVisible(true);
+                        dispose();
+                    } else if (user.getRole().equals(Constants.StatusClientRole.WORKER)) {
+                        new WorkerFrame(iWorkerController).setVisible(true);
+                        dispose();
+                    } else {
+                        new ClientFrame(iClientController).setVisible(true);
+                        dispose();
                     }
-              dispose();
+                } else {
+                    incorrectPass.setText("invalid login or password");
+                    incorrectPass.setForeground(Color.red);
+                    new LoginDialog(parent, loginView, iClientController, iModeratorPSAController, iWorkerController, iModeratorController);
+                }
+                dispose();
             }
         });
         grid.add(btnOk);
 
         flow.add(grid);
         // Выравнивание вложенных панелей по горизонтали
-        BoxLayoutUtils.setGroupAlignmentX(new JComponent[] { name, passwordP, panel, flow },
+        BoxLayoutUtils.setGroupAlignmentX(new JComponent[]{name, passwordP, panel, flow},
                 Component.LEFT_ALIGNMENT);
         // Выравнивание вложенных панелей по вертикали
-        BoxLayoutUtils.setGroupAlignmentY(new JComponent[] {login, passwordP, nameLabel, passwrdLabel},
+        BoxLayoutUtils.setGroupAlignmentY(new JComponent[]{login, passwordP, nameLabel, passwrdLabel},
                 Component.CENTER_ALIGNMENT);
         // Определение размеров надписей к текстовым полям
-        GUITools.makeSameSize(new JComponent[] { nameLabel, passwrdLabel } );
+        GUITools.makeSameSize(new JComponent[]{nameLabel, passwrdLabel});
         // Определение стандартного вида для кнопок
-        GUITools.createRecommendedMargin(new JButton[] { btnOk} );
+        GUITools.createRecommendedMargin(new JButton[]{btnOk});
         // Устранение "бесконечной" высоты текстовых полей
         GUITools.fixTextFieldSize(login);
         GUITools.fixTextFieldSize(password);

@@ -2,7 +2,6 @@ package ua.artcode.model;
 
 import ua.artcode.utils.Constants;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,7 +22,7 @@ public class Moderator extends User{
 
     // constructors --------------------------------------------------------------------------------
 
-    public Moderator(String fullname , String email, String phone, String pass, Constants.statusClientRole role, Map<String, Worker> worker) {
+    public Moderator(String fullname , String email, String phone, String pass, Constants.StatusClientRole role, Map<String, Worker> worker) {
         super(fullname, email, phone, pass, role);
         this.workers = worker;
     }

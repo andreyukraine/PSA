@@ -19,7 +19,7 @@ public class Order {
     private Client client;  //изменила юзер на клиент
     private Worker worker;
     private String descriptionOrder;
-    private Constants.statusOrder status;
+    private Constants.StatusOrder status;
 
     // constructors --------------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ public class Order {
         this.service = service;
         this.client = client;
         this.descriptionOrder = descriptionOrder;
-        this.status = Constants.statusOrder.NEW;
+        this.status = Constants.StatusOrder.NEW;
     }
 
     public Order() {
@@ -38,11 +38,11 @@ public class Order {
     // geters & seters -----------------------------------------------------------------------------
 
 
-    public Constants.statusOrder getStatus() {
+    public Constants.StatusOrder getStatus() {
         return status;
     }
 
-    public void setStatus(Constants.statusOrder status) {
+    public void setStatus(Constants.StatusOrder status) {
         this.status = status;
     }
 

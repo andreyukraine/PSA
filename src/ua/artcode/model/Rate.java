@@ -5,7 +5,7 @@ package ua.artcode.model;
  */
 public class Rate {
 
-    public static String rateService = "*";
+    public String rateService = "*";
 
     public Rate(String rateService) {
         this.rateService = rateService;

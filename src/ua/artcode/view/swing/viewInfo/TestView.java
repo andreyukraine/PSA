@@ -22,9 +22,9 @@ public class TestView {
         service1.setRateService(new Rate("**********"));
 
         List<Worker> workers = new ArrayList<>();
-        Worker worker1 = new Worker("Sergey", "sergey@gmail.com", "0930930939", "12345678", Constants.statusClientRole.WORKER);
-        Worker worker2 = new Worker("Ivan", "ivan@gmail.com", "0930930939", "12345678", Constants.statusClientRole.WORKER);
-        Worker worker3 = new Worker("Elena", "elena@gmail.com", "0930930939", "12345678", Constants.statusClientRole.WORKER);
+        Worker worker1 = new Worker("Sergey", "sergey@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.WORKER);
+        Worker worker2 = new Worker("Ivan", "ivan@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.WORKER);
+        Worker worker3 = new Worker("Elena", "elena@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.WORKER);
         worker1.setService(services);
         worker2.setService(services);
         worker3.setService(services);
@@ -33,16 +33,16 @@ public class TestView {
         workers.add(worker2);
         workers.add(worker3);
 
-       // Moderator moderator1 = new Moderator("Fedir", "fedir@gmail.com", "0930999999", "12345678", Constants.statusClientRole.MODERATOR, workers);
+       // Moderator moderator1 = new Moderator("Fedir", "fedir@gmail.com", "0930999999", "12345678", Constants.StatusClientRole.MODERATOR, workers);
        // moderator1.setServices(services);
 
         service1.setWorkers(workers);
 
 
         List<Client> clients = new ArrayList<>();
-        Client client1 = new Client("Galina", "galina@gmail.com", "0930930939", "12345678", Constants.statusClientRole.CLIENT);
-        Client client2 = new Client("Anya", "anya@gmail.com", "0930930939", "12345678", Constants.statusClientRole.CLIENT);
-        Client client3 = new Client("Roman", "roman@gmail.com", "0930930939", "12345678", Constants.statusClientRole.CLIENT);
+        Client client1 = new Client("Galina", "galina@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.CLIENT);
+        Client client2 = new Client("Anya", "anya@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.CLIENT);
+        Client client3 = new Client("Roman", "roman@gmail.com", "0930930939", "12345678", Constants.StatusClientRole.CLIENT);
         clients.add(client1);
         clients.add(client2);
         clients.add(client3);

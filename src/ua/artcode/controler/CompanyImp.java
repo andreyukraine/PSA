@@ -10,6 +10,7 @@ import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by ladapodborska on 9/5/16.
@@ -28,9 +29,9 @@ public class CompanyImp implements ICompany {
     }
 
     @Override
-    public Company changeStatusCompany(String companyName, Constants.statusCompany status) {
+    public Company changeStatusCompany(String companyName, Constants.StatusCompany status) {
         for (Map.Entry<String, Company> entry : appDB.getListCompanies().entrySet()) {
-            if (entry.getKey() == companyName) {
+            if (Objects.equals(entry.getKey(), companyName)) {
                 entry.getValue().setChangeStatusCompany(status);
                 return entry.getValue();
             }

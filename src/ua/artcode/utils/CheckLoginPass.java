@@ -9,8 +9,6 @@ import ua.artcode.model.User;
 import java.util.Map;
 import java.util.Scanner;
 
-import static javafx.scene.input.KeyCode.T;
-
 /**
  * Created by IT on 04.09.2016.
  */
@@ -34,21 +32,21 @@ public class CheckLoginPass {
     public static User CheckLoginPassw(String login, String pass, IAppDB iAppDB, Scanner scanner) {
 
         for (Map.Entry<String, ModeratorPSA> entry : iAppDB.getModeratorPSA().entrySet()){
-            if (entry.getValue().getRole().equals(Constants.statusClientRole.MODERATOR_PSA) &&
+            if (entry.getValue().getRole().equals(Constants.StatusClientRole.MODERATOR_PSA) &&
                     entry.getValue().getEmail().equals(login) &&
                     entry.getValue().getPass().equals(pass)) {
                 return entry.getValue();
             }
         }
         for (Map.Entry<String, Moderator> entry : iAppDB.getListModerator().entrySet()){
-            if (entry.getValue().getRole().equals(Constants.statusClientRole.MODERATOR) &&
+            if (entry.getValue().getRole().equals(Constants.StatusClientRole.MODERATOR) &&
                     entry.getValue().getEmail().equals(login) &&
                     entry.getValue().getPass().equals(pass)) {
                 return entry.getValue();
             }
         }
         for (Map.Entry<String, Client> entry : iAppDB.getListClients().entrySet()){
-            if (entry.getValue().getRole().equals(Constants.statusClientRole.WORKER) &&
+            if (entry.getValue().getRole().equals(Constants.StatusClientRole.WORKER) &&
                     entry.getValue().getEmail().equals(login) &&
                     entry.getValue().getPass().equals(pass)){
                 return entry.getValue();
@@ -56,7 +54,7 @@ public class CheckLoginPass {
         }
 
         for (Map.Entry<String, Client> entry : iAppDB.getListClients().entrySet()){
-            if (entry.getValue().getRole().equals(Constants.statusClientRole.CLIENT) &&
+            if (entry.getValue().getRole().equals(Constants.StatusClientRole.CLIENT) &&
                     entry.getValue().getEmail().equals(login) &&
                     entry.getValue().getPass().equals(pass)){
                 return entry.getValue();
@@ -65,13 +63,13 @@ public class CheckLoginPass {
 //        for (int i = 0; i < iAppDB.getListClients().size(); i++) {
 //
 //            if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-//                    iAppDB.getListClients().get(i).getRole().equals(Constants.statusClientRole.WORKER)) {
+//                    iAppDB.getListClients().get(i).getRole().equals(Constants.StatusClientRole.WORKER)) {
 //                return iAppDB.getListClients().get(i);
 //            }
 //        }
 //        for (int i = 0; i < iAppDB.getListClients().size(); i++) {
 //            if (iAppDB.getListClients().get(i).getEmail().equals(login) && iAppDB.getListClients().get(i).getPass().equals(pass) &&
-//                    iAppDB.getListClients().get(i).getRole().equals(Constants.statusClientRole.CLIENT)) {
+//                    iAppDB.getListClients().get(i).getRole().equals(Constants.StatusClientRole.CLIENT)) {
 //                return iAppDB.getListClients().get(i);
 //            }
 //        }

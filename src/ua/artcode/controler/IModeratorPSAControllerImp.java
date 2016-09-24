@@ -7,7 +7,6 @@ import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -28,7 +27,7 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role) {
+    public ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.StatusClientRole role) {
         ModeratorPSA moderatorPSA = new ModeratorPSA(fullname, email, phone, pass, role);
         return appDB.addModeratorPSA(moderatorPSA);
     }

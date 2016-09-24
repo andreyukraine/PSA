@@ -7,6 +7,7 @@ public final class Constants {
 
     private Constants(){}
 
+    // todo extract from a properties file
     public static final String DB_PATH = "mydb.txt";
     public static final String DB_PATH_JSON = "mydb.json";
     public static final Integer VIEW_HIGHT = 250;
@@ -14,14 +15,14 @@ public final class Constants {
 
 
     //статус компании
-    public static enum statusCompany{
+    public enum StatusCompany {
         NEW,
         IN_PROGRESS,
         DONE;
     }
 
     //роли сервиса PSA
-    public static enum statusClientRole {
+    public enum StatusClientRole {
         MODERATOR_PSA,
         MODERATOR,
         WORKER,
@@ -29,14 +30,14 @@ public final class Constants {
     }
 
     //статусы заказа
-    public static enum statusOrder{
+    public enum StatusOrder {
         NEW,
         IN_PROGRESS,
         DONE;
     }
 
     //статус работника
-    public static enum statusWorker{
+    public enum StatusWorker {
         FREE,
         BUSY;
     }

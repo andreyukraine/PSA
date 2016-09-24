@@ -11,9 +11,6 @@ import java.util.*;
 
 public class AppDBImpl implements IAppDB, Serializable{
 
-
-    private static long key;
-
     private Map<String, Company> companyMap = new TreeMap<>();
     private Map<String, Service> serviceMap = new TreeMap<>();
     private Map<String, Worker> workerList = new TreeMap<>();
@@ -24,12 +21,6 @@ public class AppDBImpl implements IAppDB, Serializable{
     private Map<String, Moderator> moderatorList = new TreeMap<>();
     private Map<String, ModeratorPSA> moderatorPSA = new TreeMap<>();
     private Map<String, Location> locations = new TreeMap<>();
-
-
-    private List<Comment> commentsPSA = new ArrayList<>();
-    private List<Comment> commentsCompany = new ArrayList<>();
-    private List<Comment> commentsService = new ArrayList<>();
-    private List<Comment> commentsWorker = new ArrayList<>();
 
 
     @Override
@@ -46,6 +37,7 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public String searchService(String serviceName) {
+        // todo wrong iteration over map
         for (int i = 0; i < serviceMap.size() ; i++) {
             if (serviceMap.get(i).getNameService().equals(serviceName)){
                 return String.format(" %d, name %s, desc %s", i , serviceMap.get(i).getNameService(), serviceMap.get(i).getDescriptionService());
@@ -114,7 +106,7 @@ public class AppDBImpl implements IAppDB, Serializable{
     public Map<String, Worker> showAllFreeWorker() {
         Map<String, Worker> workersFree = new TreeMap<>();
         for (Map.Entry<String, Worker> entry : getWorkerList().entrySet()){
-            if (entry.getValue().getStatus().equals(Constants.statusWorker.FREE)){
+            if (entry.getValue().getStatus().equals(Constants.StatusWorker.FREE)){
                 workersFree.put(entry.getKey(),entry.getValue());
                 return workersFree;
             }
@@ -244,7 +236,7 @@ public class AppDBImpl implements IAppDB, Serializable{
         for (int i = 0; i < clientsMap.size(); i++) {
             if (clientsMap.get(i).getId() == client.getId()) {
                 Moderator moderator = new Moderator(clientsMap.get(i).getFullname(), clientsMap.get(i).getEmail(),
-                        clientsMap.get(i).getPhone(), clientsMap.get(i).getPass(), Constants.statusClientRole.MODERATOR,null);
+                        clientsMap.get(i).getPhone(), clientsMap.get(i).getPass(), Constants.StatusClientRole.MODERATOR,null);
                 moderatorList.put(moderator.getFullname(), moderator);
                 clientsMap.remove(i);
                 return client;

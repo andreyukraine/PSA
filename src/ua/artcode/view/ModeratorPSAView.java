@@ -7,8 +7,6 @@ import ua.artcode.utils.Constants;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgram.*;
-
 /**
  * Created by IT on 25.08.2016.
  */
@@ -125,7 +123,7 @@ public class ModeratorPSAView {
 
         String statusIndex = scanner.nextLine();
 
-        iCompany.changeStatusCompany(companyName, Constants.statusCompany.DONE);
+        iCompany.changeStatusCompany(companyName, Constants.StatusCompany.DONE);
     }
 
     public void addServiceMenu() {
@@ -198,7 +196,7 @@ public class ModeratorPSAView {
         System.out.println("Input client pass");
         String pass = scanner.nextLine();
 
-        iClientController.addClient(fullname, email, phone, pass, Constants.statusClientRole.CLIENT);
+        iClientController.addClient(fullname, email, phone, pass, Constants.StatusClientRole.CLIENT);
     }
 
     public void addModeratorPSAMenu() {
@@ -211,7 +209,7 @@ public class ModeratorPSAView {
         System.out.println("Input ModeratorPSA pass");
         String pass = scanner.nextLine();
 
-        iModeratorPSAController.addModeratorPSA(fullname, email, phone, pass, Constants.statusClientRole.MODERATOR_PSA);
+        iModeratorPSAController.addModeratorPSA(fullname, email, phone, pass, Constants.StatusClientRole.MODERATOR_PSA);
     }
 
     public void addCompanyMenu() {
@@ -234,7 +232,7 @@ public class ModeratorPSAView {
         System.out.println("Input company statusIndex");
         int statusIndex = scanner.nextInt();
 
-        Company company = iCompany.changeStatusCompany(companyName, Constants.statusCompany.NEW);
+        Company company = iCompany.changeStatusCompany(companyName, Constants.StatusCompany.NEW);
         System.out.println(company.toString());
     }
 
