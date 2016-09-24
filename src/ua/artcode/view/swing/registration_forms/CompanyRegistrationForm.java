@@ -1,5 +1,6 @@
 package ua.artcode.view.swing.registration_forms;
 
+import ua.artcode.view.LoginView;
 import ua.artcode.view.swing.MainFrame;
 import ua.artcode.view.swing.RegistrationMenu;
 
@@ -78,7 +79,7 @@ public class CompanyRegistrationForm extends JFrame{
                 JOptionPane.showMessageDialog(getParent(),
                         "There must be answer of validation registration. " +
                                 "But now you'll just go to main frame :(");
-                new MainFrame().setVisible(true);
+               // new MainFrame().setVisible(true);
             }
         });
 

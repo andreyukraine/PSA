@@ -3,6 +3,7 @@ package ua.artcode.utils.init;
 import ua.artcode.controler.*;
 import ua.artcode.db.AppDBImpl;
 import ua.artcode.exceptions.AppDbException;
+import ua.artcode.model.Service;
 import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandlerImpl;
 import ua.artcode.utils.IBash;
@@ -23,6 +24,7 @@ public class InitDbScript {
         IModeratorController iModeratorController = new IModeratorControllerImp(appDB,dbFileHandler);
         IClientController iClientController = new IClientCotrollerImp(appDB,dbFileHandler);
         IService iService = new ServiceImp(appDB,dbFileHandler);
+
         IWorkerController iWorkerController = new IWorkerControllerImp(appDB,dbFileHandler);
         ICompany iCompany = new CompanyImp(appDB, dbFileHandler);
         initData(iModeratorPSAController, iModeratorController, iClientController, iService, iWorkerController, iCompany);
@@ -42,8 +44,12 @@ public class InitDbScript {
         iModeratorController.addModerator("Moderatro", "mc", "+380", "mc", Constants.statusClientRole.MODERATOR);
         iModeratorController.addModerator("Moderatroq", "zaq", "+380", "zaq", Constants.statusClientRole.MODERATOR);
         iClientController.addClient("Client", "c", "+380", "c", Constants.statusClientRole.CLIENT);
-        iCompany.addCompany("Company", "DescComp", null, null, null);
-        iService.addService("Service1", "Description");
+        Service service = iService.addService("Service1", "Description");
+        iWorkerController.addWorker("lll","0","ooo","0");
+
+        iCompany.addCompany("Company", "DescComp", null, null, service);
+        iCompany.addCompany("Company1", "DescComp1", null, null, service);
+
 
     }
 }

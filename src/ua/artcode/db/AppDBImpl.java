@@ -4,23 +4,29 @@ import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 /**
  * Created by serhii on 21.08.16.
  */
 public class AppDBImpl implements IAppDB, Serializable{
 
-    private List<Company> companyList = new ArrayList<>();
 
-    private List<Client> clientList = new ArrayList<>();
-    private List<Moderator> moderatorList = new ArrayList<>();
-    private List<Worker> workerList = new ArrayList<>();
-    private List<ModeratorPSA> moderatorPSA = new ArrayList<>();
+    private static long key;
 
-    private List<Location> locations = new ArrayList<>();
-    private List<Service> serviceList = new ArrayList<>();
+    private Map<String, Company> companyMap = new TreeMap<>();
+    private Map<String, Service> serviceMap = new TreeMap<>();
+    private Map<String, Worker> workerList = new TreeMap<>();
+
+
+    private Map<String, Client> clientsMap = new TreeMap<>();
+    private Map<Long, User> autorizationClient = new TreeMap<>();
+    private Map<String, Moderator> moderatorList = new TreeMap<>();
+    private Map<String, ModeratorPSA> moderatorPSA = new TreeMap<>();
+    private Map<String, Location> locations = new TreeMap<>();
+
 
     private List<Comment> commentsPSA = new ArrayList<>();
     private List<Comment> commentsCompany = new ArrayList<>();
@@ -30,23 +36,21 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public Service addService(Service service) {
-        serviceList.add(service);
-        service.setId(serviceList.indexOf(service));
+        serviceMap.put(service.getNameService(), service);
         return service;
     }
 
     @Override
     public Company addCompany(Company company) {
-        companyList.add(company);
-        company.setId(companyList.indexOf(company));
+        companyMap.put(company.getNameCompany(),company);
         return company;
     }
 
     @Override
     public String searchService(String serviceName) {
-        for (int i = 0; i < serviceList.size() ; i++) {
-            if (serviceList.get(i).getNameService().equals(serviceName)){
-                return String.format(" %d, name %s, desc %s", i ,serviceList.get(i).getNameService(),serviceList.get(i).getDescriptionService());
+        for (int i = 0; i < serviceMap.size() ; i++) {
+            if (serviceMap.get(i).getNameService().equals(serviceName)){
+                return String.format(" %d, name %s, desc %s", i , serviceMap.get(i).getNameService(), serviceMap.get(i).getDescriptionService());
             }
 
         }
@@ -55,9 +59,9 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public Worker createWorker(Moderator moderator, Worker worker) {
-        workerList.add(worker);
-        List<Worker> workers = new ArrayList<>();
-        workers.add(worker);
+        workerList.put(worker.getFullname(),worker);
+        Map<String, Worker> workers = new TreeMap<>();
+        workers.put(worker.getFullname(), worker);
         moderator.setWorkers(workers);
         worker.setCompany(moderator.getCompany());
         worker.setService(moderator.getServices());
@@ -66,8 +70,7 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public Moderator addModerator(Moderator moderator) {
-        moderatorList.add(moderator);
-        moderator.setId(moderatorList.indexOf(moderator));
+        moderatorList.put(moderator.getFullname(), moderator);
         return moderator;
     }
 
@@ -81,24 +84,63 @@ public class AppDBImpl implements IAppDB, Serializable{
         return null;
     }
 
+    @Override
+    public Map<Long, User> getListAutorizationClient() {
+        return autorizationClient;
+    }
+
+    @Override
+    public Map<String, Client> getListClients() {
+        return clientsMap;
+    }
+
+
+    @Override
+    public long addAutorizationClient(LocalDateTime date, User user) {
+        Date sDate = Date.from(date.atZone(ZoneId.systemDefault()).toInstant());
+        autorizationClient.put(sDate.getTime(),user);
+        return sDate.getTime();
+    }
 
     @Override
     public Service inputService(int serviceId) {
-        for (int i = 0; i < serviceList.size() ; i++) {
-            if (serviceList.get(i).getId() == serviceId){
-                return serviceList.get(i);
+        for (int i = 0; i < serviceMap.size() ; i++) {
+            if (serviceMap.get(i).getId() == serviceId){
+                return serviceMap.get(i);
             }
+        }
+        return null;
+    }
+
+    @Override
+    public Map<String, Worker> showAllFreeWorker() {
+        Map<String, Worker> workersFree = new TreeMap<>();
+        for (Map.Entry<String, Worker> entry : getWorkerList().entrySet()){
+            if (entry.getValue().getStatus().equals(Constants.statusWorker.FREE)){
+                workersFree.put(entry.getKey(),entry.getValue());
+                return workersFree;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Company getCompanyOfService(String serviceName) {
+        for (Map.Entry<String, Company> entry : companyMap.entrySet()){
+           if (entry.getValue().getServices().equals(serviceName)){
+               return entry.getValue();
+           }
         }
         return null;
     }
 
 //    @Override
 //    public List<Service> addServiceCompany(Service service, String nameCompany) {
-//        for (int i = 0; i < companyList.size(); i++) {
-//            if (companyList.get(i).getNameCompany().equals(nameCompany)){
+//        for (int i = 0; i < companyMap.size(); i++) {
+//            if (companyMap.get(i).getNameCompany().equals(nameCompany)){
 //                List<Service> services = new ArrayList<>();
 //                services.add(service);
-//                companyList.get(i).setServices(services);
+//                companyMap.get(i).setServices(services);
 //                return services;
 //            }
 //        }
@@ -107,18 +149,18 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public ModeratorPSA addModeratorPSA(ModeratorPSA moderatorPSA) {
-        this.moderatorPSA.add(moderatorPSA);
+        this.moderatorPSA.put(moderatorPSA.getFullname(), moderatorPSA);
         return moderatorPSA;
     }
 
     @Override
     public Service editService(long serviceId, String newNameService, String newDescriptionService) {
 
-        for (int i = 0; i < serviceList.size(); i++) {
-            if (serviceList.get(i).getId() == serviceId) {
-                serviceList.get(i).setNameService(newNameService);
-                serviceList.get(i).setDescriptionService(newDescriptionService);
-                return serviceList.get(i);
+        for (int i = 0; i < serviceMap.size(); i++) {
+            if (serviceMap.get(i).getId() == serviceId) {
+                serviceMap.get(i).setNameService(newNameService);
+                serviceMap.get(i).setDescriptionService(newDescriptionService);
+                return serviceMap.get(i);
             }
         }
         return null;
@@ -126,20 +168,20 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public Service setService(long serviceId) {
-        for (int i = 0; i < serviceList.size() ; i++) {
-            if (serviceList.get(i).getId() == serviceId){
-                return serviceList.get(i);
+        for (int i = 0; i < serviceMap.size() ; i++) {
+            if (serviceMap.get(i).getId() == serviceId){
+                return serviceMap.get(i);
             }
         }
         return null;
     }
 
     public Service addServiceToCompany(Company company, Service service){
-        for (int i = 0; i < companyList.size() ; i++) {
-            if (companyList.get(i).getId() == company.getId()){
+        for (int i = 0; i < companyMap.size() ; i++) {
+            if (companyMap.get(i).getId() == company.getId()){
                 List<Service> services = new ArrayList<>();
                 services.add(service);
-                companyList.get(i).setServices(services);
+                companyMap.get(i).setServices(service);
                 return service;
             }
         }
@@ -147,13 +189,12 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
 
 
-
     @Override
     public Service removeService(long serviceId) {
-        for (int i = 0; i < serviceList.size(); i++) {
-            if (serviceList.get(i).getId() == serviceId) {
-                Service service = serviceList.get(i);
-                serviceList.remove(i);
+        for (int i = 0; i < serviceMap.size(); i++) {
+            if (serviceMap.get(i).getId() == serviceId) {
+                Service service = serviceMap.get(i);
+                serviceMap.remove(i);
                 return service;
             }
         }
@@ -161,10 +202,10 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
 
     public Client removeClient(long clientId){
-        for (int i = 0; i < clientList.size() ; i++) {
-            if (clientList.get(i).getId() == clientId){
-                Client client = clientList.get(i);
-                clientList.remove(i);
+        for (int i = 0; i < clientsMap.size() ; i++) {
+            if (clientsMap.get(i).getId() == clientId){
+                Client client = clientsMap.get(i);
+                clientsMap.remove(i);
                 return client;
             }
         }
@@ -172,10 +213,10 @@ public class AppDBImpl implements IAppDB, Serializable{
     }
     @Override
     public Company removeCompany(long companyId) {
-        for (int i = 0; i < companyList.size() ; i++) {
-            if (companyList.get(i).getId() == companyId){
-                Company company = companyList.get(i);
-                companyList.remove(i);
+        for (int i = 0; i < companyMap.size() ; i++) {
+            if (companyMap.get(i).getId() == companyId){
+                Company company = companyMap.get(i);
+                companyMap.remove(i);
                 return company;
             }
         }
@@ -184,33 +225,30 @@ public class AppDBImpl implements IAppDB, Serializable{
 
     @Override
     public Client addClient(Client client) {
-        clientList.add(client);
-        client.setId(clientList.indexOf(client));
+
+        clientsMap.put(client.getFullname(),client);
         return client;
     }
 
     @Override
     public Worker addWorker(Worker worker) {
-        workerList.add(worker);
-        worker.setId(workerList.indexOf(worker));
+        workerList.put(worker.getFullname(), worker);
         return worker;
     }
 
     @Override
     public Location addLocation(Location location) {
-        locations.add(location);
-        location.setId(locations.indexOf(location));
+        locations.put(location.getCity(), location);
         return location;
     }
 
     public Client addModeratorCompany(Client client) {
-        for (int i = 0; i < clientList.size(); i++) {
-            if (clientList.get(i).getId() == client.getId()) {
-                Moderator moderator = new Moderator(clientList.get(i).getFullname(), clientList.get(i).getEmail(),
-                        clientList.get(i).getPhone(), clientList.get(i).getPass(), Constants.statusClientRole.MODERATOR,null);
-                moderatorList.add(moderator);
-
-                clientList.remove(i);
+        for (int i = 0; i < clientsMap.size(); i++) {
+            if (clientsMap.get(i).getId() == client.getId()) {
+                Moderator moderator = new Moderator(clientsMap.get(i).getFullname(), clientsMap.get(i).getEmail(),
+                        clientsMap.get(i).getPhone(), clientsMap.get(i).getPass(), Constants.statusClientRole.MODERATOR,null);
+                moderatorList.put(moderator.getFullname(), moderator);
+                clientsMap.remove(i);
                 return client;
 
             }
@@ -218,132 +256,130 @@ public class AppDBImpl implements IAppDB, Serializable{
         return null;
     }
 
-    public List<ModeratorPSA> getModeratorPSA() {
+    public Map<String, ModeratorPSA> getModeratorPSA() {
         return moderatorPSA;
     }
 
-
-    public List<Client> getListClients() {
-        return clientList;
+    @Override
+    public Map<String, Company> getListCompanies() {
+        return companyMap;
     }
 
+
     @Override
-    public List<Worker> getListWorkers() {
+    public Map<String, Worker> getListWorkers() {
         return workerList;
     }
 
     @Override
-    public List<Service> getListServiceApp() {
-        return serviceList;
+    public Map<String, Service> getListServiceApp() {
+        return serviceMap;
     }
 
     @Override
-    public List<Moderator> getListModerator() {
+    public Map<String, Moderator> getListModerator() {
         return moderatorList;
     }
 
-    public List<Company> getListCompanies() {
-        return companyList;
-    }
 
     // constructors --------------------------------------------------------------------------------
 
     public AppDBImpl()  {
     }
 
-    public AppDBImpl(ArrayList<Company> companies, ArrayList<Client> clients, ArrayList<Moderator> moderator,
-                     ArrayList<Service> services, ArrayList<ModeratorPSA> listModeratorPSA) {
-        this.companyList = companies;
-        this.clientList = clients;
+    public AppDBImpl(Map<String, Company> companies, Map<String, Client> clients, Map<String, Moderator> moderator,
+                     Map<String, Service> services, Map<String, ModeratorPSA> listModeratorPSA) {
+        this.companyMap = companies;
+        this.clientsMap = clients;
         this.moderatorList = moderator;
-        this.serviceList = services;
+        this.serviceMap = services;
         this.moderatorPSA = listModeratorPSA;
     }
 
     // geters & seters -----------------------------------------------------------------------------
 
 
-    public List<Company> getCompanyList() {
-        return companyList;
+    public Map<String, Company> getCompanyMap() {
+        return companyMap;
     }
 
-    public void setCompanyList(List<Company> companyList) {
-        this.companyList = companyList;
+    public void setCompanyMap(Map<String, Company> companyMap) {
+        this.companyMap = companyMap;
     }
 
-    public List<Client> getClientList() {
-        return clientList;
+    public Map<String, Client> getClientsMap() {
+        return clientsMap;
     }
 
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
+    public void setClientsMap(Map<String, Client> clientsMap) {
+        this.clientsMap = clientsMap;
     }
 
-    public List<Moderator> getModeratorList() {
+    public Map<String, Moderator> getModeratorList() {
         return moderatorList;
     }
 
-    public void setModeratorList(List<Moderator> moderatorList) {
+    public void setModeratorList(Map<String, Moderator> moderatorList) {
         this.moderatorList = moderatorList;
     }
 
-    public List<Worker> getWorkerList() {
+    public Map<String, Worker> getWorkerList() {
         return workerList;
     }
 
-    public void setWorkerList(List<Worker> workerList) {
+    public void setWorkerList(Map<String, Worker> workerList) {
         this.workerList = workerList;
     }
 
-    public List<Location> getLocations() {
+    public Map<String, Location> getLocations() {
         return locations;
     }
 
-    public void setLocations(List<Location> locations) {
+    public void setLocations(Map<String, Location> locations) {
         this.locations = locations;
     }
 
-    public List<Service> getServiceList() {
-        return serviceList;
+    public Map<String, Service> getServiceMap() {
+        return serviceMap;
     }
 
-    public void setServiceList(List<Service> serviceList) {
-        this.serviceList = serviceList;
+    public void setServiceMap(Map<String, Service> serviceMap) {
+        this.serviceMap = serviceMap;
     }
 
-    public void setModeratorPSA(List<ModeratorPSA> moderatorPSA) {
+    public void setModeratorPSA(Map<String, ModeratorPSA> moderatorPSA) {
         this.moderatorPSA = moderatorPSA;
     }
 
-    public List<Comment> getCommentsPSA() {
-        return commentsPSA;
-    }
-
-    public void setCommentsPSA(List<Comment> commentsPSA) {
-        this.commentsPSA = commentsPSA;
-    }
-
-    public List<Comment> getCommentsCompany() {
-        return commentsCompany;
-    }
-
-    public void setCommentsCompany(List<Comment> commentsCompany) {
-        this.commentsCompany = commentsCompany;
-    }
-
-    public List<Comment> getCommentsService() {
-        return commentsService;
-    }
-
-    public void setCommentsService(List<Comment> commentsService) {
-        this.commentsService = commentsService;
-    }
-
-    public List<Comment> getCommentsWorker() {
-        return commentsWorker;
-    }
-
-    public void setCommentsWorker(List<Comment> commentsWorker) {
-        this.commentsWorker = commentsWorker;
-    }
+//    public List<Comment> getCommentsPSA() {
+//        return commentsPSA;
+//    }
+//
+//    public void setCommentsPSA(List<Comment> commentsPSA) {
+//        this.commentsPSA = commentsPSA;
+//    }
+//
+//    public List<Comment> getCommentsCompany() {
+//        return commentsCompany;
+//    }
+//
+//    public void setCommentsCompany(List<Comment> commentsCompany) {
+//        this.commentsCompany = commentsCompany;
+//    }
+//
+//    public List<Comment> getCommentsService() {
+//        return commentsService;
+//    }
+//
+//    public void setCommentsService(List<Comment> commentsService) {
+//        this.commentsService = commentsService;
+//    }
+//
+//    public List<Comment> getCommentsWorker() {
+//        return commentsWorker;
+//    }
+//
+//    public void setCommentsWorker(List<Comment> commentsWorker) {
+//        this.commentsWorker = commentsWorker;
+//    }
 }

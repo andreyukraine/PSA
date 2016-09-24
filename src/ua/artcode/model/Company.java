@@ -19,7 +19,7 @@ public class Company implements Serializable {
     private Client moderator;
     private List<Worker> workers;
     private List<Comment> comments;
-    private List<Service> services;
+    private Service service;
 
 
     // constructors --------------------------------------------------------------------------------
@@ -27,12 +27,12 @@ public class Company implements Serializable {
     public Company() {
     }
 
-    public Company(String nameCompany, String descriptionCompany, Client moderator, Location location, List<Service> services) {
+    public Company(String nameCompany, String descriptionCompany, Client moderator, Location location, Service service) {
         this.nameCompany = nameCompany;
         this.descriptionCompany = descriptionCompany;
         this.moderator = moderator;
         this.location = location;
-        this.services = services;
+        this.service = service;
         changeStatusCompany = Constants.statusCompany.NEW;
     }
 
@@ -102,12 +102,12 @@ public class Company implements Serializable {
         this.comments = comments;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public Service getServices() {
+        return service;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setServices(Service service) {
+        this.service = service;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Company implements Serializable {
                 ", moderator=" + moderator +
                 ", workers=" + workers +
                 ", comments=" + comments +
-                ", services=" + services +
+                ", service=" + service +
                 '}';
     }
 }

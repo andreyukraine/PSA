@@ -5,6 +5,7 @@ import ua.artcode.model.Service;
 import ua.artcode.model.Worker;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ladapodborska on 9/5/16.
@@ -22,7 +23,7 @@ public interface IService {
     Service editService(long serviceId, String newNameService, String newDescriptionService);
 
     //get list of all services in app
-    List<Service> getAllServicesApp();
+    Map<String, Service> getAllServicesApp();
 
     //setService
     Service setService(long serviceId);
@@ -45,5 +46,5 @@ public interface IService {
 
 
     //get list of all services in company
-    List<Service> getAllServicesCompany(long companyId);
+    Map<String, Service> getAllServicesCompany(long companyId);
 }

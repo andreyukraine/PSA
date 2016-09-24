@@ -5,5 +5,5 @@ package ua.artcode.utils.smtp;
  */
 public interface ISMTPController {
 
-    public boolean sentMessage(String to, String subject, String message, String signature);
+  //  public boolean sentMessage(String to, String subject, String message, String signature);
 }

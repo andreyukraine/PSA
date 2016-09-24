@@ -6,6 +6,7 @@ import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IT on 22.08.2016.
@@ -30,8 +31,28 @@ public class IClientCotrollerImp implements IClientController {
     }
 
     @Override
-    public List<Client> listAllClient() {
+    public Map<String, Client> listAllClient() {
         return appDB.getListClients();
+    }
+
+    @Override
+    public Map<String, Service> listAllService() {
+        return appDB.getListServiceApp();
+    }
+
+    @Override
+    public Map<String, Company> listAllCompany() {
+        return appDB.getListCompanies();
+    }
+
+    @Override
+    public Company getCompanyOfService(String nameService) {
+        return appDB.getCompanyOfService(nameService);
+    }
+
+    @Override
+    public Map<String, Worker> showAllFreeWorker() {
+        return appDB.showAllFreeWorker();
     }
 
     @Override

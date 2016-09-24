@@ -33,8 +33,8 @@ public class TestView {
         workers.add(worker2);
         workers.add(worker3);
 
-        Moderator moderator1 = new Moderator("Fedir", "fedir@gmail.com", "0930999999", "12345678", Constants.statusClientRole.MODERATOR, workers);
-        moderator1.setServices(services);
+       // Moderator moderator1 = new Moderator("Fedir", "fedir@gmail.com", "0930999999", "12345678", Constants.statusClientRole.MODERATOR, workers);
+       // moderator1.setServices(services);
 
         service1.setWorkers(workers);
 

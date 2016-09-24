@@ -67,7 +67,7 @@ public class ModeratorPSAView {
             } else if (choice == 14) {
                 saveAllToDbMenu();
             } else if (choice == 15) {
-                showStartMenu();
+                //showStartMenu();
             }
 
         }
@@ -118,14 +118,14 @@ public class ModeratorPSAView {
 
 
     public void changeStatusCompany() {
-        System.out.println("Input company id");
-        String companyId = scanner.nextLine();
+        System.out.println("Input company name");
+        String companyName = scanner.nextLine();
 
         System.out.println("Input company status");
 
         String statusIndex = scanner.nextLine();
 
-        iCompany.changeStatusCompany(0, Constants.statusCompany.DONE);
+        iCompany.changeStatusCompany(companyName, Constants.statusCompany.DONE);
     }
 
     public void addServiceMenu() {
@@ -229,12 +229,12 @@ public class ModeratorPSAView {
     }
 
     public void statusCompanyMenu() {
-        System.out.println("Input company id");
-        long companyId = scanner.nextLong();
+        System.out.println("Input company name");
+        String companyName = scanner.nextLine();
         System.out.println("Input company statusIndex");
         int statusIndex = scanner.nextInt();
 
-        Company company = iCompany.changeStatusCompany(companyId, Constants.statusCompany.NEW);
+        Company company = iCompany.changeStatusCompany(companyName, Constants.statusCompany.NEW);
         System.out.println(company.toString());
     }
 

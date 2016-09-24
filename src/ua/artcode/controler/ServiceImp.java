@@ -7,6 +7,7 @@ import ua.artcode.model.Worker;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ladapodborska on 9/5/16.
@@ -42,7 +43,7 @@ public class ServiceImp implements IService{
     }
 
     @Override
-    public List<Service> getAllServicesApp() {
+    public Map<String, Service> getAllServicesApp() {
         return appDB.getListServiceApp();
     }
 
@@ -85,7 +86,7 @@ public class ServiceImp implements IService{
 
 
     @Override
-    public List<Service> getAllServicesCompany(long companyId) {
+    public Map<String, Service> getAllServicesCompany(long companyId) {
         return null;
     }
 }

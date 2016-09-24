@@ -4,6 +4,8 @@ import ua.artcode.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by IT on 21.08.2016.
@@ -11,7 +13,7 @@ import java.util.List;
 public class Moderator extends User{
 
     private Company company;
-    private List<Worker> workers = new ArrayList<>();
+    private Map<String, Worker> workers = new TreeMap<>();
     private List<Service> services;
     private List<Order> orders;
     private List<Comment> commentsCompany;
@@ -21,7 +23,7 @@ public class Moderator extends User{
 
     // constructors --------------------------------------------------------------------------------
 
-    public Moderator(String fullname , String email, String phone, String pass, Constants.statusClientRole role, List<Worker> worker) {
+    public Moderator(String fullname , String email, String phone, String pass, Constants.statusClientRole role, Map<String, Worker> worker) {
         super(fullname, email, phone, pass, role);
         this.workers = worker;
     }
@@ -35,10 +37,6 @@ public class Moderator extends User{
 
     public void setCompany(Company company) {
         this.company = company;
-    }
-
-    public List<Worker> getWorkers() {
-        return workers;
     }
 
     public List<Service> getServices() {
@@ -81,7 +79,11 @@ public class Moderator extends User{
         this.commentsWorker = commentsWorker;
     }
 
-    public void setWorkers(List<Worker> workers) {
+    public Map<String, Worker> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Map<String, Worker> workers) {
         this.workers = workers;
     }
 }

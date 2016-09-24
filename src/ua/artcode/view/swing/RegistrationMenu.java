@@ -55,7 +55,7 @@ public class RegistrationMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new MainFrame().setVisible(true);
+               // new MainFrame().setVisible(true);
             }
         });
 

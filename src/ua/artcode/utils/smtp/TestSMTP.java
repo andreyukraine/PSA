@@ -10,10 +10,10 @@ public class TestSMTP {
 
     public static void main(String[] args) {
 
-        ISMTPController testSMTP = new SMTPSender(USER_NAME_FOR_SMTP, PASS_WORD_FOR_SMTP);
+       // ISMTPController testSMTP = new SMTPSender(USER_NAME_FOR_SMTP, PASS_WORD_FOR_SMTP);
 
-        boolean res = testSMTP.sentMessage("psv.aco15@gmail.com", "test subject", "test message", "Best regards");
-        System.out.println(res);
+       // boolean res = testSMTP.sentMessage("psv.aco15@gmail.com", "test subject", "test message", "Best regards");
+      //  System.out.println(res);
 
     }
 
