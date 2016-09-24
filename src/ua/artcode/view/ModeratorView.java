@@ -2,9 +2,10 @@ package ua.artcode.view;
 
 import ua.artcode.controler.*;
 import ua.artcode.utils.Constants;
+import ua.artcode.view.swing.registration_forms.ModeratorFrame;
 
 import java.util.Scanner;
-import static ua.artcode.run.RunProgram.showStartMenu;
+
 
 /**
  * Created by IT on 25.08.2016.
@@ -30,7 +31,13 @@ public class ModeratorView {
     }
 
     public void start(){
-        showMainMenu();
+
+
+
+
+
+
+        //showMainMenu();
         int choice = -1;
         while ((choice = Integer.parseInt(scanner.nextLine())) != 0){
             if(choice == 1){
@@ -38,7 +45,7 @@ public class ModeratorView {
             }else if (choice == 2){
                 createWorkerMenu();
             }else if (choice == 3){
-                showStartMenu();
+                //showStartMenu();
             }
 
         }

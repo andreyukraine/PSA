@@ -57,9 +57,9 @@ public class RegistrationCompanyView {
 
             }
             if (choice == 2) {
-                if (loginView.showLoginMenu() == true) {
-                    addCompanyMenu();
-                }
+//                if (loginView.showLoginMenu() == true) {
+//                    addCompanyMenu();
+//                }
             }
         }
     }

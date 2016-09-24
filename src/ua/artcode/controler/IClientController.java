@@ -4,11 +4,17 @@ import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IT on 21.08.2016.
  */
 public interface IClientController {
+
+
+
+
+
 
     // создаем клиента
     Client addClient(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
@@ -17,7 +23,17 @@ public interface IClientController {
     Client removeClient(long clientId);
 
     //посмотреть всех клиентов
-    List<Client> listAllClient();
+    Map<String, Client> listAllClient();
+
+    Map<String, Service> listAllService();
+
+    Map<String, Company> listAllCompany();
+
+    //выбор компаний по сервису
+    Company getCompanyOfService(String nameService);
+
+    Map<String, Worker> showAllFreeWorker();
+
 
     //создать заказ
     Order createOrder(Company company, Service service);
@@ -37,4 +53,14 @@ public interface IClientController {
 
     //выбор сервиса
     Service inputService(int serviceId);
+
+
+
+
+
+
+
+
+
+
 }

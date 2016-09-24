@@ -74,7 +74,7 @@ public class WorkerRegistrationForm extends JFrame {
                 JOptionPane.showMessageDialog(getParent(),
                         "There must be answer of validation registration. " +
                                 "But now you'll just go to main frame :(");
-                new MainFrame().setVisible(true);
+               // new MainFrame().setVisible(true);
             }
         });
 

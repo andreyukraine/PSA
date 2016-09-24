@@ -9,6 +9,7 @@ import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ladapodborska on 9/5/16.
@@ -27,18 +28,18 @@ public class CompanyImp implements ICompany {
     }
 
     @Override
-    public Company changeStatusCompany(long companyId, Constants.statusCompany status) {
-        for (int i = 0; i < appDB.getListCompanies().size(); i++) {
-            if (appDB.getListCompanies().get(i).getId() == companyId) {
-                appDB.getListCompanies().get(i).setChangeStatusCompany(status);
-                return appDB.getListCompanies().get(i);
+    public Company changeStatusCompany(String companyName, Constants.statusCompany status) {
+        for (Map.Entry<String, Company> entry : appDB.getListCompanies().entrySet()) {
+            if (entry.getKey() == companyName) {
+                entry.getValue().setChangeStatusCompany(status);
+                return entry.getValue();
             }
         }
         return null;
     }
 
     @Override
-    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service) {
+    public Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, Service service) {
         Company company = new Company(nameCompany, descriptionCompany, client, location, service);
         return appDB.addCompany(company);
     }
@@ -50,7 +51,7 @@ public class CompanyImp implements ICompany {
 
 
     @Override
-    public List<Company> listAllCompany() {
+    public Map< String, Company> listAllCompany() {
         return appDB.getListCompanies();
     }
 

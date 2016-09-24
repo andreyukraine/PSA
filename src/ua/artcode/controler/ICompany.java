@@ -7,6 +7,7 @@ import ua.artcode.model.Service;
 import ua.artcode.utils.Constants;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ladapodborska on 9/5/16.
@@ -14,13 +15,13 @@ import java.util.List;
 public interface ICompany {
 
     //add company to app
-    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, List<Service> service);
+    Company addCompany(String nameCompany, String descriptionCompany, Client client, Location location, Service service);
 
     //remove company from app
     Company removeCompany(long companyId);
 
     //посмотреть все компании
-    List<Company> listAllCompany();
+    Map<String, Company> listAllCompany();
 
 
 
@@ -43,7 +44,7 @@ public interface ICompany {
     Company findCompany(long companyId);
 
     //change status company id
-   Company changeStatusCompany(long companyId, Constants.statusCompany status);
+   Company changeStatusCompany(String companyName, Constants.statusCompany status);
 
 
 }

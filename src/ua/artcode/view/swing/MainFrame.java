@@ -1,5 +1,7 @@
 package ua.artcode.view.swing;
 
+import ua.artcode.utils.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,9 @@ public class MainFrame extends JFrame{
     public MainFrame() throws HeadlessException {
 
         setTitle("MAIN, Public Service Application");
-        setSize(600, 600);
+        setSize(Constants.VIEW_WIDTH, Constants.VIEW_HIGHT);
+        setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
         init();
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

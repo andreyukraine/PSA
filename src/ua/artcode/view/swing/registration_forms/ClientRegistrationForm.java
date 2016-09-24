@@ -32,6 +32,7 @@ public class ClientRegistrationForm extends JFrame{
         setSize(600, 600);
         init();
         setVisible(true);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 
@@ -71,7 +72,7 @@ public class ClientRegistrationForm extends JFrame{
                 JOptionPane.showMessageDialog(getParent(),
                         "There must be answer of validation registration. " +
                                 "But now you'll just go to main frame :(");
-                new MainFrame().setVisible(true);
+                //new MainFrame().setVisible(true);
             }
         });
 

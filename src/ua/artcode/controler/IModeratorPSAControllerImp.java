@@ -8,6 +8,7 @@ import ua.artcode.utils.Constants;
 import ua.artcode.utils.DBFileHandler;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -33,7 +34,7 @@ public class IModeratorPSAControllerImp implements IModeratorPSAController {
     }
 
     @Override
-    public List<Moderator> listAllModerator() throws ModeratorExeption {
+    public Map<String, Moderator> listAllModerator() throws ModeratorExeption {
         return appDB.getListModerator();
     }
 

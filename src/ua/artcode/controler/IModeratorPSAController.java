@@ -5,6 +5,7 @@ import ua.artcode.model.*;
 import ua.artcode.utils.Constants;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IT on 21.08.2016.
@@ -15,7 +16,7 @@ public interface IModeratorPSAController {
     ModeratorPSA addModeratorPSA(String fullname, String email, String phone, String pass, Constants.statusClientRole role);
 
     //посмотреть всех модераторов
-    List<Moderator> listAllModerator() throws ModeratorExeption;
+    Map<String, Moderator> listAllModerator() throws ModeratorExeption;
 
     //добавить локацию
     Location addLocation(String country, String city);

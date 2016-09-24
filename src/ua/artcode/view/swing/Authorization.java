@@ -1,5 +1,7 @@
 package ua.artcode.view.swing;
 
+import ua.artcode.utils.Constants;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +22,9 @@ public class Authorization extends JFrame{
     public Authorization() throws HeadlessException {
 
         setTitle("Authorization");
-        setSize(600, 600);
+        setSize(Constants.VIEW_WIDTH, Constants.VIEW_HIGHT-100);
+        setBackground(Color.WHITE);
+        setLocationRelativeTo(null);
         init();
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

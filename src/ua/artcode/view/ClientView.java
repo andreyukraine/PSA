@@ -5,7 +5,7 @@ import ua.artcode.model.Location;
 
 import java.util.Scanner;
 
-import static ua.artcode.run.RunProgram.showStartMenu;
+
 
 /**
  * Created by IT on 25.08.2016.
@@ -35,7 +35,7 @@ public class ClientView {
                 searchServiceMenu();
             }
             if (choice == 3){
-                showStartMenu();
+                //showStartMenu();
             }
 
         }

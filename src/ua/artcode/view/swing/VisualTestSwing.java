@@ -5,7 +5,7 @@ package ua.artcode.view.swing;
  */
 public class VisualTestSwing {
     public static void main(String[] args) {
-        new MainFrame();
+        //new MainFrame();
 
     }
 }

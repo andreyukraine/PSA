@@ -2,11 +2,16 @@ package ua.artcode.view;
 
 import ua.artcode.controler.*;
 import ua.artcode.db.IAppDB;
+import ua.artcode.model.Client;
+import ua.artcode.model.User;
 import ua.artcode.run.RunProgram;
 import ua.artcode.utils.CheckLoginPass;
 import ua.artcode.utils.Constants;
+import ua.artcode.view.swing.Authorization;
 
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.*;
 
 
 /**
@@ -15,6 +20,7 @@ import java.util.Scanner;
 public class LoginView {
 
     private Scanner scanner;
+    private ICheckAuthorization iCheckAuthorization;
     private IModeratorPSAController iModeratorPSAController;
     private IModeratorController iModeratorController;
     private IWorkerController iWorkerController;
@@ -30,48 +36,27 @@ public class LoginView {
     public LoginView(Scanner scanner, IModeratorPSAController iModeratorPSAController,
                      IModeratorController iModeratorController, IWorkerController iWorkerController, IClientController iClientController, IService iService, ICompany iCompany, IAppDB appDB) {
         this.scanner = scanner;
+        this.iCheckAuthorization = iCheckAuthorization;
         this.iModeratorPSAController = iModeratorPSAController;
         this.iModeratorController = iModeratorController;
         this.iClientController = iClientController;
         this.iService = iService;
         this.iCompany = iCompany;
         this.iWorkerController = iWorkerController;
-
-
         this.iAppDB = appDB;
     }
 
     // methods --------------------------------------------------------------------------------------
 
-    public boolean showLoginMenu() {
-        System.out.println("Input login");
-        String login = scanner.nextLine();
-        System.out.println("Input pass");
-        String pass = scanner.nextLine();
+    public User showLoginMenu(String login, String pass) {
 
-        //Utils checkLoginPass = new Utils(login,pass);
-
-        // check if user is in the system
-
-        Constants.statusClientRole role = CheckLoginPass.CheckLoginPassw(login,pass,iAppDB,scanner);
-
-        if (role.equals(Constants.statusClientRole.MODERATOR_PSA)){
-            ModeratorPSAView moderatorPSAView = new ModeratorPSAView(scanner, iModeratorPSAController, iClientController, iService, iCompany, iWorkerController);
-            moderatorPSAView.start();
-        }else if (role.equals(Constants.statusClientRole.MODERATOR)){
-            ModeratorView moderatorView = new ModeratorView(scanner, iModeratorController, iClientController,iService, iCompany, iWorkerController);
-            moderatorView.start();
-        }else if (role.equals(Constants.statusClientRole.WORKER)){
-            WorkerView workerView = new WorkerView(scanner, iWorkerController);
-            workerView.start();
+        User user = CheckLoginPass.CheckLoginPassw(login, pass, iAppDB, scanner);
+        if (user != null) {
+            //iCheckAuthorization.addKeyAutorization(user);
+            return user;
         }else{
-            ClientView clientView = new ClientView(scanner, iClientController);
-            clientView.start();
+            return null;
         }
-
-
-        RunProgram.showStartMenu();
-        return false;
     }
 
 
